@@ -3,6 +3,7 @@ import pygame, sys, math
 
 class Ship():
     def __init__(self, image, speed=[3,3], startPos=[400,1000]):
+        Ship.__init__(self,"ball.png",[0,0], startPos)
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
