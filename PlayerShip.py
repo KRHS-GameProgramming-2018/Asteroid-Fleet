@@ -8,8 +8,6 @@ class PlayerShip(Ship):
         Ship.__init__(self,"ball.png",[0,0], startPos)
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
-        
-        Ball.__init__(self, "Images/Ball/ball.png", [0,0], startPos)
 
         self.frame = 0;
         self.images = self.imagesE
