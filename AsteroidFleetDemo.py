@@ -13,6 +13,9 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
+
+player1 = PlayerShip(5, [width/2, height/2])
+
 while True:
     for event in pygame.event.get():
         #print event.type
@@ -42,13 +45,14 @@ while True:
     mposX = 0
     mposY = 0
     
-    screen.blit(Ship.image, Ship.rect)
+    #screen.blit(Ship.image, Ship.rect)
 
     screen.fill(bgColor)
 
-    screen.blit(PlayerShip.image, PlayerShip.rect)
+    #screen.blit(PlayerShip.image, PlayerShip.rect)
     pygame.display.flip()
     clock.tick(60)
-
+    
+    screen.blit(player1.image, player1.rect)
     
 
