@@ -1,3 +1,4 @@
+# test Luv papa Jared and JJ and The super duper lucrative drill
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
