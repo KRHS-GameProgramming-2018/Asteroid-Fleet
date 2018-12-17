@@ -1,17 +1,19 @@
 import pygame, sys, math
 from Ship import *
-#ARGUMENTS 
-#Image, Arsenal, Velocity, startPos, Health
+
 
 class PlayerShip(Ship):
     def __init__(self, maxSpeed, startPos=[400,1000]):
-        Ship.__init__(self,"ball.png",[0,0], startPos)
+        #self.imagesE = [pygame.image.load("ball.png")]
+        
+        #Ship.__init__(self, "Asteroid Fleet/PlayerShip/images/ball.png", [0,0], startPos)
+        
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
 
         self.frame = 0;
         self.images = self.imagesE
-        self.maxFrame = len(self.images)-1
+        #self.maxFrame = len(self.images)-1
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
         
@@ -27,13 +29,13 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.imagesN
+            self.images = self.imagesE
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.imagesS
+            self.images = self.imagesE
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.imagesW
+            self.images = self.imagesE
         if d == "east":
             self.speedx = self.maxSpeed
             self.images = self.imagesE

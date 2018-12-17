@@ -1,4 +1,3 @@
-# test Luv papa Jared and JJ and The super duper lucrative drill
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
@@ -14,8 +13,12 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
+bgColor = 0,0,0
+mposX = 0
+mposY = 0
 
-player1 = PlayerShip(5, [width/2, height/2])
+player1 = PlayerShip(5, [0,0])
+
 
 while True:
     for event in pygame.event.get():
@@ -41,11 +44,6 @@ while True:
             if event.key == pygame.K_d:
                 player1.go("eastU")
 
-    bgColor = 0,0,0
-
-    mposX = 0
-    mposY = 0
-    
     #screen.blit(Ship.image, Ship.rect)
 
     screen.fill(bgColor)
@@ -53,7 +51,6 @@ while True:
     #screen.blit(PlayerShip.image, PlayerShip.rect)
     pygame.display.flip()
     clock.tick(60)
-    
     screen.blit(player1.image, player1.rect)
     
 
