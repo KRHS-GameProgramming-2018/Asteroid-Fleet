@@ -43,3 +43,5 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                player1.
