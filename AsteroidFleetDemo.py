@@ -7,22 +7,22 @@ clock = pygame.time.Clock()
 
 pygame.mouse.set_visible(True)
 
-width = 800
+width = 1100
 height = 1100
 size = width, height
 
 screen = pygame.display.set_mode(size)
 
-bgColor = 0,0,0
+bgColor = 100,100,100
 mposX = 0
 mposY = 0
 
-player1 = PlayerShip(5, [0,0])
+player1 = PlayerShip(5, [width, height])
 
 
 while True:
     for event in pygame.event.get():
-        #print event.type
+        print event.type
         if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.KEYDOWN:
@@ -49,13 +49,11 @@ while True:
                 player1.go("eastU")
             
 
-    #screen.blit(Ship.image, Ship.rect)
+
 
     screen.fill(bgColor)
-
-    #screen.blit(PlayerShip.image, PlayerShip.rect)
+    screen.blit(player1.image, player1.rect)
     pygame.display.flip()
     clock.tick(60)
-    screen.blit(player1.image, player1.rect)
     
 

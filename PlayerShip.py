@@ -3,17 +3,18 @@ from Ship import *
 
 
 class PlayerShip(Ship):
-    def __init__(self, maxSpeed, startPos=[400,1000]):
-        #self.imagesE = [pygame.image.load("ball.png")]
-        
-        #Ship.__init__(self, "Asteroid Fleet/PlayerShip/images/ball.png", [0,0], startPos)
+    def __init__(self, maxSpeed, startPos=[0,0]):
+        self.imagesA = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png")]
+        self.imagesB = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.move.png")]
+     
+        Ship.__init__(self, "C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png", [0,0], startPos)
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
 
         self.frame = 0;
-        self.images = self.images
-        #self.maxFrame = len(self.images)-1
+        self.images = self.imagesA
+        self.maxFrame = len(self.images)-1
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
         
@@ -29,25 +30,29 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.imagesE
+            self.images = self.imagesB
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.imagesE
+            self.images = self.imagesB
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.imagesE
+            self.images = self.imagesB
         if d == "east":
             self.speedx = self.maxSpeed
-            self.images = self.imagesE
+            self.images = self.imagesB
             
         if d == "northU":
             self.speedy = 0
+            self.images = self.imagesA
         if d == "southU":
             self.speedy = 0
+            self.images = self.imagesA
         if d == "westU":
             self.speedx = 0
+            self.images = self.imagesA
         if d == "eastU":
             self.speedx = 0
+            self.images = self.imagesA
 
 
     def update(self, size):
