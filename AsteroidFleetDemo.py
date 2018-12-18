@@ -43,6 +43,8 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
+            if event.key == pygame.MOUSEBUTTONDOWN:
+                player1.shoot("projectile")
 
     #screen.blit(Ship.image, Ship.rect)
 

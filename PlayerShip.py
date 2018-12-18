@@ -12,7 +12,7 @@ class PlayerShip(Ship):
         self.goal = [0,0]
 
         self.frame = 0;
-        self.images = self.imagesE
+        self.images = self.images
         #self.maxFrame = len(self.images)-1
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
