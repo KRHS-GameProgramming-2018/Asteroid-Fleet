@@ -8,10 +8,7 @@ class PlayerShip(Ship):
         self.imagesB = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.move.png")]
      
         Ship.__init__(self, "C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png", [0,0], startPos)
-        
-        self.maxSpeed = maxSpeed
-        self.goal = [0,0]
-
+     
         self.frame = 0;
         self.images = self.imagesA
         self.maxFrame = len(self.images)-1
@@ -30,46 +27,45 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.imagesB
+           # self.images = self.imagesB
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.imagesB
+           # self.images = self.imagesB
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.imagesB
+           # self.images = self.imagesB
         if d == "east":
             self.speedx = self.maxSpeed
-            self.images = self.imagesB
+            #self.images = self.imagesB
             
         if d == "northU":
             self.speedy = 0
-            self.images = self.imagesA
+            #self.images = self.imagesA
         if d == "southU":
             self.speedy = 0
-            self.images = self.imagesA
+           # self.images = self.imagesA
         if d == "westU":
             self.speedx = 0
-            self.images = self.imagesA
+           # self.images = self.imagesA
         if d == "eastU":
             self.speedx = 0
-            self.images = self.imagesA
+           # self.images = self.imagesA
 
 
-    def update(self, size):
-        Ship.update(self, size)
-        self.animate()
+    # def update(self, size):
+        # Ship.update(self, size)
+       # self.animate()
         
-    def animate(self):
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-                
-            self.image = self.images[self.frame]
+    # def animate(self):
+        # if self.aniTimer < self.aniTimerMax:
+            # self.aniTimer += 1
+        # else:
+            # self.aniTimer = 0
+            # if self.frame < self.maxFrame:
+                # self.frame += 1
+            # else:
+                # self.frame = 0
+            # self.image = self.images[self.frame]
 
     def headTo(self, pos):
         self.goal = pos
@@ -87,7 +83,7 @@ class PlayerShip(Ship):
         else:
             self.speedy = 0
             
-        print self.speedx, self.speedy
+        #print self.speedx, self.speedy
         
         
             
