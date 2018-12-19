@@ -1,6 +1,7 @@
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
+from Asteroid import *
 pygame.init()
 
 clock = pygame.time.Clock()
