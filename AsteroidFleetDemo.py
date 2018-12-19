@@ -17,7 +17,7 @@ bgColor = 100,100,100
 mposX = 0
 mposY = 0
 
-player1 = PlayerShip(4, [width/2, height/2])
+player1 = PlayerShip(7, [width/2, height/2])
 
 
 while True:
@@ -44,9 +44,8 @@ while True:
             if event.key == pygame.K_d:
                 player1.go("eastU")
 
-	#PlayerShip.update(size)
-	player1.update(size)
-
+    
+    player1.update(size)
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
     pygame.display.flip()

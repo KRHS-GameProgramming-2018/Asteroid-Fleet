@@ -2,7 +2,7 @@ import pygame, sys, math
 
 
 class Ship():
-    def __init__(self, image, speed=[4,4], startPos=[0,0]):
+    def __init__(self, image, speed=[7,7], startPos=[0,0]):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -26,9 +26,9 @@ class Ship():
         self.move()
        # self.bounceWall(size)
     
-    # def move(self):
-        # self.speed = [self.speedx, self.speedy]
-        # self.rect = self.rect.move(self.speed)
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)
         
     # def bounceWall(self, size):
         # width = size[0]

@@ -4,10 +4,10 @@ from Ship import *
 
 class PlayerShip(Ship):
     def __init__(self, maxSpeed, startPos=[0,0]):
-        self.imagesA = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png")]
-        self.imagesB = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.move.png")]
+        self.imagesA = [pygame.image.load("Ship/images/ship1.png")]
+        self.imagesB = [pygame.image.load("Ship/images/ship1.move.png")]
      
-        Ship.__init__(self, "C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png", [0,0], startPos)
+        Ship.__init__(self, "Ship/images/ship1.png", [0,0], startPos)
      
         self.frame = 0;
         self.images = self.imagesA
@@ -52,20 +52,20 @@ class PlayerShip(Ship):
            # self.images = self.imagesA
 
 
-    # def update(self, size):
-        # Ship.update(self, size)
-       # self.animate()
+    def update(self, size):
+        Ship.update(self, size)
+        self.animate()
         
-    # def animate(self):
-        # if self.aniTimer < self.aniTimerMax:
-            # self.aniTimer += 1
-        # else:
-            # self.aniTimer = 0
-            # if self.frame < self.maxFrame:
-                # self.frame += 1
-            # else:
-                # self.frame = 0
-            # self.image = self.images[self.frame]
+    def animate(self):
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
 
     def headTo(self, pos):
         self.goal = pos
