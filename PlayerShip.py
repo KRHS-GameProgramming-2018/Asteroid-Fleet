@@ -16,7 +16,7 @@ class PlayerShip(Ship):
         self.rect = self.image.get_rect()
         
         self.aniTimer = 0
-        self.aniTimerMax = 60/4
+        self.aniTimerMax = 60/10
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -27,29 +27,29 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-           # self.images = self.imagesB
+            self.images = self.imagesB
         if d == "south":
             self.speedy = self.maxSpeed
-           # self.images = self.imagesB
+            self.images = self.imagesB
         if d == "west":
             self.speedx = -self.maxSpeed
-           # self.images = self.imagesB
+            self.images = self.imagesB
         if d == "east":
             self.speedx = self.maxSpeed
-            #self.images = self.imagesB
+            self.images = self.imagesB
             
         if d == "northU":
             self.speedy = 0
-            #self.images = self.imagesA
+            self.images = self.imagesA
         if d == "southU":
             self.speedy = 0
-           # self.images = self.imagesA
+            self.images = self.imagesA
         if d == "westU":
             self.speedx = 0
-           # self.images = self.imagesA
+            self.images = self.imagesA
         if d == "eastU":
             self.speedx = 0
-           # self.images = self.imagesA
+            self.images = self.imagesA
 
 
     def update(self, size):

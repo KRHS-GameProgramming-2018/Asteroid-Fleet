@@ -17,8 +17,7 @@ bgColor = 100,100,100
 mposX = 0
 mposY = 0
 
-player1 = PlayerShip(7, [width/2, height/2])
-
+player1 = PlayerShip(7, [width/4, height/4])
 
 while True:
     for event in pygame.event.get():
