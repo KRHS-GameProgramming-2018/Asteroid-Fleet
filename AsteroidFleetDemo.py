@@ -1,6 +1,7 @@
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
+# from Asteroid import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -16,6 +17,12 @@ screen = pygame.display.set_mode(size)
 bgColor = 100,100,100
 mposX = 0
 mposY = 0
+
+#for i in range(10):
+    # images = ["ball.png"]
+    # speed = [random.randint(1,10), 0]
+    # pos = [random.randint(0,690), 0]
+    # Asteroid += [Asteroid(images[random.randint(0,0)], speed, pos)]
 
 player1 = PlayerShip(7, [width/4, height/4])
 
@@ -33,6 +40,12 @@ while True:
                 player1.go("south")
             if event.key == pygame.K_d:
                 player1.go("east")
+            if event.key == pygame.MOUSEBUTTONDOWN:
+                player1.shoot("")
+            if event.key == pygame.SPACE:
+                player1.shoot("")
+            if event.key == pygame.K_p:
+                game.pause
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 player1.go("northU")
