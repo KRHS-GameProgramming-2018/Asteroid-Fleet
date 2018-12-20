@@ -4,14 +4,11 @@ from Ship import *
 
 class PlayerShip(Ship):
     def __init__(self, maxSpeed, startPos=[0,0]):
-        self.imagesA = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png")]
-        self.imagesB = [pygame.image.load("C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.move.png")]
+        self.imagesA = [pygame.image.load("Ship/images/ship1.png")]
+        self.imagesB = [pygame.image.load("Ship/images/ship1.move.png")]
      
-        Ship.__init__(self, "C:\Users\Student\Documents\Game Programming - Jared Fortier\Asteroid Fleet\Ship\images\ship1.png", [0,0], startPos)
-        
-        self.maxSpeed = maxSpeed
-        self.goal = [0,0]
-
+        Ship.__init__(self, "Ship/images/ship1.png", [0,0], startPos)
+     
         self.frame = 0;
         self.images = self.imagesA
         self.maxFrame = len(self.images)-1
@@ -19,7 +16,7 @@ class PlayerShip(Ship):
         self.rect = self.image.get_rect()
         
         self.aniTimer = 0
-        self.aniTimerMax = 60/4
+        self.aniTimerMax = 60/10
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -68,7 +65,6 @@ class PlayerShip(Ship):
                 self.frame += 1
             else:
                 self.frame = 0
-                
             self.image = self.images[self.frame]
 
     def headTo(self, pos):
@@ -87,7 +83,7 @@ class PlayerShip(Ship):
         else:
             self.speedy = 0
             
-        print self.speedx, self.speedy
+        #print self.speedx, self.speedy
         
         
             

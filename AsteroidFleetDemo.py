@@ -1,6 +1,7 @@
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
+from Asteroid import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -17,8 +18,7 @@ bgColor = 100,100,100
 mposX = 0
 mposY = 0
 
-player1 = PlayerShip(5, [width, height])
-
+player1 = PlayerShip(7, [width/4, height/4])
 
 while True:
     for event in pygame.event.get():
@@ -49,13 +49,13 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
-            
 
-
-
+    
+    player1.update(size)
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
     pygame.display.flip()
     clock.tick(60)
+    #print clock.get_fps()
     
 
