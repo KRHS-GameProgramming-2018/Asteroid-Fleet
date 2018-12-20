@@ -1,8 +1,8 @@
-import pygame, sys, math
+import pygame, sys, math, random
 
 
 class Asteroid():
-    def __init__(self, image, speed=[0,5], startPos=[random.randint(1,799),-10]):
+    def __init__(self, image, speed=[1,5], startPos=[0,0]):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -30,45 +30,45 @@ class Asteroid():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-    def bounceWall(self, size):
-        width = size[0]
-        height = size[1]
-        if self.rect.left < 0 or self.rect.right > width:
-            if not self.didBounceX:
-                self.speedx = -self.speedx
-                self.didBounceX = True
-        if self.rect.top < 0 or self.rect.bottom > height:
-            if not self.didBounceY:
-                self.speedy = -  self.speedy
-                self.didBounceY = True
+    # def bounceWall(self, size):
+        # width = size[0]
+        # height = size[1]
+        # if self.rect.left < 0 or self.rect.right > width:
+            # if not self.didBounceX:
+                # self.speedx = -self.speedx
+                # self.didBounceX = True
+        # if self.rect.top < 0 or self.rect.bottom > height:
+            # if not self.didBounceY:
+                # self.speedy = -  self.speedy
+                # self.didBounceY = True
             
-    def collide(self, other):
-        if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.didBounceX:
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
+    # def collide(self, other):
+        # if not(self == other):
+            # if self.rect.right > other.rect.left:
+                # if self.rect.left < other.rect.right:
+                    # if self.rect.top < other.rect.bottom:
+                        # if self.rect.bottom > other.rect.top:
+                            # if self.radius + other.radius > self.getDist(other.rect.center):
+                                # if not self.didBounceX:
+                                    # if self.speedx > 1: #right
+                                        # if self.rect.centerx < other.rect.centerx:
+                                            # self.speedx = -self.speedx
+                                            # self.didBounceX = True
+                                    # if self.speedx < 1: #left
+                                        # if self.rect.centerx > other.rect.centerx:
+                                            # self.speedx = -self.speedx
+                                            # self.didBounceX = True
                                             
-                                if not self.didBounceY:
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
-                                            self.didBounceY = True
-                                    if self.speedy < 1: #up
-                                        if self.rect.centery > other.rect.centery:
-                                            self.speedy  = self.speedy
-                                            self.didBounceY = True     
+                                # if not self.didBounceY:
+                                    # if self.speedy > 1: #down
+                                        # if self.rect.centery < other.rect.centery:
+                                            # self.speedy = -self.speedy
+                                            # self.didBounceY = True
+                                    # if self.speedy < 1: #up
+                                        # if self.rect.centery > other.rect.centery:
+                                            # self.speedy  = self.speedy
+                                            # self.didBounceY = True     
 
-                                return True
-        return False
+                                # return True
+        # return False
 
