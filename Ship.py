@@ -24,7 +24,7 @@ class Ship():
         self.teleportX = False
         self.didBounceY = False
         self.move()
-        self.teleportShip(size)
+       # self.teleportShip(size)
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
