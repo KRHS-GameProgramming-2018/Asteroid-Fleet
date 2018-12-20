@@ -42,8 +42,6 @@ while True:
                 player1.go("east")
             if event.key == pygame.MOUSEBUTTONDOWN:
                 player1.shoot("")
-            if event.key == pygame.K_p:
-                game.pause
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 player1.go("northU")
