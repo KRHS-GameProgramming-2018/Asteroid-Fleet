@@ -10,8 +10,8 @@ class Ship():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        #self.didbounceX = False
-        #self.didBounceY = False
+        self.teleportX = False
+        self.didBounceY = False
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -21,26 +21,29 @@ class Ship():
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
     def update(self, size):
-       # self.didBounceX = False
-       # self.didBounceY = False
+        self.teleportX = False
+        self.didBounceY = False
         self.move()
-       # self.bounceWall(size)
+        self.teleportShip(size)
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-    # def bounceWall(self, size):
-        # width = size[0]
-        # height = size[1]
-        # if self.rect.left < 0 or self.rect.right > width:
-            # if not self.didBounceX:
-                # self.speedx = -self.speedx
-                # self.didBounceX = True
-        # if self.rect.top < 0 or self.rect.bottom > height:
-            # if not self.didBounceY:
-                # self.speedy = -self.speedy
-                # self.didBounceY = True
+    def teleportShip(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0 or self.rect.right > width:
+            if not self.teleportX:
+                self.goal = [5,5]
+                self.didBounceX = True
+        if self.rect.top < 0 or self.rect.bottom > height:
+            if not self.didBounceY:
+                self.speedy = -self.speedy
+                self.didBounceY = True
+                
+   # def bounceBottom(self,size):
+        
             
     # def collide(self, other):
         # if not(self == other):
