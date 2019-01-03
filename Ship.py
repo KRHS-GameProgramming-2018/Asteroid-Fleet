@@ -24,25 +24,24 @@ class Ship():
         self.teleportX = False
         self.didBounceY = False
         self.move()
-       # self.teleportShip(size)
+        self.teleportShip(size)
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-    # def teleportShip(self, size):
-        # width = size[0]
-        # height = size[1]
-        # if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
-            # if not self.teleportX:                          #if not within screen
-                # self.move = self.movex, self.movey
-                # self.teleportX = True
+    def teleportShip(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
+            if not self.teleportX:                          #if not within screen
+                self.teleportX = True
         
-    # def bounceBottom(self, size):  
-        # if self.rect.bottom > height:             #Within bottom of screen
-            # if not self.didBounceY:               #if not within bottom
-                # self.speedy = -self.speedy
-                # self.didBounceY = True
+    def bounceBottom(self, size):  
+        if self.rect.bottom > height:             #Within bottom of screen
+            if not self.didBounceY:               #if not within bottom
+                self.speedy = -self.speedy
+                self.didBounceY = True
             
   
   
