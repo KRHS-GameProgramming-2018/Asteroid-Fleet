@@ -18,13 +18,13 @@ bgColor = 0,0,0
 mposX = 0
 mposY = 0
 
-Asteroids = []
+asteroids = []
 
 for i in range(10):
     images = ["Asteroid/images/Ball.png"]
     speed = [0, random.randint(1, 9)]
     pos = [random.randint(0,690), 0]
-    Asteroids += [Asteroid(images[random.randint(0,0)], speed, pos)]
+    asteroids += [Asteroid(images[random.randint(0,0)], speed, pos)]
 
 player1 = PlayerShip(7, [width/4, height/4])
 
@@ -56,10 +56,17 @@ while True:
 
     
     player1.update(size)
+    for asteroid in asteroids:
+        asteroid.update(size)
+    
+    for asteroid in asteroids:
+        if not asteroid.living:
+            asteroids.remove(asteroid)
+    
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
-    for Asteroid in Asteroids:
-        screen.blit(Asteroid.image, Asteroid.rect)
+    for asteroid in asteroids:
+        screen.blit(asteroid.image, asteroid.rect)
     pygame.display.flip()
     clock.tick(60)
     #print clock.get_fps()
