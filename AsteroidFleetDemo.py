@@ -1,7 +1,7 @@
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
-# from Asteroid import *
+from Asteroid import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -18,11 +18,13 @@ bgColor = 100,100,100
 mposX = 0
 mposY = 0
 
-#for i in range(10):
-    # images = ["ball.png"]
-    # speed = [random.randint(1,10), 0]
-    # pos = [random.randint(0,690), 0]
-    # Asteroid += [Asteroid(images[random.randint(0,0)], speed, pos)]
+Asteroids = []
+
+for i in range(10):
+    images = ["Asteroid/images/Ball.png"]
+    speed = [0, random.randint(1, 9)]
+    pos = [random.randint(0,690), 0]
+    Asteroids += [Asteroid(images[random.randint(0,0)], speed, pos)]
 
 player1 = PlayerShip(7, [width/4, height/4])
 
@@ -56,6 +58,8 @@ while True:
     player1.update(size)
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
+    for Asteroid in Asteroids:
+        screen.blit(Asteroid.image, Asteroid.rect)
     pygame.display.flip()
     clock.tick(60)
     #print clock.get_fps()
