@@ -10,7 +10,13 @@ class Ship():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        #self.teleportX = False
+        self.shield = True
+        self.boost = False 
+       
+       
+       
+       
+        self.teleportX = False
         #self.didBounceY = False
     
     def getDist(self, pt):
@@ -24,6 +30,7 @@ class Ship():
         self.teleportX = False
         self.didBounceY = False
         self.move()
+        #self.activateShip()
      #   self.teleportShip(size)
     
     def move(self):
@@ -36,6 +43,7 @@ class Ship():
         if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
             if not self.teleportX:                          #if not within screen
                 self.teleportX = True
+                Ship.warp(self,[0,0])
         
     def bounceBottom(self, size):  
         if self.rect.bottom > height:             #Within bottom of screen
@@ -43,10 +51,15 @@ class Ship():
                 self.speedy = -self.speedy
                 self.didBounceY = True
             
+    # def warp(self,  pos=[0,0]):
+        # self.image = pygame.image.load("Ship/images/ship1.png")
+        # self.rect = self.image.get_rect(center=pos)
+        # self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        # self.kind = "warp"
   
-  
-  
-  
+	
+	# def activateShield(self):
+		# self.image = pygame.image.load("Ship/images/ship1.powerup.shield.png")
   
   
     # def collide(self, other):

@@ -4,22 +4,24 @@ from Ship import *
 
 class PlayerShip(Ship):
     def __init__(self, maxSpeed, startPos=[0,0]):
-        self.imagesA = [pygame.image.load("Ship/images/ship1.png")]
-        self.imagesB = [pygame.image.load("Ship/images/ship1.move.png")]
-     
+        self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [116,105])]
+        self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [116,105])]
+		#self.images = [pygame.image.load
         Ship.__init__(self, "Ship/images/ship1.png", [0,0], startPos)
      
+       
+        self.images = self.baseImage
         self.frame = 0;
-        self.images = self.imagesA
         self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/10
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
         
-        self.aniTimer = 0
-        self.aniTimerMax = 60/10
+     
         
         self.maxSpeed = maxSpeed
-        self.goal = [0,0]
+    
         
     def setPos(self, pos):
         self.rect.center = pos
@@ -40,16 +42,16 @@ class PlayerShip(Ship):
             
         if d == "northU":
             self.speedy = 0
-            self.images = self.imagesA
+            self.images = self.baseImage
         if d == "southU":
             self.speedy = 0
-            self.images = self.imagesA
+            self.images = self.baseImage
         if d == "westU":
             self.speedx = 0
-            self.images = self.imagesA
+            self.images = self.baseImage
         if d == "eastU":
             self.speedx = 0
-            self.images = self.imagesA
+            self.images = self.baseImage
 
 
     def update(self, size):
@@ -66,31 +68,3 @@ class PlayerShip(Ship):
             else:
                 self.frame = 0
             self.image = self.images[self.frame]
-
-    def headTo(self, pos):
-        self.goal = pos
-        if self.rect.centerx > pos[0]:
-            self.speedx = -self.maxSpeed
-        elif self.rect.centerx < pos[0]:
-            self.speedx = self.maxSpeed
-        else:
-            self.speedx = 0
-            
-        if self.rect.centery > pos[1]:
-            self.speedy = -self.maxSpeed
-        elif self.rect.centery < pos[1]:
-            self.speedy = self.maxSpeed
-        else:
-            self.speedy = 0
-            
-        #print self.speedx, self.speedy
-        
-        
-            
-    def move(self):
-        if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
-            self.speedx = 0
-        if self.goal[1]-self.maxSpeed <= self.rect.centery <= self.goal[1]+self.maxSpeed:
-            self.speedy = 0
-        self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(self.speed)
