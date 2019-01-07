@@ -10,13 +10,7 @@ class Ship():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        self.shield = True
-        self.boost = False 
-       
-       
-       
-       
-        self.teleportX = False
+        #self.teleportX = False
         #self.didBounceY = False
     
     def getDist(self, pt):
@@ -57,9 +51,14 @@ class Ship():
         # self.radius = (self.rect.width/2 + self.rect.height/2)/2
         # self.kind = "warp"
   
-	
-	# def activateShield(self):
-		# self.image = pygame.image.load("Ship/images/ship1.powerup.shield.png")
+  
+  # class HealthBar():
+    # def __init__(self, image, startPos=[0,0]):
+        # self.image = pygame.image.load(image)
+        # self.rect = self.image.get_rect()
+ 
+  
+  
   
   
     # def collide(self, other):

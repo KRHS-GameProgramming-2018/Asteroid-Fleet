@@ -21,7 +21,7 @@ mposY = 0
 
 asteroids = []
 for i in range(10):
-    images = ["Asteroid/images/Ball.png"]
+    images = ["Asteroid/images/Asteroid1.png"]
     speed = [0, random.randint(1, 9)]
     pos = [random.randint(0,690), 0]
     asteroids += [Asteroid(images[random.randint(0,0)], speed, pos)]
