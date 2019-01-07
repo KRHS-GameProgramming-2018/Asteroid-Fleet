@@ -24,6 +24,7 @@ class Ship():
         self.teleportX = False
         self.didBounceY = False
         self.move()
+        #self.activateShip()
      #   self.teleportShip(size)
     
     def move(self):
@@ -36,6 +37,7 @@ class Ship():
         if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
             if not self.teleportX:                          #if not within screen
                 self.teleportX = True
+                Ship.warp(self,[0,0])
         
     def bounceBottom(self, size):  
         if self.rect.bottom > height:             #Within bottom of screen
@@ -43,8 +45,18 @@ class Ship():
                 self.speedy = -self.speedy
                 self.didBounceY = True
             
+    # def warp(self,  pos=[0,0]):
+        # self.image = pygame.image.load("Ship/images/ship1.png")
+        # self.rect = self.image.get_rect(center=pos)
+        # self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        # self.kind = "warp"
   
   
+  # class HealthBar():
+    # def __init__(self, image, startPos=[0,0]):
+        # self.image = pygame.image.load(image)
+        # self.rect = self.image.get_rect()
+ 
   
   
   
