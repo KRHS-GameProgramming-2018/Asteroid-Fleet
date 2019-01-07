@@ -7,9 +7,7 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-player1 = PlayerShip(7, [width/4, height/4])
 
-clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
 
@@ -65,7 +63,6 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
-
     
     player1.update(size)
     
