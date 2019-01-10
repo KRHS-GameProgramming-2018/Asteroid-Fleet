@@ -2,13 +2,18 @@ import pygame, sys, math, random
 
 
 class Asteroid():
-    def __init__(self, image, speed=[0 ,5], startPos=[0,0]):
-        self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
-        self.speedx = speed[0]
-        self.speedy = speed[1]
+    def __init__(self, width):
+        files = ["Asteroid/images/Asteroid1.png",
+             "Asteroid/images/Asteroid2.png",
+             "Asteroid/images/Asteroid3.png",
+             "Asteroid/images/Asteroid4.png"]
+        image = files[random.randint(0,len(files)-1)]
+        
+        self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
+        self.rect = self.image.get_rect(center=[random.randint(0,width),-25])
+        self.speedx = 0
+        self.speedy = random.randint(1,9)
         self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False

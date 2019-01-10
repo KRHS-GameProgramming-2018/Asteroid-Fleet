@@ -7,7 +7,7 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-player1 = PlayerShip(7, [width/4, height/4])
+player1 = PlayerShip(4, [100, 100])
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
@@ -21,10 +21,7 @@ mposY = 0
 
 asteroids = []
 for i in range(10):
-    images = ["Asteroid/images/Asteroid1.png"]
-    speed = [0, random.randint(1, 9)]
-    pos = [random.randint(0,690), 0]
-    asteroids += [Asteroid(images[random.randint(0,0)], speed, pos)]
+    asteroids += [Asteroid(width)]
 
 
 while True:

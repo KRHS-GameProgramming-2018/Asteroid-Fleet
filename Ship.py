@@ -2,7 +2,7 @@ import pygame, sys, math
 
 
 class Ship():
-    def __init__(self, image, speed=[5,5], startPos=[0,0]):
+    def __init__(self, image, speed=[4,4], startPos=[]):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -31,13 +31,13 @@ class Ship():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-    def teleportShip(self, size):
-        width = size[0]
-        height = size[1]
-        if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
-            if not self.teleportX:                          #if not within screen
-                self.teleportX = True
-                Ship.warp(self,[0,0])
+    # def teleportShip(self, size):
+        # width = size[0]
+        # height = size[1]
+        # if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
+            # if not self.teleportX:                          #if not within screen
+                # self.teleportX = True
+                # Ship.warp(self,[0,0])
         
     def bounceBottom(self, size):  
         if self.rect.bottom > height:             #Within bottom of screen
