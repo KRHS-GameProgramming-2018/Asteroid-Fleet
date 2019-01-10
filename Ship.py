@@ -1,5 +1,4 @@
 import pygame, sys, math
-#testing my push from home...
 
 class Ship():
     def __init__(self, image, speed=[5,5], startPos=[0,0]):
@@ -30,7 +29,7 @@ class Ship():
         #self.activateShip()
      #   self.teleportShip(size)
     
-    def move(self, warp=[0,0]):
+    def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         

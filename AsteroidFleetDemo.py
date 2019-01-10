@@ -7,7 +7,7 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-player1 = PlayerShip(4, [100, 100])
+player1 = PlayerShip(4, [200,200])
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
