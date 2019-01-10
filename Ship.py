@@ -1,8 +1,8 @@
 import pygame, sys, math
-
+#testing my push from home...
 
 class Ship():
-    def __init__(self, image, speed=[4,4], startPos=[]):
+    def __init__(self, image, speed=[5,5], startPos=[0,0]):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -10,6 +10,8 @@ class Ship():
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        self.didBounceX = False
+        self.didBounceY = False
         #self.teleportX = False
         #self.didBounceY = False
     
@@ -21,30 +23,42 @@ class Ship():
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
     def update(self, size):
-        self.teleportX = False
+        self.didBounceX = False
         self.didBounceY = False
         self.move()
+        self.bounceWall(size)
         #self.activateShip()
      #   self.teleportShip(size)
     
-    def move(self):
+    def move(self, warp=[0,0]):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
     # def teleportShip(self, size):
         # width = size[0]
         # height = size[1]
-        # if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
+        # if self.rect.left < 0 or self.rect.right > width:   Within edges of screen
             # if not self.teleportX:                          #if not within screen
                 # self.teleportX = True
                 # Ship.warp(self,[0,0])
         
-    def bounceBottom(self, size):  
-        if self.rect.bottom > height:             #Within bottom of screen
-            if not self.didBounceY:               #if not within bottom
-                self.speedy = -self.speedy
-                self.didBounceY = True
-            
+    # def bounceBottom(self, size):  
+        # if self.rect.bottom > height:             Within bottom of screen
+            # if not self.didBounceY:               if not within bottom
+                # self.speedy = -self.speedy
+                # self.didBounceY = True
+                
+    def bounceWall(self,size):
+		width = size[0]
+		height = size[1]
+		if self.rect.left < 0 or self.rect.right > width:
+			if not self.didBounceX:
+				#self.move(self,[180,100])
+				self.didBounceX = True
+		if self.rect.top < 0 or self.rect.bottom > height:
+			if not self.didBounceY:
+				self.speedy = -self.speedy
+				self.didBounceY = True
     # def warp(self,  pos=[0,0]):
         # self.image = pygame.image.load("Ship/images/ship1.png")
         # self.rect = self.image.get_rect(center=pos)

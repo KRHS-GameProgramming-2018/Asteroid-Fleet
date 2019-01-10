@@ -52,7 +52,8 @@ while True:
                 player1.shoot("projectile")
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
-                
+            if event.key == pygame.K_q:
+                pygame.quit()    
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 player1.go("northU")
