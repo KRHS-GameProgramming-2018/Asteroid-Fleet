@@ -84,7 +84,7 @@ class PlayerShip(Ship):
         else:
             self.speedy = 0
             
-        print self.speedx, self.speedy
+        #print self.speedx, self.speedy
             
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:

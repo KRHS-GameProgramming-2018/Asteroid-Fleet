@@ -11,7 +11,7 @@ class Ship():
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False
-        #self.teleportX = False
+        self.teleportX = False
         #self.didBounceY = False
     
     def getDist(self, pt):
@@ -27,20 +27,25 @@ class Ship():
         self.move()
         self.bounceWall(size)
         #self.activateShip()
-     #   self.teleportShip(size)
+        self.teleportShip(size)
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-    # def teleportShip(self, size):
-        # width = size[0]
-        # height = size[1]
-        # if self.rect.left < 0 or self.rect.right > width:   Within edges of screen
-            # if not self.teleportX:                          #if not within screen
-                # self.teleportX = True
-                # Ship.warp(self,[0,0])
-        
+    def teleportShip(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0 or self.rect.right > width:   #Within edges of screen
+            while not self.teleportX:                          #if not within screen
+                self.teleportX = True
+                print self.teleportX
+                self.warp([0,0], [500,500])
+            else:
+               # self.teleportX = True
+                print self.teleportX
+                self.warp([0,0], [500,500])
+            
     # def bounceBottom(self, size):  
         # if self.rect.bottom > height:             Within bottom of screen
             # if not self.didBounceY:               if not within bottom
@@ -58,17 +63,18 @@ class Ship():
 			if not self.didBounceY:
 				self.speedy = -self.speedy
 				self.didBounceY = True
-    # def warp(self,  pos=[0,0]):
-        # self.image = pygame.image.load("Ship/images/ship1.png")
-        # self.rect = self.image.get_rect(center=pos)
-        # self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        # self.kind = "warp"
+                
+    def warp(self, speed=[0,0], pos=[500,500]):
+        #self.image = pygame.image.load("Ship/images/ship1.png")
+        self.rect = self.image.get_rect(center=pos)
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        self.kind = "warp"
   
   
-  # class HealthBar():
-    # def __init__(self, image, startPos=[0,0]):
-        # self.image = pygame.image.load(image)
-        # self.rect = self.image.get_rect()
+    # class HealthBar():
+        # def __init__(self, image, startPos=[0,0]):
+            # self.image = pygame.image.load(image)
+            # self.rect = self.image.get_rect()
  
   
   

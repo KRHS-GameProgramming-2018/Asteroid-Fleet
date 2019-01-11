@@ -26,7 +26,7 @@ for i in range(5):
 
 while True:
     for event in pygame.event.get():
-        print event.type
+       # print event.type
         if event.type == pygame.QUIT:
             sys.exit()
         
