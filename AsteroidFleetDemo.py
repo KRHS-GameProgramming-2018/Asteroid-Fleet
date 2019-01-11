@@ -7,7 +7,7 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-player1 = PlayerShip(4, [200,200])
+player1 = PlayerShip(1,[200,200])
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
@@ -20,7 +20,7 @@ mposY = 0
 
 
 asteroids = []
-for i in range(10):
+for i in range(5):
     asteroids += [Asteroid(width)]
 
 

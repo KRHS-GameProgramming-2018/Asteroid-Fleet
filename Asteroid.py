@@ -9,10 +9,10 @@ class Asteroid():
              "Asteroid/images/Asteroid4.png"]
         image = files[random.randint(0,len(files)-1)]
         
-        self.image = pygame.transform.scale(pygame.image.load(image),[100,100])
+        self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-25])
         self.speedx = 0
-        self.speedy = random.randint(1,9)
+        self.speedy = random.randint(1,2)
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
