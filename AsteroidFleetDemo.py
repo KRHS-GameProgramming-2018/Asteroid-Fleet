@@ -22,7 +22,7 @@ mposY = 0
 asteroids = []
 for i in range(5):
     asteroids += [Asteroid(width)]
-
+# Reading up on how other people made shooting functions, just a heads up
 
 while True:
     for event in pygame.event.get():
