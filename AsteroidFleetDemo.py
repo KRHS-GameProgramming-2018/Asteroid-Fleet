@@ -7,6 +7,10 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
+<<<<<<< HEAD
+=======
+player1 = PlayerShip(1,[200,200])
+>>>>>>> origin/master
 
 player1 = PlayerShip(1,[200,0])
 clock = pygame.time.Clock()
@@ -20,13 +24,13 @@ mposY = 0
 
 
 asteroids = []
-for i in range(10):
+for i in range(5):
     asteroids += [Asteroid(width)]
-
+# Reading up on how other people made shooting functions, just a heads up
 
 while True:
     for event in pygame.event.get():
-        print event.type
+       # print event.type
         if event.type == pygame.QUIT:
             sys.exit()
         
