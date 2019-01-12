@@ -7,8 +7,7 @@ class PlayerShip(Ship):
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
         Ship.__init__(self, "Ship/images/ship1.png", [0,0], startPos=[500,0])
-        self.goal = [0,0]
-       
+        self.goal = [0,0]    
         self.images = self.baseImage
         self.frame = 0;
         self.maxFrame = len(self.images)-1

@@ -7,12 +7,9 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-<<<<<<< HEAD
-=======
-player1 = PlayerShip(1,[200,200])
->>>>>>> origin/master
 
-player1 = PlayerShip(1,[200,0])
+
+player1 = PlayerShip(2,[200,0])
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
@@ -26,7 +23,7 @@ mposY = 0
 asteroids = []
 for i in range(5):
     asteroids += [Asteroid(width)]
-# Reading up on how other people made shooting functions, just a heads up
+
 
 while True:
     for event in pygame.event.get():
@@ -72,9 +69,15 @@ while True:
    
     for asteroid in asteroids:
         asteroid.update(size)
-    for asteroid in asteroids:
         if not asteroid.living:
-            asteroids.remove(asteroid)
+			asteroids.remove(asteroid)
+   
+        
+    for hitter in asteroids:
+        for hittie in asteroids:
+            hitter.collide(hittie)
+        hitter.collide(player1)
+        player1.collide(hitter)
     
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
@@ -82,5 +85,5 @@ while True:
         screen.blit(asteroid.image, asteroid.rect)
     pygame.display.flip()
     clock.tick(60)
-    print clock.get_fps()
+   # print clock.get_fps()
     
