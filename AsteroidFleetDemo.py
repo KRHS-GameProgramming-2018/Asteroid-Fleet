@@ -7,8 +7,8 @@ pygame.init()
 width = 1100
 height = 900
 size = width, height
-player1 = PlayerShip(4, [200,200])
 
+player1 = PlayerShip(1,[200,0])
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
@@ -63,9 +63,9 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
-    
+
     player1.update(size)
-    
+   
     for asteroid in asteroids:
         asteroid.update(size)
     for asteroid in asteroids:
