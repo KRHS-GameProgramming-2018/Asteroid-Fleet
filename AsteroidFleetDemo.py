@@ -50,7 +50,7 @@ while True:
             if event.key == pygame.K_d:
                 player1.go("east")
             if event.key == pygame.MOUSEBUTTONDOWN:
-                player1.shoot("projectile")
+                self.shoot()
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
             if event.key == pygame.K_q:
