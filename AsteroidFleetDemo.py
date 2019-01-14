@@ -9,7 +9,7 @@ height = 900
 size = width, height
 
 
-player1 = PlayerShip(2,[200,0])
+player1 = PlayerShip(2)
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
@@ -67,17 +67,17 @@ while True:
 
     player1.update(size)
    
-    for asteroid in asteroids:
-        asteroid.update(size)
-        if not asteroid.living:
-			asteroids.remove(asteroid)
+    for Asteroid in asteroids:
+        Asteroid.update(size)
+        if not Asteroid.living:
+			asteroids.remove(Asteroid)
    
         
-    for hitter in asteroids:
-        for hittie in asteroids:
-            hitter.collide(hittie)
-        hitter.collide(player1)
-        player1.collide(hitter)
+    # for hitter in asteroids:
+        # for hittie in asteroids:
+            # hitter.collide(hittie)
+        # hitter.collide(player1)
+        # player1.collide(hitter)
     
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)

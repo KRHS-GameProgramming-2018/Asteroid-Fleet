@@ -51,20 +51,24 @@ class Asteroid():
 						if self.rect.bottom > other.rect.top:
 							if self.radius + other.radius > self.getDist(other.rect.center):
 								if not self.didBounceX:
+                                    
 									if self.speedx > 1: #right
 										if self.rect.centerx < other.rect.centerx:
 											self.speedx = -self.speedx
 											self.didBounceX = True
+                                            
 									if self.speedx < 1: #left
 										if self.rect.centerx > other.rect.centerx:
 											self.speedx = -self.speedx
 											self.didBounceX = True
 											
 								if not self.didBounceY:
+                                    
 									if self.speedy > 1: #down
 										if self.rect.centery < other.rect.centery:
 											self.speedy = -self.speedy
 											self.didBounceY = True
+                                            
 									if self.speedy < 1: #up
 										if self.rect.centery > other.rect.centery:
 											self.speedy  = -self.speedy
@@ -72,3 +76,5 @@ class Asteroid():
 
                                 return True
         return False
+           
+    
