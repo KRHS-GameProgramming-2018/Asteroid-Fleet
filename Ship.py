@@ -1,13 +1,13 @@
 import pygame, sys, math
 
 class Ship():
-    def __init__(self, image, speed=[1,1], startingPos):
+    def __init__(self, image, speed=[1,1], startPos=[0,0]):
         self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center= startPos)
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move([startingPos])
+        self.rect = self.rect.move([0,0])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceY = False
         self.teleportX = False
