@@ -9,7 +9,7 @@ height = 900
 size = width, height
 
 
-player1 = PlayerShip(2)
+player1 = PlayerShip(2, [width/2,height/2])
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)

@@ -3,10 +3,10 @@ from Ship import *
 
 
 class PlayerShip(Ship):
-    def __init__(self, maxSpeed):
+    def __init__(self, maxSpeed = 5, startPos=[700,600]):
+        Ship.__init__(self, "Ship/images/ship1.png", [0,0],startPos)
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        Ship.__init__(self, "Ship/images/ship1.png", [0,0])
         self.goal = [0,0]    
         self.images = self.baseImage
         self.frame = 0;
