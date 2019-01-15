@@ -1,16 +1,17 @@
 import pygame, sys, math
 
 class Ship():
-    def __init__(self, image, speed=[1,1], startPos=[0,0]):
+    def __init__(self, image, speed=[1,1], startingPos):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(startPos)
+        self.rect = self.rect.move([startingPos])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceY = False
         self.teleportX = False
+        self.damageShip = False
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -81,24 +82,68 @@ class Ship():
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 if not self.didBounceX:
+                                    
                                     if self.speedx > 1: #right
                                         if self.rect.centerx < other.rect.centerx:
                                             self.speedx = -self.speedx
-                                            self.didBounceX = True
+                                            self.damageShip = True 
+                                            
                                     if self.speedx < 1: #left
                                         if self.rect.centerx > other.rect.centerx:
                                             self.speedx = -self.speedx
-                                            self.didBounceX = True
+                                            self.damageShip = True
                                             
                                 if not self.didBounceY:
+                                    
                                     if self.speedy > 1: #down
                                         if self.rect.centery < other.rect.centery:
                                             self.speedy = -self.speedy
-                                            self.didBounceY = True
+                                            self.damageShip = True
+                                            
                                     if self.speedy < 1: #up
                                         if self.rect.centery > other.rect.centery:
                                             self.speedy  = -self.speedy
-                                            self.didBounceY = True
+                                            self.damageShip = True
 
                                 return True
         return False
+
+   
+    def asteroidcollide(self, other):
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                if not self.didBounceX:
+                                    
+                                    if self.speedx > 1: #right
+                                        if self.rect.centerx < other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.damageShip = True 
+                                            
+                                    if self.speedx < 1: #left
+                                        if self.rect.centerx > other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.damageShip = True
+                                            
+                                if not self.didBounceY:
+                                    
+                                    if self.speedy > 1: #down
+                                        if self.rect.centery < other.rect.centery:
+                                            self.speedy = -self.speedy
+                                            self.damageShip = True
+                                            
+                                    if self.speedy < 1: #up
+                                        if self.rect.centery > other.rect.centery:
+                                            self.speedy  = -self.speedy
+                                            self.damageShip = True
+
+                                return True
+        return False
+        
+        
+        
+        
+        
