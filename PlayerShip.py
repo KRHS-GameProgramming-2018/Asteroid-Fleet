@@ -3,11 +3,15 @@ from Ship import *
 
 
 class PlayerShip(Ship):
-    def __init__(self, maxSpeed = 5, startPos=[700,600]):
-        Ship.__init__(self, "Ship/images/ship1.png", [0,0],startPos)
+    def __init__(self, speed = 2, startPos=[200,200]):
+        
+        
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
+        Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[200,200])
         self.goal = [0,0]    
+       
+        
         self.images = self.baseImage
         self.frame = 0;
         self.maxFrame = len(self.images)-1
@@ -15,14 +19,30 @@ class PlayerShip(Ship):
         self.aniTimerMax = 60/10
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
+        self.maxSpeed = speed
         
-     
+        self.living = True
+        self.lives = 4
         
-        self.maxSpeed = maxSpeed
+        
+        #Powerups and Abilities
+        self.LaunchTimer = 0
+        self.LaunchTimerMax = 60/15
+        self.missiles = []
+        self.launching = False
     
-        
-    def setPos(self, pos):
-        self.rect.center = pos
+    def alive(self, lives):
+        if self.lives <= 0:
+            self.living = False
+    
+     # class HealthBar():
+        # def __init__(self, image, startPos=[0,0]):
+            # self.image = pygame.image.load(image)
+            # self.rect = self.image.get_rect()
+    
+       
+    # def setPos(self, pos):
+        # self.rect.center = pos
 
     def go(self, d):
         if d == "north":
@@ -51,22 +71,6 @@ class PlayerShip(Ship):
             self.speedx = 0
             self.images = self.baseImage
 
-
-    def update(self, size):
-        Ship.update(self, size)
-        self.animate()
-        
-    def animate(self):
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-            self.image = self.images[self.frame]
-
     def headTo(self, pos):
         self.goal = StartPos
         if self.rect.centerx > pos[0]:
@@ -92,7 +96,97 @@ class PlayerShip(Ship):
             self.speedy = 0
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
+    
+    
+    # def shoot(self):
+        # if self.launching:
+            # pass
+        # else:
+            # self.launching = True
+            # self.LaunchTimer = 0
+            # print self.rect.center, self.y
+            # if self.y == "down":
+                # speed = [0,7]
+                # image = "PNG/Bolt/bolt-2.png"
+            # if self.y == "up":
+                # speed = [0,-7]
+                # image = "PNG/Bolt/bolt-2.png"
+            # if self.y == "left":
+                # speed = [-7,0]
+                # image = "PNG/Bolt/bolt-1.png"
+            # if self.y == "right":
+                # speed = [7,0]
+                # image = "PNG/Bolt/bolt-1.png"
+            # return Bolt(image, speed, self.rect.center)
+    
+    def warp(self, speed=[0,0], pos=[0,0]):
+        #self.image = pygame.image.load("Ship/images/ship1.png")
+        self.rect = self.image.get_rect(center=pos)
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        self.kind = "warp"
+
+    def teleportShip(self, size):
+        width = size[0]
+        height = size[1]
+        x1 = self.rect.centerx
+        y1 = self.rect.centery
+        self.teleportX = False
+        if self.rect.left < 0:      
+            self.teleportX = True       
+            if self.teleportX:
+                print self.teleportX
+                self.warp([0,0], [width-57,y1])
+            else:
+                self.warp([0,0], [width/2,height-59])
         
-    def shipHit(self):
-        self.damageShip = False
-        
+        elif self.rect.right > width:
+            self.teleportX = True
+            if self.teleportX:
+                print self.teleportX
+                self.warp([0,0], [59,y1])
+            else:
+                self.warp([0,0], [width/2,height-75])
+
+    def collide(self, other):
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                if not self.teleportX:
+                                    if self.speedx > 1: #right
+                                        if self.rect.centerx < other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.teleportX = True
+                                    if self.speedx < 1: #left
+                                        if self.rect.centerx > other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.teleportX = True
+                                            
+                                if not self.didBounceY:
+                                    if self.speedy > 1: #down
+                                        if self.rect.centery < other.rect.centery:
+                                            self.speedy = -self.speedy
+                                            self.didBounceY = True
+                                    if self.speedy < 1: #up
+                                        if self.rect.centery > other.rect.centery:
+                                            self.speedy  = -self.speedy
+                                            self.didBounceY = True
+
+                                return True
+        return False
+
+
+
+    def update(self, size):
+        Ship.update(self, size)
+        self.animate()
+        self.teleportX = False
+        self.didBounceY = False
+        self.move()
+        self.alive(self.lives)
+        self.bounceWall(size)
+        self.animate()
+        self.teleportShip(size)   
+    

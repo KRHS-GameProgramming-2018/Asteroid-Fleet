@@ -9,7 +9,7 @@ height = 900
 size = width, height
 
 
-player1 = PlayerShip(2, [width/2,height/2])
+player1 = PlayerShip(1)
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
@@ -21,6 +21,7 @@ mposY = 0
 
 
 asteroids = []
+
 for i in range(5):
     asteroids += [Asteroid(width)]
 
@@ -33,14 +34,14 @@ while True:
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_t:
-				paused = True
-				while paused:
-					for event in pygame.event.get():
-						if event.type == pygame.QUIT: sys.exit()
-						if event.type == pygame.KEYDOWN:
-							if event.key == pygame.K_t:
-								paused = False
-								
+                paused = True
+                while paused:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT: sys.exit()
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_t:
+                                paused = False
+                                
             if event.key == pygame.K_w:
                 player1.go("north")
             if event.key == pygame.K_a:
@@ -49,8 +50,8 @@ while True:
                 player1.go("south")
             if event.key == pygame.K_d:
                 player1.go("east")
-            if event.key == pygame.K_SPACE:
-                player1.shoot()
+            if event.key == pygame.MOUSEBUTTONDOWN:
+                player1.shoot("projectile")
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
             if event.key == pygame.K_q:
@@ -67,10 +68,10 @@ while True:
 
     player1.update(size)
    
-    for Asteroid in asteroids:
-        Asteroid.update(size)
-        if not Asteroid.living:
-			asteroids.remove(Asteroid)
+    for asteroid in asteroids:
+        asteroid.update(size)
+        if not asteroid.living:
+            asteroids.remove(asteroid)
    
         
     # for hitter in asteroids:
@@ -86,4 +87,3 @@ while True:
     pygame.display.flip()
     clock.tick(60)
    # print clock.get_fps()
-    
