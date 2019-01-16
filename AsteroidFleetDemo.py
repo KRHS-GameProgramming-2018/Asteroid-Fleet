@@ -74,11 +74,11 @@ while True:
             asteroids.remove(asteroid)
    
         
-    # for hitter in asteroids:
-        # for hittie in asteroids:
-            # hitter.collide(hittie)
-        # hitter.collide(player1)
-        # player1.collide(hitter)
+    for hitter in asteroids:
+        for hittie in asteroids:
+            hitter.collide(hittie)
+        hitter.collide(player1)
+        player1.collide(hitter)
     
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
