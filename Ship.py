@@ -1,7 +1,7 @@
 import pygame, sys, math
 
 class Ship():
-    def __init__(self, image, speed = [1,1], startPos=[200,0]):
+    def __init__(self, image, speed = [1,1], startPos=[0,0]):
 		
     #Essential  
         self.image = pygame.image.load(image)
