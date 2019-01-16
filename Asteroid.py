@@ -18,6 +18,7 @@ class Asteroid():
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
+        self.kind = Asteroid
     
     def getDist(self, pt):
         x1 = self.rect.centerx

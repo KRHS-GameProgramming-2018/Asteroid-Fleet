@@ -1,17 +1,17 @@
 import pygame, sys, math
 from Ship import *
-
+from Asteroid import *
 
 class PlayerShip(Ship):
-    def __init__(self, speed = 2, startPos=[200,200]):
+    def __init__(self, speed = 1, startPos=[0,0]):
         
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[200,200])
+        Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,600])
         self.goal = [0,0]    
         self.image = self.images[self.frame]
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
         
         #Animation
@@ -98,27 +98,25 @@ class PlayerShip(Ship):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
     
-    
-    # def shoot(self):
-        # if self.launching:
-            # pass
-        # else:
-            # self.launching = True
-            # self.LaunchTimer = 0
-            # print self.rect.center, self.y
-            # if self.y == "down":
-                # speed = [0,7]
-                # image = "PNG/Bolt/bolt-2.png"
-            # if self.y == "up":
-                # speed = [0,-7]
-                # image = "PNG/Bolt/bolt-2.png"
-            # if self.y == "left":
-                # speed = [-7,0]
-                # image = "PNG/Bolt/bolt-1.png"
-            # if self.y == "right":
-                # speed = [7,0]
-                # image = "PNG/Bolt/bolt-1.png"
-            # return Bolt(image, speed, self.rect.center)
+    def shoot(self):
+        if self.launching:
+            pass
+        else:
+            self.launching = True
+            self.LaunchTimer = 0
+            if self.y == "down":
+                speed = [0,7]
+                image = "PNG/Bolt/bolt-2.png"
+            if self.y == "up":
+                speed = [0,-7]
+                image = "PNG/Bolt/bolt-2.png"
+            if self.y == "left":
+                speed = [-7,0]
+                image = "PNG/Bolt/bolt-1.png"
+            if self.y == "right":
+                speed = [7,0]
+                image = "PNG/Bolt/bolt-1.png"
+            return Bolt(image, speed, self.rect.center)
     
     def warp(self, speed=[0,0], pos=[0,0]):
         #self.image = pygame.image.load("Ship/images/ship1.png")
@@ -155,25 +153,29 @@ class PlayerShip(Ship):
                     if self.rect.top < other.rect.bottom:
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.teleportX:
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.teleportX = True
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.teleportX = True
-                                            
-                                if not self.didBounceY:
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
-                                            self.didBounceY = True
-                                    if self.speedy < 1: #up
-                                        if self.rect.centery > other.rect.centery:
-                                            self.speedy  = -self.speedy
-                                            self.didBounceY = True
+                                if other.kind == "Asteroid":
+                                    self.lives += -1
+                                    print self.lives
+                                    
+                                    if not self.teleportX:
+                                        if self.speedx > 1: #right
+                                            if self.rect.centerx < other.rect.centerx:
+                                                self.speedx = -self.speedx
+                                                self.teleportX = True
+                                        if self.speedx < 1: #left
+                                            if self.rect.centerx > other.rect.centerx:
+                                                self.speedx = -self.speedx
+                                                self.teleportX = True
+                                                
+                                    if not self.didBounceY:
+                                        if self.speedy > 1: #down
+                                            if self.rect.centery < other.rect.centery:
+                                                self.speedy = -self.speedy
+                                                self.didBounceY = True
+                                        if self.speedy < 1: #up
+                                            if self.rect.centery > other.rect.centery:
+                                                self.speedy  = -self.speedy
+                                                self.didBounceY = True
 
                                 return True
         return False
@@ -189,5 +191,6 @@ class PlayerShip(Ship):
         self.alive(self.lives)
         self.bounceWall(size)
         self.animate()
-        self.teleportShip(size)   
+        self.teleportShip(size) 
+        self.kind = Asteroid  
     
