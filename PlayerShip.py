@@ -30,6 +30,7 @@ class PlayerShip(Ship):
         self.LaunchTimerMax = 60/15
         self.missiles = []
         self.launching = False
+        self.shield = False
     
     def alive(self, lives):
         if self.lives <= 0:
