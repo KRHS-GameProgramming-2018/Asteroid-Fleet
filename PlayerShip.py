@@ -42,8 +42,8 @@ class PlayerShip(Ship):
             # self.rect = self.image.get_rect()
     
        
-    # def setPos(self, pos):
-        # self.rect.center = pos
+    def setPos(self, pos):
+        self.rect.center = pos
 
     def go(self, d):
         if d == "north":
@@ -73,7 +73,7 @@ class PlayerShip(Ship):
             self.images = self.baseImage
 
     def headTo(self, pos):
-        self.goal = StartPos
+        self.goal = pos
         if self.rect.centerx > pos[0]:
             self.speedx = -self.maxSpeed
         elif self.rect.centerx < pos[0]:
