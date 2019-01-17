@@ -2,7 +2,7 @@ import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
 from Asteroid import *
-#from Missile import *
+from Missile import *
 pygame.init()
 
 width = 1100
@@ -26,10 +26,10 @@ asteroids = []
 for i in range(5):
     asteroids += [Asteroid(width)]
 
-#missiles = []
+missiles = []
 
-# for i in range(1):
-    # missiles += [Missile(width)]
+for i in range(1):
+    missiles += [Missile(width)]
 
 
 
@@ -84,10 +84,10 @@ while True:
         if not Asteroid.living:
             asteroids.remove(Asteroid)
    
-    # for Missile in missiles:
-        # Missile.update(size)
-        # if not Missile.living:
-            # missile.remove(Missile)
+    for Missile in missiles:
+        Missile.update(size)
+        if not Missile.living:
+            missile.remove(Missile)
         
     for hitter in asteroids:
         for hittie in asteroids:

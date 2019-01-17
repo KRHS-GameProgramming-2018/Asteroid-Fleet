@@ -1,15 +1,37 @@
 import sys, math, pygame
-from PlayerShip import *
+from Ship import *
 
 
 
-class Missile(Ship):
+class Missile():
 
-    def __init__(self, image="rocket.move.png", speed=5, startPos=[0,0]):
-        Ship.__init__(self,  image, speed, startPos)
+    def __init__(self, image, speed=5, startPos=[0,0]):
+        self.imageA = [pygame.transform.scale(pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png"), [117,105])]
+        self.imageB = [pygame.transform.scale(pygame.image.load("PowerUps/GuidedMissile/images/rocket.png"), [117,128])]
+       # Missile.__init__(self, "PowerUps/GuidedMissile/images/rocket.move.png",[0,0], startPos=[350,600])
+        
         self.kind = "Missile"
         self.lives = 1
-        self.goal = [0,0] 
+        self.speedx = speed[0]
+        self.speedy = speed[1]
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(startPos)
+        
+        self.goal = [0,0]    
+        self.image = self.images[self.frame]
+        self.rect = self.image.get_rect(center = self.rect.center)
+        self.maxSpeed = speed
+        
+        #Animation
+        self.images = self.baseImage
+        self.frame = 0;
+        self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/10
+    
+    
+    
+    
     
     
     def setPos(self, pos):
