@@ -14,6 +14,11 @@ player1 = PlayerShip(1)
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
+missiles = []
+for i in range(1):
+    missiles += [Missile(width)]
+
+
 
 bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/space.png"), [width,height])
 bgColor = 0,0,0
@@ -25,13 +30,6 @@ asteroids = []
 
 for i in range(10):
     asteroids += [Asteroid(width)]
-
-missiles = []
-
-for i in range(1):
-    missiles += [Missile(width)]
-
-
 
 
 while True:
@@ -74,18 +72,17 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
-
     player1.update(size)
-   
+        
     for Asteroid in asteroids:
         Asteroid.update(size)
         if not Asteroid.living:
             asteroids.remove(Asteroid)
    
-    for Missile in missiles:
-        Missile.update(size)
-        if not Missile.living:
-            missile.remove(Missile)
+    # for Missile in missiles:
+        # Missile.update(size)
+        # if not Missile.living:
+            # missile.remove(Missile)
         
     for hitter in asteroids:
         for hittie in asteroids:
@@ -93,8 +90,8 @@ while True:
         hitter.collide(player1)
         player1.collide(hitter)
     
-    for Missile in missiles:
-        screen.blit(Missile.image, Missile.rect)
+    # for Missile in missiles:
+        # screen.blit(Missile.image, Missile.rect)
     screen.blit(bg, (0,0))
     #screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
