@@ -3,31 +3,29 @@ from Ship import *
 
 
 
-class Missile():
-
-    def __init__(self, image, speed=5, startPos=[0,0]):
-        self.imageA = [pygame.transform.scale(pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png"), [117,105])]
-        self.imageB = [pygame.transform.scale(pygame.image.load("PowerUps/GuidedMissile/images/rocket.png"), [117,128])]
-       # Missile.__init__(self, "PowerUps/GuidedMissile/images/rocket.move.png",[0,0], startPos=[350,600])
-        
-        self.kind = "Missile"
-        self.lives = 1
+class Missile(Ship):
+    def __init__(self, image, speed= [1,1], startPos=[0,0]):
+        self.image = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
+        self.rect = self.image.get_rect()
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
-        
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        self.lives =1
+        self.living = True
+        self.kind = "Missile"
         self.goal = [0,0]    
-        self.image = self.images[self.frame]
-        self.rect = self.image.get_rect(center = self.rect.center)
+        # self.image = self.images[self.frame]
+        # self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
         
         #Animation
-        self.images = self.baseImage
-        self.frame = 0;
-        self.maxFrame = len(self.images)-1
-        self.aniTimer = 0
-        self.aniTimerMax = 60/10
+        # self.images = self.baseImage
+        # self.frame = 0;
+        # self.maxFrame = len(self.images)-1
+        # self.aniTimer = 0
+        # self.aniTimerMax = 60/10
     
     
     

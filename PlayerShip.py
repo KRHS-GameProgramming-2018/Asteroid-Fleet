@@ -1,6 +1,7 @@
 import pygame, sys, math
 from Ship import *
 from Asteroid import *
+from Missile import *
 
 class PlayerShip(Ship):
     def __init__(self, speed = 1, startPos=[0,0]):
@@ -13,7 +14,7 @@ class PlayerShip(Ship):
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
-        
+        self.facing = "up"
         #Animation
         self.images = self.baseImage
         self.frame = 0;
@@ -72,21 +73,21 @@ class PlayerShip(Ship):
             self.speedx = 0
             self.images = self.baseImage
 
-    def headTo(self, pos):
-        self.goal = pos
-        if self.rect.centerx > pos[0]:
-            self.speedx = -self.maxSpeed
-        elif self.rect.centerx < pos[0]:
-            self.speedx = self.maxSpeed
-        else:
-            self.speedx = 0
+    # def headTo(self, pos):
+        # self.goal = pos
+        # if self.rect.centerx > pos[0]:
+            # self.speedx = -self.maxSpeed
+        # elif self.rect.centerx < pos[0]:
+            # self.speedx = self.maxSpeed
+        # else:
+            # self.speedx = 0
             
-        if self.rect.centery > pos[1]:
-            self.speedy = -self.maxSpeed
-        elif self.rect.centery < pos[1]:
-            self.speedy = self.maxSpeed
-        else:
-            self.speedy = 0
+        # if self.rect.centery > pos[1]:
+            # self.speedy = -self.maxSpeed
+        # elif self.rect.centery < pos[1]:
+            # self.speedy = self.maxSpeed
+        # else:
+            # self.speedy = 0
             
         #print self.speedx, self.speedy
             
@@ -98,25 +99,27 @@ class PlayerShip(Ship):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
     
-    def shoot(self):
-        if self.launching:
-            pass
-        else:
-            self.launching = True
-            self.LaunchTimer = 0
-            if self.y == "down":
-                speed = [0,7]
-                image = "PNG/Bolt/bolt-2.png"
-            if self.y == "up":
-                speed = [0,-7]
-                image = "PNG/Bolt/bolt-2.png"
-            if self.y == "left":
-                speed = [-7,0]
-                image = "PNG/Bolt/bolt-1.png"
-            if self.y == "right":
-                speed = [7,0]
-                image = "PNG/Bolt/bolt-1.png"
-            return Bolt(image, speed, self.rect.center)
+    # def fireMissile(self, image, speed= [1,1], pos=[startPos]):
+        # self.image = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
+        # self.facing = "up"
+        # self.launching = False
+        # self.rect = self.image.get_rect()
+        # self.speedx = speed[0]
+        # self.speedy = speed[1]
+        # self.speed = [self.speedx, self.speedy]
+        # self.rect = self.rect.move(startPos)
+        # self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        # self.lives =1
+        # self.living = True
+        # if self.launching:
+            # pass
+        # else:
+            # self.launching = True
+            # self.LaunchTimer = 0
+            # if self.facing == "up":
+                # speed = [0,7]
+                # image = "PowerUps/GuidedMissile/images/rocket.move.png"
+            # return Missile(image, speed, self.rect.center)
     
     def warp(self, speed=[0,0], pos=[0,0]):
         #self.image = pygame.image.load("Ship/images/ship1.png")

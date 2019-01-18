@@ -23,7 +23,7 @@ mposY = 0
 
 asteroids = []
 
-for i in range(5):
+for i in range(10):
     asteroids += [Asteroid(width)]
 
 missiles = []
@@ -41,7 +41,7 @@ while True:
             sys.exit()
             
         if event.type == pygame.MOUSEBUTTONDOWN:
-            player1.headTo(event.pos)
+            player1.fireMissile()         #headTo(event.pos)
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_t:
@@ -60,9 +60,7 @@ while True:
             if event.key == pygame.K_s:
                 player1.go("south")
             if event.key == pygame.K_d:
-                player1.go("east")
-            # if event.key == pygame.MOUSEBUTTONDOWN:
-                # player1.shoot()
+                player1.go("east") 
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
             if event.key == pygame.K_q:
@@ -95,7 +93,8 @@ while True:
         hitter.collide(player1)
         player1.collide(hitter)
     
-    
+    for Missile in missiles:
+        screen.blit(Missile.image, Missile.rect)
     screen.blit(bg, (0,0))
     #screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
