@@ -86,8 +86,8 @@ while True:
         
     for hitter in asteroids:
         for hittie in asteroids:
-            hitter.collide(hittie)
-        hitter.collide(player1)
+            hitter.collideAsteroid(hittie)
+        hitter.collideShip(player1)
         player1.collide(hitter)
     
     for Missile in missiles:
