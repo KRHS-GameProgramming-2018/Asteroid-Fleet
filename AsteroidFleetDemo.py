@@ -80,7 +80,7 @@ while True:
             asteroids.remove(Asteroid)
    
     for Missile in missiles:
-        Missile.update(size)
+        Missile.update()
         if not Missile.living:
             missile.remove(Missile)
         
