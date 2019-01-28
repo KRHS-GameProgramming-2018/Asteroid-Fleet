@@ -104,7 +104,7 @@ class PlayerShip(Ship):
         else:
             self.launching = True
             self.LaunchTimer = 0
-            if self.y == "up":
+            if self.living == "True":
                 speed = [0,7]
                 image = "PowerUps/GuidedMissile/images/rocket.move.png" 
             return Missile(image, speed, self.rect.center)
