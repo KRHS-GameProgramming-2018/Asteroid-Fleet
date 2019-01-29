@@ -104,10 +104,10 @@ class PlayerShip(Ship):
         else:
             self.launching = True
             self.LaunchTimer = 0
-            if self.y == "up":
+            if self.living == "True":
                 speed = [0,7]
                 image = "PowerUps/GuidedMissile/images/rocket.move.png" 
-            return Missile(image, speed, self.rect.center)
+            #return Missile(image, speed, self.rect.center)
     
     def warp(self, speed=[0,0], pos=[0,0]):
         #self.image = pygame.image.load("Ship/images/ship1.png")

@@ -26,14 +26,12 @@ class Missile(Ship):
         # self.maxFrame = len(self.images)-1
         # self.aniTimer = 0
         # self.aniTimerMax = 60/10
-    
-    
-    
-    
-    
-    
-    def setPos(self, pos):
-        self.rect.center = pos
+    def update(self):
+        pos = pygame.mouse.get_pos()
+        x = pos[0]
+        y = pos[1]
+        self.rect.x = x
+        self.rect.y = y
         
     def headTo(self, pos):
         self.goal = pos

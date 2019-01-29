@@ -97,10 +97,10 @@ while True:
         if not asteroid.living:
             asteroids.remove(asteroid)
    
-    # for Missile in missiles:
-        # Missile.update(size)
-        # if not Missile.living:
-            # missile.remove(Missile)
+    for Missile in missiles:
+        Missile.update()
+        if not Missile.living:
+            missile.remove(Missile)
         
     for hitter in asteroids:
         for hittie in asteroids:
@@ -108,8 +108,8 @@ while True:
         hitter.collideShip(player1)
         player1.collide(hitter)
     
-    # for Missile in missiles:
-        # screen.blit(Missile.image, Missile.rect)
+    for Missile in missiles:
+        screen.blit(Missile.image, Missile.rect)
     screen.blit(bg, (0,0))
     #screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
