@@ -28,8 +28,14 @@ mposY = 0
 
 asteroids = []
 
-for i in range(10):
+while len(asteroids) < 4:
+    print len(asteroids)
     asteroids += [Asteroid(width)]
+    for asteroid in asteroids:
+        for otherAsteroid in asteroids:
+            if asteroid.collideAsteroid(otherAsteroid):
+                asteroids.remove(asteroid)
+    
 
 
 while True:
@@ -72,12 +78,24 @@ while True:
                 player1.go("southU")
             if event.key == pygame.K_d:
                 player1.go("eastU")
+    
+    if len(asteroids)<15:
+        if random.randint(0,10) == 0:
+            asteroids += [Asteroid(width)]
+            for otherAsteroid in asteroids:
+                if asteroids[-1].collideAsteroid(otherAsteroid):
+                    asteroids[-1].living = False
+    
+    
+    
     player1.update(size)
+    
+    
         
-    for Asteroid in asteroids:
-        Asteroid.update(size)
-        if not Asteroid.living:
-            asteroids.remove(Asteroid)
+    for asteroid in asteroids:
+        asteroid.update(size)
+        if not asteroid.living:
+            asteroids.remove(asteroid)
    
     for Missile in missiles:
         Missile.update()
