@@ -10,7 +10,8 @@ height = 900
 size = width, height
 
 
-player1 = PlayerShip(1)
+player1 = PlayerShip(2)
+playerMissile = Missile(2)
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
@@ -45,8 +46,11 @@ while True:
             sys.exit()
             
         if event.type == pygame.MOUSEBUTTONDOWN:
-            player1.fireMissile()         #headTo(event.pos)
-        
+            ready = True
+            playerMissile.headTo(event.pos)         #headTo(event.pos)
+            
+            
+            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_t:
                 paused = True

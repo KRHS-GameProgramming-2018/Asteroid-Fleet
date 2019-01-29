@@ -1,6 +1,7 @@
 import pygame, sys, math
 from Ship import *
 from Asteroid import *
+from Missile import *
 
 class PlayerShip(Ship):
     def __init__(self, speed = 1, startPos=[0,0]):
@@ -24,12 +25,8 @@ class PlayerShip(Ship):
         #Health
         self.living = True
         self.lives = 4
-        print self.lives
+       # print self.lives
         #Powerups and Abilities
-        self.LaunchTimer = 0
-        self.LaunchTimerMax = 60/15
-        self.missiles = []
-        self.launching = False
         self.shield = False
     
     def alive(self, lives):
@@ -72,24 +69,6 @@ class PlayerShip(Ship):
             self.speedx = 0
             self.images = self.baseImage
 
-    def headTo(self, pos):
-        self.goal = pos
-        if self.rect.centerx > pos[0]:
-            self.speedx = -self.maxSpeed
-        elif self.rect.centerx < pos[0]:
-            self.speedx = self.maxSpeed
-        else:
-            self.speedx = 0
-            
-        if self.rect.centery > pos[1]:
-            self.speedy = -self.maxSpeed
-        elif self.rect.centery < pos[1]:
-            self.speedy = self.maxSpeed
-        else:
-            self.speedy = 0
-            
-        #print self.speedx, self.speedy
-            
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
             self.speedx = 0
@@ -97,19 +76,7 @@ class PlayerShip(Ship):
             self.speedy = 0
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
-    
-    def fireMissile(self):
-        if self.launching:
-            pass
-        else:
-            self.launching = True
-            self.LaunchTimer = 0
-            if self.living == "True":
-                screen.blit(Missile.image, Missile.rect)
-                speed = [0,7]
-                image = "PowerUps/GuidedMissile/images/rocket.move.png" 
-            #return Missile(image, speed, self.rect.center)
-    
+
     def warp(self, speed=[0,0], pos=[0,0]):
         #self.image = pygame.image.load("Ship/images/ship1.png")
         self.rect = self.image.get_rect(center=pos)
