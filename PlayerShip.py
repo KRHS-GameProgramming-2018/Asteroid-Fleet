@@ -24,7 +24,7 @@ class PlayerShip(Ship):
         #Health
         self.living = True
         self.lives = 4
-        
+        print self.lives
         #Powerups and Abilities
         self.LaunchTimer = 0
         self.LaunchTimerMax = 60/15
@@ -105,6 +105,7 @@ class PlayerShip(Ship):
             self.launching = True
             self.LaunchTimer = 0
             if self.living == "True":
+                screen.blit(Missile.image, Missile.rect)
                 speed = [0,7]
                 image = "PowerUps/GuidedMissile/images/rocket.move.png" 
             #return Missile(image, speed, self.rect.center)
@@ -138,6 +139,7 @@ class PlayerShip(Ship):
                 self.warp([0,0], [width/2,height-75])
 
     def collide(self, other):
+        self.lives = 4
         if not(self == other):
             if self.rect.right > other.rect.left:
                 if self.rect.left < other.rect.right:

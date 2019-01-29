@@ -1,5 +1,6 @@
 import sys, math, pygame
 from Ship import *
+from PlayerShip import *
 
 
 
@@ -12,7 +13,7 @@ class Missile(Ship):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        self.lives =1
+        self.lives = 1
         self.living = True
         self.kind = "Missile"
         self.goal = [0,0]    
