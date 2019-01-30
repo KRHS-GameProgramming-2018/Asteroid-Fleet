@@ -1,33 +1,31 @@
 import sys, math, pygame
-from Ship import *
 
-
-class Missile(Ship):
-    def __init__(self, image, speed= [1,1], startPos=[0,0]):
-        Ship.__init__(self, "PowerUps/GuidedMissile/images/rocket.move.png", [0,0], startPos)
-        self.maxSpeed = maxSpeed
-        self.goal = [0,0]
+class Missile():
+    def __init__(self, startPos, goal):
+        
+        self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
+        self.image = self.baseImage
+        self.rect = self.image.get_rect()
+        self.rect = self.rect.move(startPos)
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        
+        self.living = True
+        
+        self.maxSpeed = speed
+        self.goal = goal
+        self.headTo(self.goal)
+        
         
     def setPos(self, pos):
         self.rect.center = pos
         
     def headTo(self, pos):
         self.goal = pos
-        if self.rect.centerx > pos[0]:
-            self.speedx = -self.maxSpeed
-        elif self.rect.centerx < pos[0]:
-            self.speedx = self.maxSpeed
-        else:
-            self.speedx = 0
-            
-        if self.rect.centery > pos[1]:
-            self.speedy = -self.maxSpeed
-        elif self.rect.centery < pos[1]:
-            self.speedy = self.maxSpeed
-        else:
-            self.speedy = 0
-            
-        print self.speedx, self.speedy
+        self.angle = #math
+        self.speedx = #math
+        self.speedy = #math
+        self.speed = [self.speedx, self.speedy]
+        #self.rotateImage()
             
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
@@ -37,23 +35,14 @@ class Missile(Ship):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
        
+
+        
+        self.lives = 1
+        self.living = True
+        self.kind = "Missile"
        
-       
-        # self.image = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
-        # self.rect = self.image.get_rect()
-        # self.speedx = speed[0]
-        # self.speedy = speed[1]
-        # self.speed = [self.speedx, self.speedy]
-        # self.rect = self.rect.move(startPos)
-        # self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        # self.lives = 1
-        # self.living = True
-        # self.kind = "Missile"
-        # self.goal = [0,0]    
-        # # self.image = self.images[self.frame]
-        # # self.rect = self.image.get_rect(center = self.rect.center)
-        # self.maxSpeed = speed
-        # ready = True
+    
+        ready = True
         # #Animation
         # # self.images = self.baseImage
         # # self.frame = 0;

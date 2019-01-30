@@ -11,13 +11,16 @@ size = width, height
 
 
 player1 = PlayerShip(2)
-playerMissile = Missile(2)
+
+
+
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
-missiles = []
-for i in range(1):
-    missiles += [Missile(width)]
+
+missile = None
+# for i in range(1):
+    # missiles += [Missile(width)]
 
 
 
@@ -47,9 +50,10 @@ while True:
             
         if event.type == pygame.MOUSEBUTTONDOWN:
             ready = True
-            playerMissile.headTo(event.pos)         #headTo(event.pos)
-            
-            
+            missile = Missile(player1.rect.center, event.pos)
+        if event.type == pygame.MOUSEMOTION:
+            if missile:
+                missle.headTo(event.pos)
             
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_t:
@@ -102,7 +106,7 @@ while True:
             asteroids.remove(asteroid)
    
     for Missile in missiles:
-        Missile.update()
+        playerMissile.update()
         if not Missile.living:
             missile.remove(Missile)
         
@@ -113,7 +117,7 @@ while True:
         player1.collide(hitter)
     
     for Missile in missiles:
-        screen.blit(Missile.image, Missile.rect)
+        screen.blit(playerMissile.image, playerMissile.rect)
     screen.blit(bg, (0,0))
     #screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)
