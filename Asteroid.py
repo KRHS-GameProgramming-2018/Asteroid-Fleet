@@ -12,7 +12,7 @@ class Asteroid():
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
-        self.speedy = random.randint(1,2)
+        self.speedy = 1
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
@@ -113,5 +113,32 @@ class Asteroid():
                                 self.living = False
         return False       
            
-           
+    
+    def collideMissile(self, other):
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                if not self.didBounceX:
+                                    
+                                    if self.speedx > 1: #right
+                                        if self.rect.centerx < other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.didBounceX = True
+                                            
+                                    if self.speedx < 1: #left
+                                        if self.rect.centerx > other.rect.centerx:
+                                            self.speedx = -self.speedx
+                                            self.didBounceX = True
+                                            
+                                if not self.didBounceY:
+                                    
+                                    if self.speedy > 1: #down
+                                        if self.rect.centery < other.rect.centery:
+                                            self.speedy = -self.speedy
+                                            self.didBounceY = True
+                                            self.living = False
+                                            
     
