@@ -49,11 +49,10 @@ while True:
             sys.exit()
             
         if event.type == pygame.MOUSEBUTTONDOWN:
-            ready = True
             missile = Missile(player1.rect.center, event.pos)
         if event.type == pygame.MOUSEMOTION:
             if missile:
-                missle.headTo(event.pos)
+                missile.headTo(event.pos)
             
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_t:
@@ -105,9 +104,10 @@ while True:
         if not asteroid.living:
             asteroids.remove(asteroid)
    
-    for Missile in missiles:
-        playerMissile.update()
-        if not Missile.living:
+  
+    if missile:
+        missile.update()
+        if not missile.living:
             missile.remove(Missile)
         
     for hitter in asteroids:
@@ -116,10 +116,11 @@ while True:
         hitter.collideShip(player1)
         player1.collide(hitter)
     
-    for Missile in missiles:
-        screen.blit(playerMissile.image, playerMissile.rect)
+   # 
     screen.blit(bg, (0,0))
     #screen.fill(bgColor)
+    if missile:
+        screen.blit(missile.image, missile.rect)
     screen.blit(player1.image, player1.rect)
     for asteroid in asteroids:
         screen.blit(asteroid.image, asteroid.rect)

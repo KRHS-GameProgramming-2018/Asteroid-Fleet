@@ -4,37 +4,51 @@ class Missile():
     def __init__(self, startPos, goal):
         
         self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
-        self.image = self.baseImage
+        self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
+        self.angle = 0
+        self.maxSpeed = 5
+        self.headTo(goal)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         
         self.living = True
         
-        self.maxSpeed = speed
+        #maxSpeed = speed
         self.goal = goal
-        self.headTo(self.goal)
-        
+       # self.headTo(self.goal)
+
         
     def setPos(self, pos):
         self.rect.center = pos
         
+    def rotateImage(self, point):
+        rot_image = pygame.transform.rotate(self.baseImage, self.angle)
+        rot_rect = self.rect.copy()
+        rot_rect.center = rot_image.get_rect().center
+        rot_image = rot_image.subsurface(rot_rect)
+        self.image = rot_image
+        
+    def update(self):
+        self.move()
+        
     def headTo(self, pos):
-        self.goal = pos
-        self.angle = #math
-        self.speedx = #math
-        self.speedy = #math
+        pointPosPlayerX = pos[0] - self.rect.center[0]
+        pointPosPlayerY = pos[1] - self.rect.center[1]
+        self.angle = ((math.atan2(pointPosPlayerY, pointPosPlayerX))/math.pi)*180
+        self.angle = -self.angle
+        self.speedx = self.maxSpeed*math.cos(math.radians(self.angle))
+        self.speedy = -self.maxSpeed*math.sin(math.radians(self.angle))
         self.speed = [self.speedx, self.speedy]
-        #self.rotateImage()
+        self.rotateImage(pos)
             
     def move(self):
-        if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
-            self.speedx = 0
-        if self.goal[1]-self.maxSpeed <= self.rect.centery <= self.goal[1]+self.maxSpeed:
-            self.speedy = 0
+   
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
        
+
+
 
         
         self.lives = 1
