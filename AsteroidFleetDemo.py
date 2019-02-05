@@ -24,7 +24,7 @@ missile = None
 
 
 
-bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/space.png"), [width,height])
+bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
 bgColor = 0,0,0
 mposX = 0
 mposY = 0
