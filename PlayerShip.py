@@ -9,7 +9,7 @@ class PlayerShip(Ship):
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.imagesB = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,600])
+        Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,500])
         self.goal = [0,0]    
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)

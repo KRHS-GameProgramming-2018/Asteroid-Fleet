@@ -3,6 +3,7 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
+from Screens import *
 pygame.init()
 
 width = 1100
@@ -10,7 +11,7 @@ height = 900
 size = width, height
 
 
-player1 = PlayerShip(2)
+player1 = PlayerShip(1)
 
 
 
@@ -19,8 +20,7 @@ screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
 
 missile = None
-# for i in range(1):
-    # missiles += [Missile(width)]
+
 
 
 
@@ -124,6 +124,7 @@ while True:
     screen.blit(player1.image, player1.rect)
     for asteroid in asteroids:
         screen.blit(asteroid.image, asteroid.rect)
+    screen.blit(HUD.image, HUD.rect)
     pygame.display.flip()
     clock.tick(60)
    # print clock.get_fps()
