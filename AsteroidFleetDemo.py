@@ -6,13 +6,14 @@ from Missile import *
 from Screens import *
 pygame.init()
 
-width = 1100
-height = 900
+
+raw_input("Press Enter to Start")
+go = True 
+
 size = width, height
 
 
 player1 = PlayerShip(1)
-
 
 
 clock = pygame.time.Clock()
@@ -39,10 +40,13 @@ while len(asteroids) < 4:
         for otherAsteroid in asteroids:
             if asteroid.collideAsteroid(otherAsteroid):
                 asteroids.remove(asteroid)
+
+
     
 
+    
 
-while True:
+while go:
     for event in pygame.event.get():
        # print event.type
         if event.type == pygame.QUIT:
