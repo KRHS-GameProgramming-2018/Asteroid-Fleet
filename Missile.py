@@ -69,43 +69,21 @@ class Missile():
         # self.missiles = []
         # self.launching = False
         
-        
-    # def update(self):
-        # pos = pygame.mouse.get_pos()
-        # x = pos[0]
-        # y = pos[1]
-        # self.rect.x = x
-        # self.rect.y = y
-   
-    # # def fireMissile(self):
-        # ready = True
-        # if self.launching:
-            # pass
-        # else:
-            # self.launching = True
-            # self.LaunchTimer = 0
-            # if ready == "True":
-                # print "somethings wrong"
-                # screen.blit(Missile.image, Missile.rect)
-                # speed = [0,7]
-                # image = "PowerUps/GuidedMissile/images/rocket.move.png" 
-                # print "somethings wrong"
-            # #return Missile(image, speed, self.rect.center)
    
    
    
-    # def collide(self, other):
+    def collide(self, other):
 
-        # if self.rect.right > other.rect.left:
+        if self.rect.right > other.rect.left:
 
-            # if self.rect.left < other.rect.right:
+            if self.rect.left < other.rect.right:
 
-                # if self.rect.top < other.rect.bottom:
+                if self.rect.top < other.rect.bottom:
 
-                    # if self.rect.bottom > other.rect.top:
+                    if self.rect.bottom > other.rect.top:
 
-                        # if self.radius + other.radius > self.getDist(other.rect.center):
+                        if self.radius + other.radius > self.getDist(other.rect.center):
 
-                            # self.living = False
+                            self.living = False
 
-        # return False
+        return False
