@@ -140,5 +140,6 @@ class Asteroid():
                                             self.speedy = -self.speedy
                                             self.didBounceY = True
                                             self.living = False
-                                            
+                            
+                            self.living = False                
     
