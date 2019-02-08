@@ -106,6 +106,8 @@ while go:
         
         for asteroid in asteroids:
             asteroid.update(size)
+            if missile:
+                missile.collide(asteroid)
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
@@ -121,7 +123,8 @@ while go:
                 hitter.collideAsteroid(hittie)
             hitter.collideShip(player1)
             player1.collide(hitter)
-        
+
+            
         
         
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
