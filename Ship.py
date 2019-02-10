@@ -62,7 +62,7 @@ class Ship():
 				self.didBounceY = True
 
     def collide(self, other):
-        if not(self == other):
+
             if self.rect.right > other.rect.left:
                 if self.rect.left < other.rect.right:
                     if self.rect.top < other.rect.bottom:
@@ -89,4 +89,16 @@ class Ship():
                                             self.didBounceY = True
 
                                 return True
+            return False
+            
+            
+    def collideAsteroid(self, other):
+        if self.rect.right > other.rect.left:
+			if self.rect.left < other.rect.right:
+				if self.rect.top < other.rect.bottom:
+					if self.rect.bottom > other.rect.top:
+						if self.radius + other.radius > self.getDist(other.rect.center):      
+							self.lives -= 1
+							print self.lives
+                        return True
         return False

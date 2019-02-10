@@ -3,6 +3,7 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
+from PowerUps import *
 from Screens import *
 pygame.init()
 
@@ -40,9 +41,8 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    pygame.time.delay(1000)
-                    mode = "play"  
+                pygame.time.delay(1000)
+                mode = "play"  
         screen.blit(startimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
@@ -134,7 +134,11 @@ while go:
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
-        screen.blit(HUD.image, HUD.rect)
+        screen.blit(health.image, health.rect)
+        screen.blit(shield.image, shield.rect)
+        screen.blit(repair.image, repair.rect)
+        screen.blit(lightspeed.image, lightspeed.rect)
+        screen.blit(complete.image, complete.rect)
         pygame.display.flip()
         clock.tick(60)
         # print clock.get_fps()
