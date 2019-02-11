@@ -3,6 +3,7 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
+from PowerUps import *
 from Screens import *
 pygame.init()
 
@@ -40,9 +41,8 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    pygame.time.delay(1000)
-                    mode = "play"  
+                pygame.time.delay(1000)
+                mode = "play"  
         screen.blit(startimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
@@ -106,6 +106,8 @@ while go:
         
         for asteroid in asteroids:
             asteroid.update(size)
+            if missile:
+                missile.collide(asteroid)
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
@@ -121,7 +123,8 @@ while go:
                 hitter.collideAsteroid(hittie)
             hitter.collideShip(player1)
             player1.collide(hitter)
-        
+
+            
         
         
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
@@ -131,7 +134,15 @@ while go:
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
+<<<<<<< HEAD
         screen.blit(Health.image, Health.rect)
+=======
+        screen.blit(health.image, health.rect)
+        screen.blit(shield.image, shield.rect)
+        screen.blit(repair.image, repair.rect)
+        screen.blit(lightspeed.image, lightspeed.rect)
+        screen.blit(complete.image, complete.rect)
+>>>>>>> Github/master
         pygame.display.flip()
         clock.tick(60)
         # print clock.get_fps()

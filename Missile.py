@@ -11,7 +11,8 @@ class Missile():
         self.maxSpeed = 5
         self.headTo(goal)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        
+        self.didBounceX = False
+        self.didBounceY = False
         self.living = True
         
         #maxSpeed = speed
@@ -21,6 +22,13 @@ class Missile():
         
     def setPos(self, pos):
         self.rect.center = pos
+        
+    def getDist(self, pt):
+        x1 = self.rect.centerx
+        y1 = self.rect.centery
+        x2 = pt[0]
+        y2 = pt[1]
+        return math.sqrt((x2-x1)**2 + (y2-y1)**2)
         
     def rotateImage(self, point):
         rot_image = pygame.transform.rotate(self.baseImage, self.angle)
@@ -100,23 +108,6 @@ class Missile():
                 if self.rect.left < other.rect.right:
                     if self.rect.top < other.rect.bottom:
                         if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.didBounceX:
-                                    
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
-                                            
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
-                                            
-                                if not self.didBounceY:
-                                    
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
-                                            self.didBounceY = True
-                                            self.living = False
+                            if self.radius + other.radius < self.getDist(other.rect.center):
+                                self.living = False
+        return False
