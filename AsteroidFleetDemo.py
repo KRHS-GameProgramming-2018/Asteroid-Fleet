@@ -131,7 +131,7 @@ while go:
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
-        screen.blit(HUD.image, HUD.rect)
+        screen.blit(Health.image, Health.rect)
         pygame.display.flip()
         clock.tick(60)
         # print clock.get_fps()
