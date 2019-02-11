@@ -3,7 +3,7 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
-from PowerUps import *
+#from PowerUps import *
 from Screens import *
 pygame.init()
 
@@ -134,15 +134,14 @@ while go:
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
-<<<<<<< HEAD
-        screen.blit(Health.image, Health.rect)
-=======
-        screen.blit(health.image, health.rect)
-        screen.blit(shield.image, shield.rect)
-        screen.blit(repair.image, repair.rect)
-        screen.blit(lightspeed.image, lightspeed.rect)
-        screen.blit(complete.image, complete.rect)
->>>>>>> Github/master
+
+        #screen.blit(Health.image, Health.rect)
+        # screen.blit(health.image, health.rect)
+        # screen.blit(shield.image, shield.rect)
+        # screen.blit(repair.image, repair.rect)
+        # screen.blit(lightspeed.image, lightspeed.rect)
+        # screen.blit(complete.image, complete.rect)
+
         pygame.display.flip()
         clock.tick(60)
         # print clock.get_fps()
