@@ -14,27 +14,27 @@ class HealthBar():
         
     
     #Animation
-        self.images = self.image100
-        self.frame = 0;
-        self.maxFrame = len(self.images)-1
-        self.aniTimer = 0
-        self.aniTimerMax = 60/10
-        self.rect = self.image100.get_rect(center = startPos)
-        self.image = self.images[self.frame]
-        self.rect = self.image.get_rect(center = self.rect.center)
-    def animate(self):
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-            self.image = self.images[self.frame]   
+        # self.images = self.image100
+        # self.frame = 0;
+        # self.maxFrame = len(self.images)-1
+        # self.aniTimer = 0
+        # self.aniTimerMax = 60/10
+        # self.rect = self.image100.get_rect(center = startPos)
+        # self.image = self.images[self.frame]
+        # self.rect = self.image.get_rect(center = self.rect.center)
+    # def animate(self):
+        # if self.aniTimer < self.aniTimerMax:
+            # self.aniTimer += 1
+        # else:
+            # self.aniTimer = 0
+            # if self.frame < self.maxFrame:
+                # self.frame += 1
+            # else:
+                # self.frame = 0
+            # self.image = self.images[self.frame]   
    
-    def update(self, size):
-		self.animate() 
+   # def update(self, size):
+	#	self.animate() 
 		
         
 health = HealthBar("Screen Display/HUD/HealthBar/images/health.100%.png", startPos=[350,500])

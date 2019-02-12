@@ -102,7 +102,7 @@ while go:
     
     
         player1.update(size)
-        HealthBar.update()
+        #HealthBar.update()
     
         
         for asteroid in asteroids:
