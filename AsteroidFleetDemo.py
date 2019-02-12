@@ -109,13 +109,14 @@ while go:
             asteroid.update(size)
             if missile:
                 missile.collide(asteroid)
+                asteroid.collideMissile(missile)
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
         if missile:
             missile.update()
             if not missile.living:
-                missile.remove(Missile)
+                missile = None
           ############  if missile.collideAsteroid:
 			#	missile.remove(Missile)
         
@@ -123,7 +124,7 @@ while go:
             for hittie in asteroids:
                 hitter.collideAsteroid(hittie)
             hitter.collideShip(player1)
-            player1.collide(hitter)
+            player1.collideAsteroid(hitter)
 
             
         

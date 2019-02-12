@@ -18,6 +18,10 @@ class Missile():
         #maxSpeed = speed
         self.goal = goal
        # self.headTo(self.goal)
+       
+        self.lives = 1
+        self.living = True
+        self.kind = "Missile"
 
         
     def setPos(self, pos):
@@ -54,14 +58,6 @@ class Missile():
    
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
-       
-
-
-
-        
-        self.lives = 1
-        self.living = True
-        self.kind = "Missile"
        
     
         ready = True
@@ -108,6 +104,5 @@ class Missile():
                 if self.rect.left < other.rect.right:
                     if self.rect.top < other.rect.bottom:
                         if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius < self.getDist(other.rect.center):
+                            if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
-        return False
