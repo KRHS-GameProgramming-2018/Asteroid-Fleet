@@ -3,7 +3,7 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
-#from PowerUps import *
+from PowerUps import *
 from Screens import *
 pygame.init()
 
@@ -16,6 +16,7 @@ player1 = PlayerShip(1)
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
 pygame.mouse.set_visible(True)
+
 
 mode = "ready"
 asteroids = []
@@ -101,7 +102,7 @@ while go:
     
     
         player1.update(size)
-        
+        HealthBar.update()
     
         
         for asteroid in asteroids:
@@ -134,13 +135,11 @@ while go:
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
-
-        #screen.blit(Health.image, Health.rect)
-        # screen.blit(health.image, health.rect)
-        # screen.blit(shield.image, shield.rect)
-        # screen.blit(repair.image, repair.rect)
-        # screen.blit(lightspeed.image, lightspeed.rect)
-        # screen.blit(complete.image, complete.rect)
+        screen.blit(health.image, health.rect)
+        screen.blit(shield.image, shield.rect)
+        screen.blit(repair.image, repair.rect)
+        screen.blit(lightspeed.image, lightspeed.rect)
+        screen.blit(complete.image, complete.rect)
 
         pygame.display.flip()
         clock.tick(60)

@@ -2,7 +2,7 @@ import pygame, sys, math
 from Ship import *
 from Asteroid import *
 from Missile import *
-#from PowerUps import *
+from PowerUps import *
 
 class PlayerShip(Ship):
     def __init__(self, speed = 1, startPos=[0,0]):
@@ -21,17 +21,9 @@ class PlayerShip(Ship):
         self.maxSpeed = speed
         
         #Sounds 
-        self.moveSound = pygame.mixer.Sound("Asteroid/sounds/boom.ogg")				#add sound.wav      #freesounds.com  jsounds2019  soundman
+        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound")				#add sound.wav      #freesounds.com  jsounds2019  soundman
         self.moving = False;
         self.playingMoving = False
-        
-        
-        #Animation
-        self.images = self.baseImage
-        self.frame = 0;
-        self.maxFrame = len(self.images)-1
-        self.aniTimer = 0
-        self.aniTimerMax = 60/10
         
         #Health
         self.living = True
