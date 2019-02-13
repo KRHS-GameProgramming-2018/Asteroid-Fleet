@@ -18,15 +18,6 @@ class Shield():
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.appear = True
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
      def collide(self, other):
         if not(self == other):
             if self.rect.right > other.rect.left:

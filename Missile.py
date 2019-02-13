@@ -15,9 +15,9 @@ class Missile():
         self.didBounceY = False
         self.living = True
         
-        #maxSpeed = speed
+      
         self.goal = goal
-       # self.headTo(self.goal)
+       
        
         self.lives = 1
         self.living = True

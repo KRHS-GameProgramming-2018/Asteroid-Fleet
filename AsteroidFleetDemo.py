@@ -104,6 +104,11 @@ while go:
         player1.update(size)
         #HealthBar.update()
     
+        if Ship.collideAsteroid:
+            HealthBar.shipHit
+    
+    
+    
         
         for asteroid in asteroids:
             asteroid.update(size)
