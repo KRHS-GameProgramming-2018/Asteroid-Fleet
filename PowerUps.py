@@ -38,13 +38,25 @@ class HealthBar():
         
          
          
-health = HealthBar("Screen Display/HUD/HealthBar/images/health.100%.png", startPos=[350,500])
-		
+health = HealthBar("Screen Display/HUD/HealthBar/images/health.100%.png", startPos=[200,800])
+        
 
 class PowerShield():
+    def __init__(self):
+        self.living = True
     def __init__(self, image, startPos = [0,0]):
         self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
-        self.rect = self.image.get_rect(center=[random.randint(0,width),200])
+        self.rect = self.image.get_rect(center=[random.randint(50,width-50),(500)])
+
+    def collideShip(self, other):
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                self.living = False
+
 shield = PowerShield("PowerUps/Shield/images/shield.png", startPos=[550,500])
 
 
