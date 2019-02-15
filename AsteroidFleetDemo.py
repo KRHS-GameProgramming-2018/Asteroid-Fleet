@@ -8,10 +8,7 @@ from Screens import *
 pygame.init()
 
 size = width, height
-go = True
-missile = None
 
-player1 = PlayerShip(1)
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode(size)
@@ -19,16 +16,8 @@ pygame.mouse.set_visible(True)
 
 
 mode = "ready"
-asteroids = []
 
-while len(asteroids) < 4:
-   # print len(asteroids)
-    asteroids += [Asteroid(width)]
-    for asteroid in asteroids:
-        for otherAsteroid in asteroids:
-            if asteroid.collideAsteroid(otherAsteroid):
-                asteroids.remove(asteroid)
-
+go = True
 
 
 while go:
@@ -43,13 +32,29 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "play"  
+                mode = "play"
         screen.blit(startimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
         
     
-    while mode == "play":
+    asteroids = []
+   
+    missile = None
+
+    player1 = PlayerShip(1)
+    player1.lives = 4
+
+    while len(asteroids) < 4:
+       # print len(asteroids)
+        asteroids += [Asteroid(width)]
+        for asteroid in asteroids:
+            for otherAsteroid in asteroids:
+                if asteroid.collideAsteroid(otherAsteroid):
+                    asteroids.remove(asteroid)
+
+    
+    while mode == "play" and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -107,9 +112,6 @@ while go:
         if Ship.collideAsteroid:
             HealthBar.shipHit
     
-    
-    
-        
         for asteroid in asteroids:
             asteroid.update(size)
             if missile:
@@ -123,7 +125,7 @@ while go:
             if not missile.living:
                 missile = None
           ############  if missile.collideAsteroid:
-			#	missile.remove(Missile)
+            #   missile.remove(Missile)
         
         for hitter in asteroids:
             for hittie in asteroids:
@@ -132,8 +134,10 @@ while go:
             player1.collideAsteroid(hitter)
 
             
-        
-        
+        if player1.lives == 0:
+            mode = "ready"
+            
+    
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
         screen.blit(bg, (0,0))
         if missile:
