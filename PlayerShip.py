@@ -2,7 +2,6 @@ import pygame, sys, math
 from Ship import *
 from Asteroid import *
 from Missile import *
-from PowerUps import *
 
 class PlayerShip(Ship):
     def __init__(self, speed = 1, startPos=[0,0]):

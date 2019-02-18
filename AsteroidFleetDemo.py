@@ -43,7 +43,7 @@ while go:
     missile = None
 
     player1 = PlayerShip(1)
-    player1.lives = 4
+    health = HealthBar(player1.lives, [100, height - 25])
 
     while len(asteroids) < 4:
        # print len(asteroids)
@@ -107,6 +107,8 @@ while go:
     
     
         player1.update(size)
+        health.update(player1.lives)
+    
         #HealthBar.update()
     
         #if Ship.collideEndLine:
@@ -146,9 +148,9 @@ while go:
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
         screen.blit(health.image, health.rect)
-        screen.blit(shield.image, shield.rect)
-        screen.blit(repair.image, repair.rect)
-        screen.blit(lightspeed.image, lightspeed.rect)
+        #screen.blit(shield.image, shield.rect)
+        #screen.blit(repair.image, repair.rect)
+        #screen.blit(lightspeed.image, lightspeed.rect)
         screen.blit(complete.image, complete.rect)
 
         pygame.display.flip()
