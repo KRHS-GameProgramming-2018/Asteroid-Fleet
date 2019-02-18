@@ -109,8 +109,8 @@ while go:
         player1.update(size)
         #HealthBar.update()
     
-        if Ship.collideAsteroid:
-            HealthBar.shipHit
+        #if Ship.collideEndLine:
+            
     
         for asteroid in asteroids:
             asteroid.update(size)
@@ -137,7 +137,7 @@ while go:
         if player1.lives == 0:
             mode = "ready"
             
-    
+        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50])
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
         screen.blit(bg, (0,0))
         if missile:

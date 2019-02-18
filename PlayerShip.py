@@ -102,6 +102,11 @@ class PlayerShip(Ship):
             else:
                 self.warp([0,0], [width/2,height-75])
 
+
+    def shieldedShip(self, size):
+        self.images = self.boostImage
+
+
     def update(self, size):
         if self.speed != [0,0]:
             self.moving = True

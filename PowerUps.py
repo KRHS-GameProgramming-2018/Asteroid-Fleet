@@ -11,7 +11,6 @@ class HealthBar():
         self.images1 = [pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/health.25%.png"),[200,50])]
         self.images0 = [pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/health.0%.png"),[200,50])]         
                         
-        
         self.frame = 0;
         self.images = self.images4
         self.maxFrame = len(self.images)-1
@@ -21,6 +20,7 @@ class HealthBar():
         self.aniTimer = 0
         self.aniTimerMax = 60/10
        
+    
     def animate(self):
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1

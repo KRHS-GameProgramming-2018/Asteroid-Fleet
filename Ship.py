@@ -104,14 +104,26 @@ class Ship():
         return False
 
     
-    def collideShield(self, other):
+    # def collideShield(self, other):
+        # if self.rect.right > other.rect.left:
+			# if self.rect.left < other.rect.right:
+				# if self.rect.top < other.rect.bottom:
+					# if self.rect.bottom > other.rect.top:
+						# if self.radius + other.radius > self.getDist(other.rect.center):      
+							# self.lives -= 1
+							# print self.lives
+                        # return True
+        # return False
+
+
+    def collideEndLine(self, other):
         if self.rect.right > other.rect.left:
 			if self.rect.left < other.rect.right:
 				if self.rect.top < other.rect.bottom:
 					if self.rect.bottom > other.rect.top:
 						if self.radius + other.radius > self.getDist(other.rect.center):      
-							self.lives -= 1
-							print self.lives
+							print "boo ya"
                         return True
         return False
+
 
