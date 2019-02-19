@@ -3,8 +3,14 @@ from Ship import *
 from PlayerShip import *
 from Asteroid import *
 from Missile import *
-from PowerUps import *
-from Screens import *
+from HealthBar import *
+from EndLine import *
+from RepairKit import *
+from PowerShield import *
+from Boost import * 
+
+
+
 pygame.init()
 
 size = width, height

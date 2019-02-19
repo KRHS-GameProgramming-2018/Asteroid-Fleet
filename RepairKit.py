@@ -10,4 +10,4 @@ class RepairKit():
     def setPos(self, pos):
         pos = [600,200]
 
-HUD = HeadsUpDisplay("Screen Display/HUD/HealthBar/images/health.100%.png", pos = [600,200])
+#HUD = HeadsUpDisplay("Screen Display/HUD/HealthBar/images/health.100%.png", pos = [600,200])
