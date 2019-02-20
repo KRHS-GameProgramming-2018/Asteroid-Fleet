@@ -50,6 +50,8 @@ while go:
 
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
+    shield = PowerShield("PowerUps/Shield/images/shield.png", [random.randint(50,width-50),(500)])
+
 
     while len(asteroids) < 4:
        # print len(asteroids)
@@ -144,17 +146,21 @@ while go:
             
         if player1.lives == 0:
             mode = "ready"
-            
-        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50])
+        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
         screen.blit(bg, (0,0))
+        
         if missile:
             screen.blit(missile.image, missile.rect)
+        if shield:
+            screen.blit(shield.image, shield.rect)
+        
+        
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
         screen.blit(health.image, health.rect)
-        #screen.blit(shield.image, shield.rect)
+        
         #screen.blit(repair.image, repair.rect)
         #screen.blit(lightspeed.image, lightspeed.rect)
         screen.blit(complete.image, complete.rect)
