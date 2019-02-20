@@ -47,6 +47,8 @@ while go:
     asteroids = []
    
     missile = None
+    
+    finishLine = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
 
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
@@ -117,9 +119,9 @@ while go:
         player1.update(size)
         health.update(player1.lives)
     
-        #HealthBar.update()
     
-        #if Ship.collideEndLine:
+        if player1.collideEndLine(finishLine):
+            print "yahoo"
             
     
         for asteroid in asteroids:

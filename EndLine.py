@@ -6,8 +6,9 @@ class EndLine():
     def __init__(self, image, startPos = [0,0]):
         self.image = pygame.transform.scale(pygame.image.load(image),[width,50])
         self.rect = self.image.get_rect(center = startPos)
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
 
-    def collideShip(self, other):
+    def collidePlayer(self, other):
         if not(self == other):
             if self.rect.right > other.rect.left:
                 if self.rect.left < other.rect.right:
