@@ -45,12 +45,19 @@ while go:
         
     
     asteroids = []
+    
+    
+   
+   
+   
    
     missile = None
 
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
     shield = PowerShield("PowerUps/Shield/images/shield.png", [random.randint(50,width-50),(500)])
+
+    
 
 
     while len(asteroids) < 4:
@@ -121,12 +128,14 @@ while go:
     
         #if Ship.collideEndLine:
             
-    
         for asteroid in asteroids:
             asteroid.update(size)
             if missile:
                 missile.collide(asteroid)
                 asteroid.collideMissile(missile)
+            if shield:
+                player1.collideShield(PowerShield)
+                shield.collideShip(player1)    
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
@@ -134,6 +143,14 @@ while go:
             missile.update()
             if not missile.living:
                 missile = None
+                
+        if shield:
+            #shield.update()
+            if not shield.living:
+                shield = None        
+                
+                
+                
           ############  if missile.collideAsteroid:
             #   missile.remove(Missile)
         
