@@ -6,9 +6,7 @@ height = 900
 class PowerShield():
     def __init__(self, image, startPos = [0,0]):
         self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
-        self.rect = self.image.get_rect()
-        self.rect = self.image.get_rect(center = self.rect.center)
-        #self.rect = self.image.get_rect(center= startPos)
+        self.rect = self.image.get_rect(center=[random.randint(50,width-50),(500)])
         self.living = True
   
     def collideShip(self, other):
@@ -19,6 +17,3 @@ class PowerShield():
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
-    
-  #  def update(self):
-    #    self.collideShip()
