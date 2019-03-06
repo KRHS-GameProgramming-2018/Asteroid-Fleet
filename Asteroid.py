@@ -86,6 +86,7 @@ class Asteroid():
                     if self.rect.top < other.rect.bottom:
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
+                              #  self.image = "Asteroid/images/bang.png"
                                 self.living = False
        
            
