@@ -28,7 +28,7 @@ go = True
 
 while go:
     startimage = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/startscreen.png"), [width,height])
-   
+    deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
    #STARTSCREEN
  
     while mode == "ready":
@@ -39,7 +39,7 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "play"
-        screen.blit(startimage, (0,0))
+        screen.blit(deathimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
         
@@ -70,6 +70,30 @@ while go:
                 if asteroid.collideAsteroid(otherAsteroid):
                     asteroids.remove(asteroid)
 
+    
+    # while mode == "dead":
+        # for event in pygame.event.get():
+            # #print event.type
+            # if event.type == pygame.QUIT:
+                # sys.exit()
+            # if event.type == pygame.KEYDOWN:
+                # pygame.time.delay(1000)
+                # mode = "play"
+        # screen.blit(startimage, (0,0))
+        # pygame.display.flip()
+        # clock.tick(60)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     while mode == "play" and player1.lives > 0:
         for event in pygame.event.get():
@@ -171,6 +195,7 @@ while go:
 
             
         if player1.lives == 0:
+           # mode = "dead"
             mode = "ready"
         complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
