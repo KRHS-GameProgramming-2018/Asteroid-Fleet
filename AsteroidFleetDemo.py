@@ -152,13 +152,21 @@ while go:
     
     
         if player1.collideEndLine(finishLine):
-            finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
+            finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
             print "yahoo"
-            mode = "ready"
-        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-        bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
-        screen.blit(bg, (0,0))
-                        
+            mode = "finish"
+            while mode == "finish":
+                screen.blit(finishimage, (0,0))
+                for event in pygame.event.get():
+                    #print event.type
+                    if event.type == pygame.QUIT:
+                        sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                        pygame.time.delay(1000)
+                        mode = "ready"
+                
+                pygame.display.flip()
+                clock.tick(60)
                 
                 
         for asteroid in asteroids:
