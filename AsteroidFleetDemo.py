@@ -128,8 +128,15 @@ while go:
     
     
         if player1.collideEndLine(finishLine):
+            finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
             print "yahoo"
-            
+            mode = "ready"
+        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
+        bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
+        screen.blit(bg, (0,0))
+                        
+                
+                
         for asteroid in asteroids:
             asteroid.update(size)
             if missile:
