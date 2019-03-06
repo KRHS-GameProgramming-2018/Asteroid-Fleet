@@ -39,10 +39,21 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "play"
-        screen.blit(deathimage, (0,0))
+        screen.blit(startimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
         
+    while mode == "dead":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                pygame.time.delay(1000)
+                mode = "ready"
+        screen.blit(deathimage, (0,0))
+        pygame.display.flip()
+        clock.tick(60)
     
     asteroids = []
     
@@ -57,8 +68,8 @@ while go:
 
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
-    shield = PowerShield("PowerUps/Shield/images/shield.png", [random.randint(50,width-50),(500)])
-
+    shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
+    repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
     
 
 
@@ -190,7 +201,10 @@ while go:
             if not shield.living:
                 shield = None        
                 
-                
+        if repair:
+            #shield.update()
+            if not repair.living:
+                repair = None        
                 
           ############  if missile.collideAsteroid:
             #   missile.remove(Missile)
@@ -203,8 +217,7 @@ while go:
 
             
         if player1.lives == 0:
-           # mode = "dead"
-            mode = "ready"
+            mode = "dead"
         complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
         screen.blit(bg, (0,0))
@@ -213,7 +226,8 @@ while go:
             screen.blit(missile.image, missile.rect)
         if shield:
             screen.blit(shield.image, shield.rect)
-        
+        if repair:
+            screen.blit(repair.image, repair.rect)
         
         screen.blit(player1.image, player1.rect)
         for asteroid in asteroids:
