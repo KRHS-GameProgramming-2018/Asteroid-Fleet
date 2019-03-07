@@ -166,7 +166,6 @@ while go:
     
         if player1.collideEndLine(finishLine):
             finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
-            print "yahoo"
             mode = "finish"
             while mode == "finish":
                 screen.blit(finishimage, (0,0))
@@ -175,7 +174,7 @@ while go:
                     if event.type == pygame.QUIT:
                         sys.exit()
                     if event.type == pygame.KEYDOWN:
-                        pygame.time.delay(1000)
+                        pygame.time.delay(2000)
                         mode = "ready"
                 
                 pygame.display.flip()
@@ -187,9 +186,9 @@ while go:
             if missile:
                 missile.collide(asteroid)
                 asteroid.collideMissile(missile)
-     #       if shield:
-     #           player1.collideShield(PowerShield)
-     #           shield.collideShip(player1)    
+            if shield:
+               player1.collideShield(shield)
+               shield.collideShip(player1)    
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
