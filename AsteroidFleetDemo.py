@@ -112,7 +112,9 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                missile = Missile(player1.rect.center, event.pos)
+                if player1.missiles > 0:
+                    missile = Missile(player1.rect.center, event.pos)
+                    player1.missiles -= 1
             if event.type == pygame.MOUSEMOTION:
                 if missile:
                     missile.headTo(event.pos)

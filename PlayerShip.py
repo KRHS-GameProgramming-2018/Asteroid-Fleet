@@ -29,6 +29,8 @@ class PlayerShip(Ship):
         self.lives = 4
         print self.lives
         
+        self.missiles = 3
+        
         #Powerups and Abilities
         self.shield = False
     

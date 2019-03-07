@@ -14,7 +14,7 @@ class Missile():
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
-        
+    
       
         self.goal = goal
        
@@ -23,7 +23,7 @@ class Missile():
         self.living = True
         self.kind = "Missile"
 
-        
+    
     def setPos(self, pos):
         self.rect.center = pos
         
