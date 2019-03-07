@@ -164,7 +164,6 @@ while go:
     
         if player1.collideEndLine(finishLine):
             finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
-            print "yahoo"
             mode = "finish"
             while mode == "finish":
                 screen.blit(finishimage, (0,0))
