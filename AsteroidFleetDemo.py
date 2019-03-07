@@ -166,9 +166,9 @@ while go:
             if missile:
                 missile.collide(asteroid)
                 asteroid.collideMissile(missile)
-     #       if shield:
-     #           player1.collideShield(PowerShield)
-     #           shield.collideShip(player1)    
+            if shield:
+               player1.collideShield(shield)
+               shield.collideShip(player1)    
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
