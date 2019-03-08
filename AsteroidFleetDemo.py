@@ -21,7 +21,7 @@ pygame.mouse.set_visible(True)
 
 
 mode = "ready"
-
+startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 go = True
 
 
@@ -38,6 +38,8 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "play"
+                startup.play(1);
+                startup.fadeout(2100);
         screen.blit(startimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
@@ -56,20 +58,18 @@ while go:
     
     asteroids = []
     
-    
-   
-   
-   
-   
     missile = None
     
     finishLine = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
     shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
     
+    #SOUNDS
+    LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav") 
+    launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")
+    victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav") 
 
 
     while len(asteroids) < 4:
@@ -93,18 +93,6 @@ while go:
         # pygame.display.flip()
         # clock.tick(60)
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     while mode == "play" and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
@@ -113,6 +101,8 @@ while go:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if player1.missiles > 0:
                     missile = Missile(player1.rect.center, event.pos)
+                    launch.play(1);
+                    launch.fadeout(1200)
                     player1.missiles -= 1
             if event.type == pygame.MOUSEMOTION:
                 if missile:
@@ -150,8 +140,8 @@ while go:
                 if event.key == pygame.K_d:
                     player1.go("eastU")
     
-        if len(asteroids)<15:
-            if random.randint(0,10) == 0:
+        if len(asteroids)<19:
+            if random.randint(0,30) == 0:    #controls how close asteroids spawn together
                 asteroids += [Asteroid(width)]
                 for otherAsteroid in asteroids:
                     if asteroids[-1].collideAsteroid(otherAsteroid):
@@ -161,9 +151,11 @@ while go:
     
         player1.update(size)
         health.update(player1.lives)
-    
+		
     
         if player1.collideEndLine(finishLine):
+            victory.play(1);
+            victory.fadeout(1200)
             finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
             mode = "finish"
             while mode == "finish":
@@ -187,22 +179,25 @@ while go:
                 asteroid.collideMissile(missile)
             if shield:
                player1.collideShield(shield)
-               shield.collideShip(player1)    
+               shield.collideShip(player1)  
+            if repair:
+               player1.colliderepair(repair)
+               repair.collideShip(player1)  
             if not asteroid.living:
                 asteroids.remove(asteroid)
   
         if missile:
             missile.update()
             if not missile.living:
-                missile = None
-                
+                missile = None      
         if shield:
-            #shield.update()
             if not shield.living:
-                shield = None        
-                
+                shield = None             
         if repair:
-            #shield.update()
+            if player1.colliderepair(repair):
+                player1.lives = 4
+                LevelUpSound.play(1);
+                LevelUpSound.fadeout(1200)
             if not repair.living:
                 repair = None        
                 

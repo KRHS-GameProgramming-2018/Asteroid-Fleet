@@ -19,7 +19,7 @@ class Ship():
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
         self.aniTimerMax = 60/10
-            
+        boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -50,8 +50,7 @@ class Ship():
         self.teleportX = False
         self.didBounceY = False
         self.move()
-        self.bounceWall(size)
-        #self.activateShip()             
+        self.bounceWall(size)            
                     
     def bounceWall(self,size):
         width = size[0]
@@ -91,29 +90,19 @@ class Ship():
                                 return True
             return False
             
-            
     def collideAsteroid(self, other):
+        boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
         if self.rect.right > other.rect.left:
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius + other.radius > self.getDist(other.rect.center):      
                             self.lives -= 1
+                            boomsound.play(1);
+                            boomsound.fadeout(1000)
                             print self.lives
                         return True
         return False
-
-    
-    # def collideShield(self, other):
-        # if self.rect.right > other.rect.left:
-            # if self.rect.left < other.rect.right:
-                # if self.rect.top < other.rect.bottom:
-                    # if self.rect.bottom > other.rect.top:
-                        # if self.radius + other.radius > self.getDist(other.rect.center):      
-                            # self.image = self.boostImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.png"), [117,105])]
-                        # return True
-        # return False
-
 
     def collideEndLine(self, other):
         if self.rect.right > other.rect.left:
@@ -133,4 +122,12 @@ class Ship():
                             return True
         return False 
 
+    def colliderepair(self, other):
+        if self.rect.right > other.rect.left:
+            if self.rect.left < other.rect.right:
+                if self.rect.top < other.rect.bottom:
+                    if self.rect.bottom > other.rect.top:
+                        if self.radius + other.radius > self.getDist(other.rect.center):      
+                            return True
+        return False 
 

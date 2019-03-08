@@ -12,14 +12,15 @@ class Asteroid():
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
-        self.speedy = 1
+        self.speedy = 1 #random.randint(0,2)
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
         self.kind = Asteroid
-    
+        if self.speed == 0:
+            self.living = False
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -67,12 +68,12 @@ class Asteroid():
                                     
                                     if self.speedy > 1: #down
                                         if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
+                                           # self.speedy = -self.speedy
                                             self.didBounceY = True
                                             
                                     if self.speedy < 1: #up
                                         if self.rect.centery > other.rect.centery:
-                                            self.speedy  = -self.speedy
+                                           # self.speedy  = -self.speedy
                                             self.didBounceY = True
 
                                 return True

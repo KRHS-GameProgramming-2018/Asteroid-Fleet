@@ -20,9 +20,11 @@ class PlayerShip(Ship):
         self.maxSpeed = speed
         
         #Sounds 
-        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound")				#add sound.wav      #freesounds.com  jsounds2019  soundman
+        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound.wav")				#add sound.wav      #freesounds.com  jsounds2019  soundman
         self.moving = False;
         self.playingMoving = False
+       
+        
         
         #Health
         self.living = True
@@ -115,10 +117,10 @@ class PlayerShip(Ship):
             self.moving = False
         
         if self.moving and not self.playingMoving:
-            self.moveSound.play(1);
+          #  self.moveSound.play(1);
             self.playingMoving = True;
         elif not self.moving and self.playingMoving:
-            self.moveSound.fadeout(500);
+           # self.moveSound.fadeout(500);
             self.playingMoving = False;
         
         Ship.update(self, size)
