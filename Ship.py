@@ -12,7 +12,7 @@ class Ship():
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
-
+        
     #Animation  
         self.images = self.baseImage
         self.frame = 0;
@@ -119,6 +119,7 @@ class Ship():
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius + other.radius > self.getDist(other.rect.center):      
+                            ability = True 
                             return True
         return False 
 

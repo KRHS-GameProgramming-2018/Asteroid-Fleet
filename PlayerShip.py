@@ -9,16 +9,18 @@ class PlayerShip(Ship):
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.baseMove = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        self.boostImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.png"), [117,105])]
-        self.boostMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.move.png"), [117,128])]
+        
+        self.shieldImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.png"), [117,105])]
+        self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [117,128])]
      
+        self.stopImage = self.baseImage
+        self.moveImage = self.baseMove
        
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
         self.goal = [0,0]    
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
-        
         #Sounds 
         self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound.wav")				#add sound.wav      #freesounds.com  jsounds2019  soundman
         self.moving = False;
@@ -46,29 +48,29 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.baseMove
+            self.images = self.moveImage
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.baseMove
+            self.images = self.moveImage
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.baseMove
+            self.images = self.moveImage
         if d == "east":
             self.speedx = self.maxSpeed
-            self.images = self.baseMove
+            self.images = self.moveImage
             
         if d == "northU":
             self.speedy = 0
-            self.images = self.baseImage
+            self.images = self.stopImage
         if d == "southU":
             self.speedy = 0
-            self.images = self.baseImage
+            self.images = self.stopImage
         if d == "westU":
             self.speedx = 0
-            self.images = self.baseImage
+            self.images = self.stopImage
         if d == "eastU":
             self.speedx = 0
-            self.images = self.baseImage
+            self.images = self.stopImage
 
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
@@ -122,6 +124,13 @@ class PlayerShip(Ship):
         elif not self.moving and self.playingMoving:
            # self.moveSound.fadeout(500);
             self.playingMoving = False;
+            
+        if self.ability:
+            self.stopImage = self.shieldImage
+            self.moveImage = self.shieldMoveImage
+        else:
+            self.stopImage = self.baseImage
+            self.moveImage = self.baseMoveImage
         
         Ship.update(self, size)
         self.animate()

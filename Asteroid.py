@@ -12,7 +12,7 @@ class Asteroid():
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
-        self.speedy = 1 #random.randint(0,2)
+        self.speedy = 2 #random.randint(0,2)
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False

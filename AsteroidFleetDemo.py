@@ -235,9 +235,6 @@ while go:
         for asteroid in asteroids:
             screen.blit(asteroid.image, asteroid.rect)
         screen.blit(health.image, health.rect)
-        
-        #screen.blit(repair.image, repair.rect)
-        #screen.blit(lightspeed.image, lightspeed.rect)
         screen.blit(complete.image, complete.rect)
 
         pygame.display.flip()
