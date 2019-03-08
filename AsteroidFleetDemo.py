@@ -157,6 +157,7 @@ while go:
         
     
         if player1.collideEndLine(finishLine):
+            pygame.time.delay(500)
             victory.play(1);
             victory.fadeout(1200)
             finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
