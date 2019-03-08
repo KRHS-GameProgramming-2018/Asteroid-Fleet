@@ -23,14 +23,15 @@ pygame.mouse.set_visible(True)
 mode = "ready"
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 go = True
-
-
+opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
+closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")   				#CP_Power_Down01.aif  from stewdio2003 at Freesound.org
 while go:
     startimage = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/startscreen.png"), [width,height])
     deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
    #STARTSCREEN
  
     while mode == "ready":
+        opening.play(1);
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -38,6 +39,8 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "play"
+                opening.stop()
+                pygame.time.delay(500)
                 startup.play(1);
                 startup.fadeout(2100);
         screen.blit(startimage, (0,0))
@@ -67,9 +70,9 @@ while go:
     repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
     
     #SOUNDS
-    LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav") 
-    launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")
-    victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav") 
+    LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
+    launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
+    victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
 
 
     while len(asteroids) < 4:
@@ -151,7 +154,7 @@ while go:
     
         player1.update(size)
         health.update(player1.lives)
-		
+        
     
         if player1.collideEndLine(finishLine):
             victory.play(1);
@@ -212,6 +215,9 @@ while go:
 
             
         if player1.lives == 0:
+            pygame.time.delay(500)
+            closing.play(1);
+            closing.fadeout(3000);
             mode = "dead"
         complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
         bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
