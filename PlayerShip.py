@@ -2,6 +2,7 @@ import pygame, sys, math
 from Ship import *
 from Asteroid import *
 from Missile import *
+from PowerShield import *
 
 class PlayerShip(Ship):
     def __init__(self, speed = 1, startPos=[0,0]):
@@ -9,7 +10,6 @@ class PlayerShip(Ship):
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.baseMove = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        
         self.shieldImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.png"), [117,105])]
         self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [117,128])]
      
@@ -22,10 +22,10 @@ class PlayerShip(Ship):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
         #Sounds 
-        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound.wav")				#add sound.wav      #freesounds.com  jsounds2019  soundman
+        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound.wav")              #add sound.wav      #freesounds.com  jsounds2019  soundman
         self.moving = False;
         self.playingMoving = False
-       
+        self.ability = False
         
         
         #Health
@@ -35,9 +35,6 @@ class PlayerShip(Ship):
         
         self.missiles = 3
         
-        #Powerups and Abilities
-        self.shield = False
-    
     def alive(self, lives):
         if self.lives <= 0:
             self.living = False
@@ -49,28 +46,44 @@ class PlayerShip(Ship):
         if d == "north":
             self.speedy = -self.maxSpeed
             self.images = self.moveImage
+            if self.ability:
+				self.images = self.shieldMoveImage
         if d == "south":
             self.speedy = self.maxSpeed
             self.images = self.moveImage
+            if self.ability:
+				self.images = self.shieldMoveImage
         if d == "west":
             self.speedx = -self.maxSpeed
             self.images = self.moveImage
+            if self.ability:
+				self.images = self.shieldMoveImage
         if d == "east":
             self.speedx = self.maxSpeed
             self.images = self.moveImage
+            if self.ability:
+				self.images = self.shieldMoveImage
             
         if d == "northU":
             self.speedy = 0
             self.images = self.stopImage
+            if self.ability:
+				self.images = self.shieldImage
         if d == "southU":
             self.speedy = 0
             self.images = self.stopImage
+            if self.ability:
+				self.images = self.shieldImage
         if d == "westU":
             self.speedx = 0
             self.images = self.stopImage
+            if self.ability:
+				self.images = self.shieldImage
         if d == "eastU":
             self.speedx = 0
             self.images = self.stopImage
+            if self.ability:
+				self.images = self.shieldImage
 
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
@@ -107,11 +120,6 @@ class PlayerShip(Ship):
             else:
                 self.warp([0,0], [width/2,height-75])
 
-
-    def shieldedShip(self, size):
-        self.images = self.boostImage
-
-
     def update(self, size):
         if self.speed != [0,0]:
             self.moving = True
@@ -130,7 +138,7 @@ class PlayerShip(Ship):
             self.moveImage = self.shieldMoveImage
         else:
             self.stopImage = self.baseImage
-            self.moveImage = self.baseMoveImage
+            self.moveImage = self.baseMove
         
         Ship.update(self, size)
         self.animate()

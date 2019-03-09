@@ -25,3 +25,4 @@ class PowerShield():
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
+                                
