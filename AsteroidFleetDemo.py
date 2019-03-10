@@ -22,8 +22,8 @@ mode = "ready"
 #MUSIC
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
-closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")   				#CP_Power_Down01.aif  from stewdio2003 at Freesound.org
-
+closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")   				#CP_Power_Down01.aif from stewdio2003 at Freesound.org
+hit = pygame.mixer.Sound("Ship/sounds/impact.wav")																			#8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
 while go:
     player1 = PlayerShip(1)
@@ -140,8 +140,8 @@ while go:
 					if asteroid.collideAsteroid(otherAsteroid):
 						asteroids.remove(asteroid)
 
-        if len(asteroids)<19:
-            if random.randint(0,30) == 0:    #controls how close asteroids spawn together
+        if len(asteroids)< 22:
+            if random.randint(0,15) == 0:    #controls how close asteroids spawn together
                 asteroids += [Asteroid(width)]
                 for otherAsteroid in asteroids:
                     if asteroids[-1].collideAsteroid(otherAsteroid):
@@ -191,7 +191,7 @@ while go:
                 hitter.collideAsteroid(hittie)
             hitter.collideShip(player1)
             player1.collideAsteroid(hitter)
-
+        
         if player1.lives == 0:
             pygame.time.delay(500)
             closing.play(1);

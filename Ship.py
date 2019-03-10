@@ -120,6 +120,7 @@ class Ship():
                     if self.rect.bottom > other.rect.top:
                         if self.radius + other.radius > self.getDist(other.rect.center):      
                             self.ability = True 
+                            status = "protected"
                             return True
         return False 
 
