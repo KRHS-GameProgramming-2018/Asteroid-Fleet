@@ -8,6 +8,7 @@ from EndLine import *
 from RepairKit import *
 from PowerShield import *
 from Boost import * 
+from MissileBar import *
 pygame.init()
 
 
@@ -28,6 +29,7 @@ hit = pygame.mixer.Sound("Ship/sounds/impact.wav")																			#8-bit Soft
 while go:
     player1 = PlayerShip(1)
     health = HealthBar(player1.lives, [100, height - 25])
+    rocket = MissileBar(player1.missiles, [1000, height - 30])
     shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
     finishLine = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
@@ -149,6 +151,7 @@ while go:
     
         player1.update(size)
         health.update(player1.lives)
+        rocket.update(player1.missiles)
         
         if player1.collideEndLine(finishLine):
             pygame.time.delay(500)
@@ -212,6 +215,7 @@ while go:
             screen.blit(repair.image, repair.rect)
         screen.blit(player1.image, player1.rect)
         screen.blit(health.image, health.rect)
+        screen.blit(rocket.image, rocket.rect)
         screen.blit(complete.image, complete.rect)
 
         pygame.display.flip()
