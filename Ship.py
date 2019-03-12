@@ -97,9 +97,12 @@ class Ship():
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius + other.radius > self.getDist(other.rect.center):      
-                            self.lives -= 1
-                            boomsound.play(1);
-                            boomsound.fadeout(1000)
+                            if self.ability:
+                                self.ability = False
+                            else:
+                                self.lives -= 1
+                                boomsound.play(1);
+                                boomsound.fadeout(1000)
                             print self.lives
                         return True
         return False
@@ -119,8 +122,7 @@ class Ship():
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius + other.radius > self.getDist(other.rect.center):      
-                            self.ability = True 
-                            status = "protected"
+                            self.ability = True
                             return True
         return False 
 
