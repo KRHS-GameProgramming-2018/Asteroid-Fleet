@@ -79,7 +79,7 @@ while go:
                     if event.type == pygame.QUIT:
                         sys.exit()
                     if event.type == pygame.KEYDOWN:
-                        pygame.time.delay(2000)
+                        pygame.time.delay(1000)
                         mode = "ready"
                 
                 pygame.display.flip()
