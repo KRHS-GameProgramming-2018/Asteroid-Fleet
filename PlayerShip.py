@@ -10,8 +10,8 @@ class PlayerShip(Ship):
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
         self.baseMove = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
-        self.shieldImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.png"), [117,105])]
-        self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [117,128])]
+        self.shieldImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.png"), [130,130])]
+        self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [130,130])]
      
         self.stopImage = self.baseImage
         self.moveImage = self.baseMove
