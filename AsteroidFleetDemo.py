@@ -142,7 +142,7 @@ while go:
 					if asteroid.collideAsteroid(otherAsteroid):
 						asteroids.remove(asteroid)
 
-        if len(asteroids)< 22:
+        if len(asteroids)< 2:
             if random.randint(0,15) == 0:    #controls how close asteroids spawn together
                 asteroids += [Asteroid(width)]
                 for otherAsteroid in asteroids:
