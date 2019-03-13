@@ -27,7 +27,7 @@ closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")   				#CP_Power_Down01
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")																			#8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
 while go:
-    player1 = PlayerShip(1)
+    player1 = PlayerShip(2)
     health = HealthBar(player1.lives, [100, height - 25])
     rocket = MissileBar(player1.missiles, [1000, height - 30])
     shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
@@ -142,8 +142,8 @@ while go:
 					if asteroid.collideAsteroid(otherAsteroid):
 						asteroids.remove(asteroid)
 
-        if len(asteroids)< 2:
-            if random.randint(0,15) == 0:    #controls how close asteroids spawn together
+        if len(asteroids)< 22:
+            if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 asteroids += [Asteroid(width)]
                 for otherAsteroid in asteroids:
                     if asteroids[-1].collideAsteroid(otherAsteroid):

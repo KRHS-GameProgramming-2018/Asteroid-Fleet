@@ -8,7 +8,7 @@ class Missile():
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
         self.angle = 0
-        self.maxSpeed = 5
+        self.maxSpeed = 6
         self.headTo(goal)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
