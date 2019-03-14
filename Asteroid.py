@@ -28,11 +28,12 @@ class Asteroid():
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
-    def update(self, size):
+    def update(self, speed):
         self.didBounceX = False
         self.didBounceY = False
         self.move()
-        self.bounceWall(size)
+        self.bounceWall(speed)
+    
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
