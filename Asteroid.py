@@ -12,7 +12,7 @@ class Asteroid():
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
-        self.speedy = 2 #random.randint(0,2)
+        self.speedy = 3 #random.randint(0,2)
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
@@ -21,6 +21,12 @@ class Asteroid():
         self.kind = Asteroid
         if self.speed == 0:
             self.living = False
+            
+    def hyperspeed(self):
+        self.speedx = 0
+        self.speedy = 3
+        self.speed = [self.speedx, self.speedy]
+    
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -28,13 +34,21 @@ class Asteroid():
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
-    def update(self, speed):
+    def update(self, size):
+       # self.hyperspeed()
         self.didBounceX = False
         self.didBounceY = False
         self.move()
-        self.bounceWall(speed)
+        self.bounceWall(size)
     
-    
+    def charge(self, size):
+       # self.hyperspeed()
+        self.speedy = 15
+        self.didBounceX = False
+        self.didBounceY = False
+        self.move()
+        self.bounceWall(size)
+ 
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)

@@ -36,13 +36,14 @@ while go:
     asteroids = []
     missile = None
     startimage = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/startscreen.png"), [width,height])
+    hyperspeed = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/hyperspeed.png"), [width,height])
     deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
    
     #SOUNDS
     LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
-	
+    boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
   
  
     while mode == "ready":
@@ -172,6 +173,8 @@ while go:
                player1.colliderepair(repair)
                repair.collideShip(player1)  
             if not asteroid.living:
+               # boomsound.play(1);
+               # boomsound.fadeout(1000)
                 asteroids.remove(asteroid)
   
         if missile:
@@ -194,7 +197,7 @@ while go:
                 hitter.collideAsteroid(hittie)
             hitter.collideShip(player1)
             player1.collideAsteroid(hitter)
-        
+   
         if player1.lives == 0:
             pygame.time.delay(500)
             closing.play(1);
@@ -234,12 +237,12 @@ while go:
         
         
  #------------------------SECRET MODE----------------------------------------------------------------------------       
-    player1 = PlayerShip(10)     
-    #Asteroid.update()
+    player1 = PlayerShip(25)   
+    asteroids = []
     
     while mode == "ready2":
       #  pygame.init()
-        opening.play(1);
+       # opening.play(1);
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -247,11 +250,11 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "secret"
-                opening.stop()
+                #opening.stop()
                 pygame.time.delay(500)
                 startup.play(1);
                 startup.fadeout(2100);
-        screen.blit(startimage, (0,0))
+        screen.blit(hyperspeed, (0,0))
         pygame.display.flip()
         clock.tick(60)    
         
@@ -295,7 +298,7 @@ while go:
                     player1.go("eastU")
         
         
-        while len(asteroids) < 4:
+        while len(asteroids) < 2:
            # print len(asteroids)
             asteroids += [Asteroid(width)]
             for asteroid in asteroids:
@@ -303,7 +306,7 @@ while go:
                     if asteroid.collideAsteroid(otherAsteroid):
                         asteroids.remove(asteroid)
 
-        if len(asteroids)< 15:
+        if len(asteroids)< 1:
             if random.randint(0,20) == 0:    #controls how close asteroids spawn together
                 asteroids += [Asteroid(width)]
                 for otherAsteroid in asteroids:
@@ -323,6 +326,7 @@ while go:
       
         for asteroid in asteroids:
             asteroid.update(size)
+            asteroid.charge(size)
             if missile:
                 missile.collide(asteroid)
                 asteroid.collideMissile(missile)
