@@ -36,7 +36,7 @@ while go:
     asteroids = []
     missile = None
     startimage = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/startscreen.png"), [width,height])
-    hyperspeed = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/hyperspeed.png"), [width,height])
+    hyperspeed = pygame.transform.scale(pygame.image.load("Asteroid/images/hyperspeed.png"), [width,height])
     deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
    
     #SOUNDS
