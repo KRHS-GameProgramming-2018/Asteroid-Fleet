@@ -1,8 +1,8 @@
 import pygame, sys, math
 
-class Ship():
+class Ship(pygame.sprite.Sprite):
     def __init__(self, image, speed = [1,1], startPos=[0,0]):
-        
+        pygame.sprite.Sprite.__init__(self, self.containers)
     #Essential  
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()

@@ -3,8 +3,9 @@ from Ship import *
 width = 1100
 height = 900
 
-class HealthBar():
+class HealthBar(pygame.sprite.Sprite):
     def __init__(self, health, startPos = [0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.images = [pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/health.0%.png"),[200,50]),
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/health.25%.png"),[200,50]),
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/health.50%.png"),[200,50]),

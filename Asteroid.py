@@ -10,8 +10,9 @@ from PowerShield import *
 from Boost import * 
 from MissileBar import *
 
-class Asteroid():
+class Asteroid(pygame.sprite.Sprite):
     def __init__(self, width):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         files = ["Asteroid/images/Asteroid1.png",
                  "Asteroid/images/Asteroid2.png",
                  "Asteroid/images/Asteroid3.png",
