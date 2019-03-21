@@ -4,8 +4,9 @@ from Missile import *
 width = 1100
 height = 900
 
-class MissileBar():
+class MissileBar(pygame.sprite.Sprite):
     def __init__(self, missiles, startPos = [0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.images = [pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/RocketBar.none.png"),[200,50]),
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/RocketBar.1.png"),[200,50]),
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/RocketBar.2.png"),[200,50]),

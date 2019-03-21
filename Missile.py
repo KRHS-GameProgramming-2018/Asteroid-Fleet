@@ -1,8 +1,8 @@
 import sys, math, pygame
 
-class Missile():
+class Missile(pygame.sprite.Sprite):
     def __init__(self, startPos, goal):
-        
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
