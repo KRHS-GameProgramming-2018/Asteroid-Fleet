@@ -321,9 +321,9 @@ while go:
                     if asteroids[-1].collideAsteroid(otherAsteroid):
                         asteroids[-1].living = False
     
-        player1.update(size)
-        health.update(player1.lives)
-        rocket.update(player1.missiles)
+        # player1.update(size)
+        # health.update(player1.lives)
+        # rocket.update(player1.missiles)
         
         # if player1.collideEndLine(finishLine):
             # pygame.time.delay(500)
