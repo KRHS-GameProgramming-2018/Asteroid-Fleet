@@ -181,29 +181,30 @@ while go:
             finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
             mode = "ready2"
       
-        for asteroid in asteroids:
-            asteroid.update(size)
-            if missile:
-                missile.collide(asteroid)
-                asteroid.collideMissile(missile)
-            if shield:
-               player1.collideShield(shield)
-               shield.collideShip(player1)  
-            if repair:
-               player1.colliderepair(repair)
-               repair.collideShip(player1)  
-            if not asteroid.living:
-               # boomsound.play(1);
-               # boomsound.fadeout(1000)
-                asteroids.remove(asteroid)
+        # for asteroid in asteroids:
+            # asteroid.update(size)
+            # if missile:
+                # missile.collide(asteroid)
+                # asteroid.collideMissile(missile)
+            # if shield:
+               # player1.collideShield(shield)
+               # shield.collideShip(player1)  
+            # if repair:
+               # player1.colliderepair(repair)
+               # repair.collideShip(player1)  
+            # if not asteroid.living:
+               # # boomsound.play(1);
+               # # boomsound.fadeout(1000)
+                # asteroids.remove(asteroid)
   
-        if missile:
-            missile.update()
-            if not missile.living:
-                missile = None      
-        if shield:
-            if not shield.living:
-                shield = None             
+        # if missile:
+            # missile.update()
+            # if not missile.living:
+                # missile = None      
+      
+        # if shield:
+            # if not shield.living:
+                # shield = None             
         if repair:
             if player1.colliderepair(repair):
                 player1.lives = 4
@@ -212,11 +213,46 @@ while go:
             if not repair.living:
                 repair = None        
      
-        for hitter in asteroids:
-            for hittie in asteroids:
-                hitter.collideAsteroid(hittie)
-            hitter.collideShip(player1)
-            player1.collideAsteroid(hitter)
+        # for hitter in asteroids:
+            # for hittie in asteroids:
+                # hitter.collideAsteroid(hittie)
+            # hitter.collideShip(player1)
+            # player1.collideAsteroid(hitter)
+   
+   
+   #-----------------------------------------------------------------------
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
+        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        
+        asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        asteroidsHitMissiles = pygame.sprite.groupcollide(asteroids, missiles, True, True)
+        
+        for Asteroid in playerHitAsteroids:
+            player1.collide(Asteroid)    
+        
+        for Asteroid in asteroidsHitMissiles :
+            for Missile in asteroidsHitMissiles[Asteroid]:
+                Asteroid.collide(Missile)
+   
+   #--------------------------------------------------------------------------
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
         if player1.lives == 0:
             pygame.time.delay(500)

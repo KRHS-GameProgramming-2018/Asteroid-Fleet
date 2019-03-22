@@ -14,7 +14,7 @@ class MissileBar(pygame.sprite.Sprite):
         
         self.image = self.images[missiles]
         self.rect = self.image.get_rect(center=startPos)
-        self.image = self.images[missiles]
+     
     def update(self, size):
         pass
-         
+        #self.image = self.images[missiles]

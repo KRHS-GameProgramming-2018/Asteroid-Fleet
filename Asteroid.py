@@ -91,7 +91,7 @@ class Asteroid(pygame.sprite.Sprite):
                     if self.rect.centery > other.rect.centery:
                         self.speedy  = -self.speedy
                         self.didBounceY = True
-                                return True
+                        return True
         return False
            
 

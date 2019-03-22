@@ -61,35 +61,30 @@ class Ship(pygame.sprite.Sprite):
                 self.didBounceY = True
 
     def collide(self, other):
+        if not (self, other):
+            if not self.teleportX:
+                if self.speedx > 1: #right
+                    if self.rect.centerx < other.rect.centerx:
+                        self.speedx = -self.speedx
+                        self.teleportX = True
+                if self.speedx < 1: #left
+                    if self.rect.centerx > other.rect.centerx:
+                        self.speedx = -self.speedx
+                        self.teleportX = True
+                        
+            if not self.didBounceY:
+                if self.speedy > 1: #down
+                    if self.rect.centery < other.rect.centery:
+                        self.speedy = -self.speedy
+                        self.didBounceY = True
+                if self.speedy < 1: #up
+                    if self.rect.centery > other.rect.centery:
+                        self.speedy  = -self.speedy
+                        self.didBounceY = True
 
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.teleportX:
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.teleportX = True
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.teleportX = True
-                                            
-                                if not self.didBounceY:
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
-                                            self.didBounceY = True
-                                    if self.speedy < 1: #up
-                                        if self.rect.centery > other.rect.centery:
-                                            self.speedy  = -self.speedy
-                                            self.didBounceY = True
-
-                                return True
-            return False
-            
+            return True
+        return False
+                
     def collideAsteroid(self, other):
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
         if self.rect.right > other.rect.left:
