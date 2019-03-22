@@ -23,8 +23,8 @@ mode = "ready"
 #MUSIC
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
-closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")   				#CP_Power_Down01.aif from stewdio2003 at Freesound.org
-hit = pygame.mixer.Sound("Ship/sounds/impact.wav")																			#8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
+closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
+hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                                                                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
 while go:
     asteroids = pygame.sprite.Group()
@@ -91,7 +91,7 @@ while go:
         screen.blit(deathimage, (0,0))
         pygame.display.flip()
         clock.tick(60)
-   
+
     while mode == "finish":
                 screen.blit(finishimage, (0,0))
                 for event in pygame.event.get():
