@@ -7,6 +7,7 @@ from HealthBar import *
 from EndLine import *
 from RepairKit import *
 from PowerShield import *
+from Background import *
 #from Boost import * 
 from MissileBar import *
 pygame.init()
@@ -20,7 +21,7 @@ pygame.mouse.set_visible(True)
 go = True
 mode = "ready"
 
-#MUSIC
+#-----------------MUSIC---------------------  NEEDS TO BE MOVED TO OBJECT FILES?
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
@@ -32,6 +33,7 @@ while go:
     missiles = pygame.sprite.Group()
     screens = pygame.sprite.Group()
     HUD = pygame.sprite.Group()
+    backgrounds = pygame.sprite.Group()
     all = pygame.sprite.RenderUpdates()
    
     EndLine.containers = (screens, all)
@@ -43,6 +45,8 @@ while go:
     Asteroid.containers = (asteroids, all)
     Ship.containers = (all)
     PlayerShip.containers = (all)
+    Background.containers = (backgrounds, all)
+
 
     player1 = PlayerShip(2)
     health = HealthBar(player1.lives, [100, height - 25])
@@ -61,6 +65,10 @@ while go:
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
+  
+    #------------setup---------------------------
+    bg = Background("Screen Display/Background/images/space.png")
+  
   
  
     while mode == "ready":
@@ -236,52 +244,23 @@ while go:
    
    #--------------------------------------------------------------------------
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
         if player1.lives == 0:
             pygame.time.delay(500)
             closing.play(1);
             closing.fadeout(3000);
             mode = "dead"
         complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-        bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
+        
         
         #--------------------------------BLIT OBJECTS ---------------------------------
-        screen.blit(bg, (0,0))
+      #  screen.blit(bg, (0,0))
         #screen.fill(bgColor)
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
  #------------------------SECRET MODE----------------------------------------------------------------------------       
     player1 = PlayerShip(25)   
     while mode == "ready2":
