@@ -122,11 +122,10 @@ class Ship(pygame.sprite.Sprite):
         return False 
 
     def colliderepair(self, other):
-        if self.rect.right > other.rect.left:
-            if self.rect.left < other.rect.right:
-                if self.rect.top < other.rect.bottom:
-                    if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):      
-                            return True
+        if not (self, other):
+            player1.lives = 4
+            LevelUpSound.play(1);
+            LevelUpSound.fadeout(1200)
+            return True
         return False 
 

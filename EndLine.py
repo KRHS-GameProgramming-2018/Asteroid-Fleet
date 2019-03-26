@@ -10,6 +10,7 @@ class EndLine(pygame.sprite.Sprite):
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         
         
+        
     def collidePlayer(self, other):
         if not(self == other):
             if self.rect.right > other.rect.left:

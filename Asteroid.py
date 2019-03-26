@@ -91,7 +91,7 @@ class Asteroid(pygame.sprite.Sprite):
                     if self.rect.centery > other.rect.centery:
                         self.speedy  = -self.speedy
                         self.didBounceY = True
-                                return True
+                        return True
         return False
            
 
@@ -105,8 +105,6 @@ class Asteroid(pygame.sprite.Sprite):
                               #  self.image = "Asteroid/images/bang.png"
                                 self.living = False
        
-           
-    
     def collideMissile(self, other):
         if not(self == other):
             if self.rect.right > other.rect.left:

@@ -21,11 +21,11 @@ pygame.mouse.set_visible(True)
 go = True
 mode = "ready"
 
-#-----------------MUSIC---------------------  NEEDS TO BE MOVED TO OBJECT FILES?
+#-----------------MUSIC---------------------  
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
-hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                                                                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
+hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
 while go:
     asteroids = pygame.sprite.Group()
@@ -60,17 +60,17 @@ while go:
     hyperspeed = pygame.transform.scale(pygame.image.load("Asteroid/images/hyperspeed.png"), [width,height])
     deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
    
-    #SOUNDS
+    #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
     LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
   
     #------------setup---------------------------
-    bg = Background("Screen Display/Background/images/space.png")
+    bg = Background("Screen Display/StartScreen/images/startscreen.png")
   
   
- 
+ #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
         for event in pygame.event.get():
@@ -78,42 +78,22 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                pygame.time.delay(1000)
+                #pygame.time.delay(1000)
                 mode = "play"
                 opening.stop()
                 pygame.time.delay(500)
-                startup.play(1);
-                startup.fadeout(2100);
-        screen.blit(startimage, (0,0))
+                startup.play(1)
+                startup.fadeout(2100)
+        screen.blit(startimage,(0,0))
         pygame.display.flip()
         clock.tick(60)
         
-    while mode == "dead":
-        for event in pygame.event.get():
-            #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                pygame.time.delay(1000)
-                mode = "ready"
-        screen.blit(deathimage, (0,0))
-        pygame.display.flip()
-        clock.tick(60)
-
-    while mode == "finish":
-                screen.blit(finishimage, (0,0))
-                for event in pygame.event.get():
-                    #print event.type
-                    if event.type == pygame.QUIT:
-                        sys.exit()
-                    if event.type == pygame.KEYDOWN:
-                        pygame.time.delay(1000)
-                        mode = "ready"
-                
-                pygame.display.flip()
-                clock.tick(60)
+  #-----GAME SETUP-------------
+    bg.kill()
+    bg = Background("Screen Display/Background/images/space.png")
    
-   #----------GAME START------------------
+   
+   
     while mode == "play" and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
@@ -164,24 +144,15 @@ while go:
         all.update(size)
         
         while len(asteroids) < 4:
-           # print len(asteroids)
-            asteroids += [Asteroid(width)]
-            for asteroid in asteroids:
-                for otherAsteroid in asteroids:
-                    if asteroid.collideAsteroid(otherAsteroid):
-                        asteroids.remove(asteroid)
+            Asteroid(width)
+            asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
 
         if len(asteroids)< 20:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
-                asteroids += [Asteroid(width)]
-                for otherAsteroid in asteroids:
-                    if asteroids[-1].collideAsteroid(otherAsteroid):
-                        asteroids[-1].living = False
-    
-        # player1.update(size)
-        # health.update(player1.lives)
-        # rocket.update(player1.missiles)
-        
+                Asteroid(width)
+                asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
+
+       
         if player1.collideEndLine(finishLine):
             pygame.time.delay(500)
             victory.play(1);
@@ -211,15 +182,15 @@ while go:
                 # missile = None      
       
         # if shield:
-            # if not shield.living:
-                # shield = None             
-        if repair:
-            if player1.colliderepair(repair):
-                player1.lives = 4
-                LevelUpSound.play(1);
-                LevelUpSound.fadeout(1200)
-            if not repair.living:
-                repair = None        
+        if not shield.living:
+            shield = None             
+        # if repair:
+            # if player1.colliderepair(repair):
+                # player1.lives = 4
+                # LevelUpSound.play(1);
+                # LevelUpSound.fadeout(1200)
+        if not repair.living:
+            repair = None        
      
         # for hitter in asteroids:
             # for hittie in asteroids:
@@ -260,6 +231,34 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+
+    while mode == "dead":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                pygame.time.delay(1000)
+                mode = "ready"
+        screen.blit(deathimage, (0,0))
+        pygame.display.flip()
+        clock.tick(60)
+
+    while mode == "finish":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                pygame.time.delay(1000)
+                mode = "ready"
+        screen.blit(finishimage, (0,0))
+        pygame.display.flip()
+        clock.tick(60)
+   
+
+
+
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
     player1 = PlayerShip(25)   
@@ -389,7 +388,7 @@ while go:
             closing.fadeout(3000);
             mode = "dead"
         complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-        bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
+       # bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
         
         #--------------------------------BLIT OBJECTS ---------------------------------
         screen.blit(bg, (0,0))
