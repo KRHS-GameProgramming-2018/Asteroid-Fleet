@@ -20,6 +20,7 @@ class Ship(pygame.sprite.Sprite):
         self.aniTimer = 0
         self.aniTimerMax = 60/10
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
+        LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -123,6 +124,7 @@ class Ship(pygame.sprite.Sprite):
 
     def colliderepair(self, other):
         if not (self, other):
+            print "hit dude"
             player1.lives = 4
             LevelUpSound.play(1);
             LevelUpSound.fadeout(1200)

@@ -12,7 +12,7 @@ from Background import *
 from MissileBar import *
 pygame.init()
 
-width = 1000
+width = 1100
 height = 900
 size = width, height
 clock = pygame.time.Clock()
@@ -28,38 +28,27 @@ opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hai
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
+
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
 screens = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
-all = pygame.sprite.RenderUpdates()
-   
+all = pygame.sprite.OrderedUpdates()
+
+Background.containers = (backgrounds, all)
+PlayerShip.containers = (all)
+Ship.containers = (all)
+Asteroid.containers = (asteroids, all)
+Missile.containers = (missiles, all)
+PowerShield.containers = (abilities, all)
+RepairKit.containers = (abilities, all)
 EndLine.containers = (screens, all)
 MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
-RepairKit.containers = (abilities, all)
-PowerShield.containers = (abilities, all)
-Missile.containers = (missiles, all)
-Asteroid.containers = (asteroids, all)
-Ship.containers = (all)
-PlayerShip.containers = (all)
-Background.containers = (backgrounds, all)
 
 while go:
-    player1 = PlayerShip(2)
-    # health = HealthBar(player1.lives, [100, height - 25])
-    # rocket = MissileBar(player1.missiles, [1000, height - 30])
-    # shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
-    # repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    # finishLine = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-   
-    missile = None
-    startimage = pygame.transform.scale(pygame.image.load("Screen Display/StartScreen/images/startscreen.png"), [width,height])
-    hyperspeed = pygame.transform.scale(pygame.image.load("Asteroid/images/hyperspeed.png"), [width,height])
-    deathimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/lost.png"), [width,height])
-   
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
     LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
@@ -68,8 +57,8 @@ while go:
   
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen.png")
-  
-  
+   
+    
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
@@ -80,7 +69,7 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "play"
-                print mode
+               # print mode
                 opening.stop()
                 pygame.time.delay(500)
                 startup.play(1)
@@ -93,6 +82,15 @@ while go:
   #-----GAME SETUP-------------
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
+    player1 = PlayerShip(2)
+    missile = None
+    shield = PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
+    repair = RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
+    finishLine = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
+    rocket = MissileBar(player1.missiles, [1000, height - 30])
+    health = HealthBar(player1.lives, [100, height - 25])
+   
+   
    
     while mode == "play" and player1.lives > 0:
         
@@ -144,19 +142,19 @@ while go:
         
         all.update(size)
         
-        while len(asteroids.sprites()) < 4:
-            print len(asteroids.sprites())
-            Asteroid(width)
-            asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
-            for asteroid in asteroidsHitAsteroids :
-                for otherAstroid in asteroidsHitAsteroids[asteroid]:
-                    if asteroid.collideAsteroid(otherAstroid):
-                        otherAsteroid.kill()
+        # while len(asteroids.sprites()) < 4:
+          # #  print len(asteroids.sprites())
+            # asteroid(width)
+            # asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+            # for asteroid in asteroidsHitAsteroids :
+                # for otherasteroid in asteroidsHitAsteroids[asteroid]:
+                    # if asteroid.collideAsteroid(otherasteroid):
+                        # otherasteroid.kill()
 
-        if len(asteroids.sprites())< 20:
-            if random.randint(0,10) == 0:    #controls how close asteroids spawn together
-                Asteroid(width)
-                asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
+        # if len(asteroids.sprites())< 20:
+            # if random.randint(0,10) == 0:    #controls how close asteroids spawn together
+                # asteroid(width)
+                # asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
 
        
         # if player1.collideEndLine(finishLine):
@@ -184,11 +182,11 @@ while go:
   
       
                     
-        # if repair:
-            # if player1.colliderepair(repair):
-                # player1.lives = 4
-                # LevelUpSound.play(1);
-                # LevelUpSound.fadeout(1200)
+        if repair:
+            if player1.colliderepair(repair):
+                player1.lives = 4
+                LevelUpSound.play(1);
+                LevelUpSound.fadeout(1200)
         
      
         # for hitter in asteroids:
@@ -201,6 +199,8 @@ while go:
    #-----------------------------------------------------------------------
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        playerHitScreens = pygame.sprite.spritecollide(player1, screens, True)
+        
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         asteroidsHitMissiles = pygame.sprite.groupcollide(asteroids, missiles, True, True)
@@ -208,9 +208,22 @@ while go:
         for Asteroid in playerHitAsteroids:
             player1.collide(Asteroid)    
         
+        for screens in playerHitScreens:
+             player1.collideEndLine
+             print "woo"
+        
+        
+        for Abilities in playerHitAbilities:
+            #player1.colliderepair(RepairKit)
+            if pygame.mixer:
+                player1.LevelUpSound.play()
+        
+        
+        
+        
         for Asteroid in asteroidsHitMissiles :
             for Missile in asteroidsHitMissiles[Asteroid]:
-                Asteroid.collide(Missile)
+                asteroid.collide(Missile)
    
    #--------------------------------------------------------------------------
    
@@ -228,7 +241,10 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-
+    
+    
+    bg.kill()
+    bg = Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
         for event in pygame.event.get():
             #print event.type
@@ -237,10 +253,14 @@ while go:
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "ready"
-        screen.blit(deathimage, (0,0))
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
 
+
+    bg.kill()
+    bg = Background("Asteroid/images/hyperspeed.png")
     while mode == "finish":
         for event in pygame.event.get():
             #print event.type
@@ -253,9 +273,6 @@ while go:
         pygame.display.flip()
         clock.tick(60)
    
-
-
-
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
     player1 = PlayerShip(25)   
@@ -343,20 +360,20 @@ while go:
             # finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
             # mode = "finish"
       
-        for asteroid in asteroids:
-            asteroid.update(size)
-            asteroid.charge(size)
-            if missile:
-                missile.collide(asteroid)
-                asteroid.collideMissile(missile)
-            if shield:
-               player1.collideShield(shield)
-               shield.collideShip(player1)  
-            if repair:
-               player1.colliderepair(repair)
-               repair.collideShip(player1)  
-            if not asteroid.living:
-                asteroids.remove(asteroid)
+        # for asteroid in asteroids:
+            # asteroid.update(size)
+            # asteroid.charge(size)
+            # if missile:
+                # missile.collide(asteroid)
+                # asteroid.collideMissile(missile)
+            # if shield:
+               # player1.collideShield(shield)
+               # shield.collideShip(player1)  
+            # if repair:
+               # player1.colliderepair(repair)
+               # repair.collideShip(player1)  
+            # if not asteroid.living:
+                # asteroids.remove(asteroid)
   
         if missile:
             missile.update()

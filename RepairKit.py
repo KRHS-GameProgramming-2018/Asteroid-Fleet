@@ -11,7 +11,7 @@ class RepairKit(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=[random.randint(50,width-50),(300)])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
-        LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
+       
     
     def getDist(self, pt):
         x1 = self.rect.centerx

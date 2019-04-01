@@ -22,9 +22,7 @@ class PlayerShip(Ship):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
         #Sounds 
-        self.moveSound = pygame.mixer.Sound("Ship/sounds/shipenginesound.wav")              #add sound.wav      #freesounds.com  jsounds2019  soundman
-        self.moving = False;
-        self.playingMoving = False
+        self.LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
         self.ability = False
         
         
@@ -126,12 +124,12 @@ class PlayerShip(Ship):
         else:
             self.moving = False
         
-        if self.moving and not self.playingMoving:
-          #  self.moveSound.play(1);
-            self.playingMoving = True;
-        elif not self.moving and self.playingMoving:
-           # self.moveSound.fadeout(500);
-            self.playingMoving = False;
+        # if self.moving and not self.playingMoving:
+          # #  self.moveSound.play(1);
+            # self.playingMoving = True;
+        # elif not self.moving and self.playingMoving:
+           # # self.moveSound.fadeout(500);
+            # self.playingMoving = False;
             
         if self.ability:
             self.stopImage = self.shieldImage

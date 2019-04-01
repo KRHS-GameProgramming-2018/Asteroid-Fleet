@@ -42,7 +42,7 @@ class Missile(pygame.sprite.Sprite):
         self.image = rot_image
         
         
-    def update(self):
+    def update(self, size):
         self.move()
         
     def headTo(self, pos):
