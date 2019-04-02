@@ -19,7 +19,7 @@ class EndLine(pygame.sprite.Sprite):
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 print "yay"
-
-
-    def update(self, size):
-        pass
+   
+    def update(*args):
+        self = args[0]
+        size = args[1]

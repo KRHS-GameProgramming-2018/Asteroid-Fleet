@@ -9,7 +9,8 @@ class PowerShield(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
         self.rect = self.image.get_rect(center=[random.randint(50,width-50),(500)])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        self.living = True
+        self.living = True  
+        self.kind = "shield"
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -27,5 +28,6 @@ class PowerShield(pygame.sprite.Sprite):
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
                                 
-    def update(self, size):
-        pass
+    def update(*args):
+        self = args[0]
+        size = args[1]

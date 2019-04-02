@@ -44,8 +44,9 @@ class Asteroid(pygame.sprite.Sprite):
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
-    def update(self, size):
-       # self.hyperspeed()
+    def update(*args):
+        self = args[0]
+        size = args[1]
         self.didBounceX = False
         self.didBounceY = False
         self.move()
@@ -68,7 +69,7 @@ class Asteroid(pygame.sprite.Sprite):
         height = size[1]
         if self.rect.bottom > height:
             if not self.didBounceY:
-                self.living = False
+                self.kill()
             
     def collideAsteroid(self, other):
         if not(self == other):

@@ -118,7 +118,9 @@ class PlayerShip(Ship):
             else:
                 self.warp([0,0], [width/2,height-75])
 
-    def update(self, size):
+    def update(*args):
+        self = args[0]
+        size = args[1]
         if self.speed != [0,0]:
             self.moving = True
         else:

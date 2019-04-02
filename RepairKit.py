@@ -11,6 +11,7 @@ class RepairKit(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=[random.randint(50,width-50),(300)])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
+        self.kind = "repair"
        
     
     def getDist(self, pt):
@@ -29,5 +30,6 @@ class RepairKit(pygame.sprite.Sprite):
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
 
-    def update(self, size):
-        pass
+    def update(*args):
+        self = args[0]
+        size = args[1]

@@ -47,7 +47,9 @@ class Ship(pygame.sprite.Sprite):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
                     
-    def update(self, size):
+    def update(*args):
+        self = args[0]
+        size = args[1]
         self.teleportX = False
         self.didBounceY = False
         self.move()
@@ -88,20 +90,15 @@ class Ship(pygame.sprite.Sprite):
                 
     def collideAsteroid(self, other):
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
-        if self.rect.right > other.rect.left:
-            if self.rect.left < other.rect.right:
-                if self.rect.top < other.rect.bottom:
-                    if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):      
-                            if self.ability:
-                                self.ability = False
-                            else:
-                                self.lives -= 1
-                                boomsound.play(1);
-                                boomsound.fadeout(1000)
-                            print self.lives
-                        return True
-        return False
+        if self.ability:
+            self.ability = False
+        else:
+            self.lives -= 1
+            boomsound.play(1);
+            boomsound.fadeout(1000)
+        print self.lives
+        return True
+
 
     def collideEndLine(self, other):
         if self.rect.right > other.rect.left:
@@ -112,15 +109,9 @@ class Ship(pygame.sprite.Sprite):
                             return True
         return False
         
-    def collideShield(self, other):
-        if self.rect.right > other.rect.left:
-            if self.rect.left < other.rect.right:
-                if self.rect.top < other.rect.bottom:
-                    if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):      
-                            self.ability = True
-                            return True
-        return False 
+    def collideShield(self):
+        self.ability = True
+        return True
 
     def colliderepair(self, other):
         if not (self, other):

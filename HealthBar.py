@@ -16,8 +16,10 @@ class HealthBar(pygame.sprite.Sprite):
         self.image = self.images[health]
         self.rect = self.image.get_rect(center=startPos)
 
-    def update(self, health):
-        #self.image = self.images[health]
+    def update(*args):
+        self = args[0]
+        health = args[2]
+        self.image = self.images[health]
         pass
         
          

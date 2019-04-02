@@ -21,7 +21,7 @@ class Missile(pygame.sprite.Sprite):
        
         self.lives = 1
         self.living = True
-        self.kind = "Missile"
+        self.kind = "missile"
 
     
     def setPos(self, pos):
@@ -42,7 +42,8 @@ class Missile(pygame.sprite.Sprite):
         self.image = rot_image
         
         
-    def update(self, size):
+    def update(*args):
+        self = args[0]
         self.move()
         
     def headTo(self, pos):
