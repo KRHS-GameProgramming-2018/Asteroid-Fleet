@@ -100,14 +100,8 @@ class Missile(pygame.sprite.Sprite):
    
    
    
-    def collide(self, other):
+    def hitAsteroid(self):
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
-        if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                boomsound.play(1);
-                                boomsound.fadeout(1000)
-                                self.living = False
+        boomsound.play(1);
+        boomsound.fadeout(1000)
+        self.living = False

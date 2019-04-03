@@ -141,8 +141,16 @@ while go:
                     player1.go("eastU")
         
         all.update(size, player1.lives, player1.missiles)
+        
+   #-----------------------------------------------------------------------
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
+        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        playerHitScreens = pygame.sprite.spritecollide(player1, screens, True)
+        
+        
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         
+        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
         
         
         while len(asteroids.sprites()) < 4:
@@ -155,21 +163,10 @@ while go:
                         otherasteroid.kill()
 
         if len(asteroids.sprites())< 20:
-            if random.randint(0,10) == 0:    #controls how close asteroids spawn together
+            if random.randint(0,40) == 0:    #controls how close asteroids spawn together
                 Asteroid(width)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
 
-        
-   
-   #-----------------------------------------------------------------------
-        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
-        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
-        playerHitScreens = pygame.sprite.spritecollide(player1, screens, True)
-        
-        
-        asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
-        #asteroidsHitMissiles = pygame.sprite.groupcollide(asteroids, missiles, True, True)
-        
         for ability in playerHitAbilities:
             if ability.kind == "repair":
                 player1.lives = 4
@@ -180,18 +177,18 @@ while go:
                 LevelUpSound.play(1);
                 LevelUpSound.fadeout(1200)
                 
+       
         for asteroid in playerHitAsteroids:
-            print "?hit??"
             player1.collideAsteroid(asteroid)    
+        
+        
+        for missile in missilesHitAsteroids:
+            Missile.hitAsteroid()
+           # Asteroid.collideMissile(missile)
         
         for screens in playerHitScreens:
              player1.collideEndLine
              print "woo"
-        
-        
-        
-        
-        
    
    #--------------------------------------------------------------------------
    
