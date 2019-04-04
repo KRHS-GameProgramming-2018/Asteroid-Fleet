@@ -141,22 +141,22 @@ while go:
                     player1.go("eastU")
         
         all.update(size, player1.lives, player1.missiles)
-        asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        
         
         
         
         while len(asteroids.sprites()) < 4:
           #  print len(asteroids.sprites())
-            Asteroid(width)
-            #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False, pygame.sprite.collide_mask)
-            for asteroid in asteroidsHitAsteroids :
-                for otherasteroid in asteroidsHitAsteroids[asteroid]:
-                    if asteroid.collideAsteroid(otherasteroid):
-                        otherasteroid.kill()
+            print len(asteroids.sprites())
+            Asteroid(width, asteroids)
+            # for asteroid in asteroidsHitAsteroids :
+                # for otherasteroid in asteroidsHitAsteroids[asteroid]:
+                    # if asteroid.collideAsteroid(otherasteroid):
+                        # otherasteroid.kill()
 
         if len(asteroids.sprites())< 20:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
-                Asteroid(width)
+                Asteroid(width, asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
 
         
@@ -167,7 +167,7 @@ while go:
         playerHitScreens = pygame.sprite.spritecollide(player1, screens, True)
         
         
-        asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        # asteroidsHitAsteroids = pygame.sprite.spritecollide(asteroids, asteroids, True, False)
         #asteroidsHitMissiles = pygame.sprite.groupcollide(asteroids, missiles, True, True)
         
         for ability in playerHitAbilities:
@@ -302,20 +302,14 @@ while go:
                     player1.go("eastU")
         
         
-        while len(asteroids) < 2:
+        while len(asteroids.sprites()) < 2:
            # print len(asteroids)
-            asteroids += [Asteroid(width)]
-            for asteroid in asteroids:
-                for otherAsteroid in asteroids:
-                    if asteroid.collideAsteroid(otherAsteroid):
-                        asteroids.remove(asteroid)
+            Asteroid(width, asteroids)
+            
 
-        if len(asteroids)< 1:
+        if len(asteroids.sprites())< 1:
             if random.randint(0,20) == 0:    #controls how close asteroids spawn together
-                asteroids += [Asteroid(width)]
-                for otherAsteroid in asteroids:
-                    if asteroids[-1].collideAsteroid(otherAsteroid):
-                        asteroids[-1].living = False
+                Asteroid(width, asteroids)
     
         
   

@@ -11,7 +11,7 @@ from Boost import *
 from MissileBar import *
 
 class Asteroid(pygame.sprite.Sprite):
-    def __init__(self, width):
+    def __init__(self, width, asteroids):
         pygame.sprite.Sprite.__init__(self, self.containers)
         files = ["Asteroid/images/Asteroid1.png",
                  "Asteroid/images/Asteroid2.png",
@@ -29,6 +29,11 @@ class Asteroid(pygame.sprite.Sprite):
         self.didBounceY = False
         self.living = True
         self.kind = Asteroid
+        
+        selfHitAsteroids = pygame.sprite.spritecollide(self, asteroids, False)
+        if len(selfHitAsteroids) > 1:
+            self.kill()
+
         if self.speed == 0:
             self.living = False
             
