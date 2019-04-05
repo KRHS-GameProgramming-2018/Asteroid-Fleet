@@ -98,10 +98,3 @@ class Missile(pygame.sprite.Sprite):
                 # print "somethings wrong"
             # #return Missile(image, speed, self.rect.center)
    
-   
-   
-    def hitAsteroid(self):
-        boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
-        boomsound.play(1);
-        boomsound.fadeout(1000)
-        self.living = False

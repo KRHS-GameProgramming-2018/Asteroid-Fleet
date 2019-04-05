@@ -84,7 +84,6 @@ class Ship(pygame.sprite.Sprite):
                     if self.rect.centery > other.rect.centery:
                         self.speedy  = -self.speedy
                         self.didBounceY = True
-
             return True
         return False
                 
@@ -101,13 +100,8 @@ class Ship(pygame.sprite.Sprite):
 
 
     def collideEndLine(self, other):
-        if self.rect.right > other.rect.left:
-            if self.rect.left < other.rect.right:
-                if self.rect.top < other.rect.bottom:
-                    if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):      
-                            return True
-        return False
+        mode = "finish"
+        return True
         
     def collideShield(self):
         self.ability = True

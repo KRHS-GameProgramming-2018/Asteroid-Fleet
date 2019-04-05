@@ -32,7 +32,7 @@ hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-b
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
-screens = pygame.sprite.Group()
+limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
@@ -44,7 +44,7 @@ Asteroid.containers = (asteroids, all)
 Missile.containers = (missiles, all)
 PowerShield.containers = (abilities, all)
 RepairKit.containers = (abilities, all)
-EndLine.containers = (screens, all)
+EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 
@@ -145,7 +145,7 @@ while go:
    #-----------------------------------------------------------------------
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
-        playerHitScreens = pygame.sprite.spritecollide(player1, screens, True)
+        playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
         
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
@@ -186,8 +186,9 @@ while go:
             missile.hitAsteroid()
            # Asteroid.collideMissile(missile)
         
-        for screens in playerHitScreens:
-             player1.collideEndLine
+        for limit in playerHitLimits:
+             player1.collideEndLine(limit)
+             
              print "woo"
    
    #--------------------------------------------------------------------------
@@ -217,7 +218,7 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                #mode = "ready"
+                mode = "ready"
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
@@ -233,8 +234,9 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "ready"
-        screen.blit(finishimage, (0,0))
+                mode = "ready"  #ready2
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
    
