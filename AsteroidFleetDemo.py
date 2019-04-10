@@ -10,6 +10,7 @@ from PowerShield import *
 from Background import *
 #from Boost import * 
 from MissileBar import *
+from Hyperspeed import *
 pygame.init()
 
 width = 1100
@@ -28,7 +29,7 @@ opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hai
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
-
+modes = pygame.sprite.Group()
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
@@ -47,6 +48,7 @@ RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
+Hyperspeed.containers = (modes, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
@@ -89,7 +91,7 @@ while go:
     EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
-   
+    Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
    
    
     while mode == "play" and player1.lives > 0:
