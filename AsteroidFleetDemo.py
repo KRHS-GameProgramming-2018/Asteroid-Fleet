@@ -183,8 +183,9 @@ while go:
         
         
         for missile in missilesHitAsteroids:
-            missile.hitAsteroid()
-           # Asteroid.collideMissile(missile)
+            for asteroid in missilesHitAsteroids[missile]:
+                missile.collideAsteroid(asteroid)
+                asteroid.collideMissile(missile)
         
         for limit in playerHitLimits:
              player1.collideEndLine(limit)
