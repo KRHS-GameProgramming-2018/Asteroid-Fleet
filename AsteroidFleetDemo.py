@@ -189,8 +189,9 @@ while go:
         
         for limit in playerHitLimits:
              player1.collideEndLine(limit)
-             mode = "ready2"
-   
+             mode = "finish"
+             for s in all.sprites():
+                 s.kill()
    #--------------------------------------------------------------------------
    
 
@@ -199,9 +200,9 @@ while go:
             closing.play(1);
             closing.fadeout(3000);
             mode = "dead"
-        #complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
-        
-        
+            for s in all.sprites():
+                s.kill()
+                
         #--------------------------------BLIT OBJECTS ---------------------------------
         dirty = all.draw(screen)
         pygame.display.update(dirty)
@@ -226,7 +227,7 @@ while go:
 
 
     bg.kill()
-    bg = Background("Asteroid/images/hyperspeed.png")
+    bg = Background("Screen Display/SplashScreen/images/win.png")
     while mode == "finish":
         for event in pygame.event.get():
             #print event.type
@@ -234,7 +235,7 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "ready2"  #ready2
+                mode = "ready"  #ready2
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
