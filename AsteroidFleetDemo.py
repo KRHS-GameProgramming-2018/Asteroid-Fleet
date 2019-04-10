@@ -188,8 +188,7 @@ while go:
         
         for limit in playerHitLimits:
              player1.collideEndLine(limit)
-             
-             print "woo"
+             mode = "ready2"
    
    #--------------------------------------------------------------------------
    
@@ -234,7 +233,7 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "ready"  #ready2
+                mode = "ready2"  #ready2
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
@@ -242,26 +241,26 @@ while go:
    
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
-    player1 = PlayerShip(25)   
+   
     while mode == "ready2":
-      #  pygame.init()
-       # opening.play(1);
         for event in pygame.event.get():
-            #print event.type
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
                 mode = "secret"
-                #opening.stop()
                 pygame.time.delay(500)
                 startup.play(1);
                 startup.fadeout(2100);
-        screen.blit(hyperspeed, (0,0))
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
         pygame.display.flip()
-        clock.tick(60)    
+        clock.tick(60)   
         
-     
+    bg.kill()
+    bg = Background("Screen Display/Background/images/space.png")
+    player1 = PlayerShip(25)
+
     while mode == "secret" and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
@@ -286,63 +285,74 @@ while go:
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_t:
                                     paused = False
+                                
+                if event.key == pygame.K_w:
+                    player1.go("north")
                 if event.key == pygame.K_a:
                     player1.go("west")
+                if event.key == pygame.K_s:
+                    player1.go("south")
                 if event.key == pygame.K_d:
-                    player1.go("east")
+                    player1.go("east") 
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                 if event.key == pygame.K_q:
                     pygame.quit()    
             if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    player1.go("northU")
                 if event.key == pygame.K_a:
                     player1.go("westU")
+                if event.key == pygame.K_s:
+                    player1.go("southU")
                 if event.key == pygame.K_d:
                     player1.go("eastU")
         
+        all.update(size, player1.lives, player1.missiles)
         
-        while len(asteroids.sprites()) < 2:
-           # print len(asteroids)
+   #-----------------------------------------------------------------------
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
+        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        
+        
+        asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
+        
+        
+        while len(asteroids.sprites()) < 4:
+            print len(asteroids.sprites())
             Asteroid(width, asteroids)
-            
-
-        if len(asteroids.sprites())< 1:
-            if random.randint(0,20) == 0:    #controls how close asteroids spawn together
-                Asteroid(width, asteroids)
-    
-        
-  
-        if missile:
-            missile.update()
-            if not missile.living:
-                missile = None      
-        if shield:
-            if not shield.living:
-                shield = None             
-        if repair:
-            if player1.colliderepair(repair):
+         
+        if len(asteroids.sprites())< 20:
+            if random.randint(0,40) == 0:    #controls how close asteroids spawn together
+                Asteroid(width,asteroids)
+               
+        for ability in playerHitAbilities:
+            if ability.kind == "repair":
                 player1.lives = 4
                 LevelUpSound.play(1);
                 LevelUpSound.fadeout(1200)
-            if not repair.living:
-                repair = None        
-     
-        for hitter in asteroids:
-            for hittie in asteroids:
-                hitter.collideAsteroid(hittie)
-            hitter.collideShip(player1)
-            player1.collideAsteroid(hitter)
+            if ability.kind == "shield":
+                player1.collideShield()
+                LevelUpSound.play(1);
+                LevelUpSound.fadeout(1200)
+                
+        for asteroid in playerHitAsteroids:
+            player1.collideAsteroid(asteroid)    
         
+        
+        for missile in missilesHitAsteroids:
+            missile.hitAsteroid()
+           # Asteroid.collideMissile(missile)
+
         if player1.lives == 0:
             pygame.time.delay(500)
             closing.play(1);
             closing.fadeout(3000);
             mode = "dead"
-        complete = EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
+
         
         #--------------------------------BLIT OBJECTS ---------------------------------
-        screen.blit(bg, (0,0))
-        #screen.fill(bgColor)
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
