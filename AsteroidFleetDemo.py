@@ -148,7 +148,7 @@ while go:
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
-        
+        playerHitModes = pygame.sprite.spritecollide(player1, modes , True)
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         
@@ -179,7 +179,12 @@ while go:
                 LevelUpSound.play(1);
                 LevelUpSound.fadeout(1200)
                 
-       
+        for modes in playerHitModes:
+            if modes.kind == "hype":
+                mode = "ready2"
+                for s in all.sprites():
+                 s.kill()
+          
         for asteroid in playerHitAsteroids:
             player1.collideAsteroid(asteroid)    
         
@@ -245,7 +250,11 @@ while go:
    
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
+ #---------------------------------------------------------------------------------------------------------------  
    
+   
+    bg.kill()
+    bg = Background("Screen Display/SplashScreen/images/hyperspeed.png")
     while mode == "ready2":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -264,7 +273,10 @@ while go:
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25)
-
+    MissileBar(player1.missiles, [1000, height - 30])
+    HealthBar(player1.lives, [100, height - 25])
+   
+    
     while mode == "secret" and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
@@ -317,20 +329,23 @@ while go:
    #-----------------------------------------------------------------------
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
         
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
         
         
-        while len(asteroids.sprites()) < 4:
+        while len(asteroids.sprites()) < 5:
+          #  print len(asteroids.sprites())
             print len(asteroids.sprites())
             Asteroid(width, asteroids)
-         
-        if len(asteroids.sprites())< 20:
-            if random.randint(0,40) == 0:    #controls how close asteroids spawn together
+
+        if len(asteroids.sprites())< 22 :
+            if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
-               
+            
         for ability in playerHitAbilities:
             if ability.kind == "repair":
                 player1.lives = 4
@@ -341,21 +356,27 @@ while go:
                 LevelUpSound.play(1);
                 LevelUpSound.fadeout(1200)
                 
+        # for modes in playerHitModes:
+            # if modes.kind == "hype":
+                # mode = "ready2"
+                # for s in all.sprites():
+                 # s.kill()
+          
         for asteroid in playerHitAsteroids:
             player1.collideAsteroid(asteroid)    
         
         
         for missile in missilesHitAsteroids:
-            missile.hitAsteroid()
-           # Asteroid.collideMissile(missile)
-
+            for asteroid in missilesHitAsteroids[missile]:
+                missile.collideAsteroid(asteroid)
+                asteroid.collideMissile(missile)
+         
         if player1.lives == 0:
             pygame.time.delay(500)
             closing.play(1);
             closing.fadeout(3000);
             mode = "dead"
 
-        
         #--------------------------------BLIT OBJECTS ---------------------------------
         dirty = all.draw(screen)
         pygame.display.update(dirty)

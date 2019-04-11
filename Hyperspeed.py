@@ -11,6 +11,13 @@ class Hyperspeed(pygame.sprite.Sprite):
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "hype"
+        self.speedx = 0
+        self.speedy = 3 #random.randint(0,2)
+        self.speed = [self.speedx, self.speedy]
+    
+        if self.speed == 0:
+            self.living = False
+    
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -22,6 +29,12 @@ class Hyperspeed(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
+   
+   
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)  
+     
                                 
     def update(*args):
         self = args[0]

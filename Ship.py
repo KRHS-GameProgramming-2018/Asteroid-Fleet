@@ -109,6 +109,14 @@ class Ship(pygame.sprite.Sprite):
         self.moveImage = self.shieldMoveImage
         return True
 
+    
+    def collideHP(self):
+        mode = "secret"
+        return True
+
+
+
+
     def colliderepair(self, other):
         if not (self, other):
             print "hit dude"
