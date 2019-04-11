@@ -55,7 +55,7 @@ while go:
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
-    healthpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/172589__qubodup__health-potion-166188-drminky-potion-drink-regen.wav")
+    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/Repair-Kit.wav")
   
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen.png")
@@ -185,7 +185,7 @@ while go:
             if ability.kind == "repair":
                 player1.lives = 4
                 LevelUpSound.play(1);
-                LevelUpSound.fadeout(1200)
+                LevelUpSound.fadeout(0)
             if ability.kind == "shield":
                 player1.collideShield()
                 LevelUpSound.play(1);
