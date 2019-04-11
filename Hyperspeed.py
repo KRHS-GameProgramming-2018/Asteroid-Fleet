@@ -7,7 +7,7 @@ class Hyperspeed(pygame.sprite.Sprite):
     def __init__(self, image, startPos = [0,0]):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
-        self.rect = self.image.get_rect(center=[random.randint(50,width-50),(700)])
+        self.rect = self.image.get_rect(center=[random.randint(0,width),(50)])
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "hype"

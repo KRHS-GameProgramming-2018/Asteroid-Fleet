@@ -97,6 +97,16 @@ while go:
    
    
     while mode == "play" and player1.lives > 0:
+        Timer = 0
+        TimerMax = 300
+        if Timer < TimerMax:
+            Timer += 1
+        else:
+            Timer = 0
+        print Timer
+    
+        if Timer == 10:
+            print "yay"
         
         for event in pygame.event.get():
             #print event.type
@@ -218,8 +228,7 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-    
-    
+       
     bg.kill()
     bg = Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
@@ -238,6 +247,7 @@ while go:
 
     bg.kill()
     bg = Background("Screen Display/SplashScreen/images/win.png")
+    
     while mode == "finish":
         for event in pygame.event.get():
             #print event.type
@@ -250,7 +260,8 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-   
+
+
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
  #---------------------------------------------------------------------------------------------------------------  
