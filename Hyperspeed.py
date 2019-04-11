@@ -39,3 +39,4 @@ class Hyperspeed(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
+        self.move()

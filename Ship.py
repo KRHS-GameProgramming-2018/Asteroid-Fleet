@@ -111,10 +111,8 @@ class Ship(pygame.sprite.Sprite):
 
     
     def collideHP(self):
-        mode = "secret"
+        mode = "ready2"
         return True
-
-
 
 
     def colliderepair(self, other):

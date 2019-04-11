@@ -29,7 +29,6 @@ opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hai
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 
-modes = pygame.sprite.Group()
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
@@ -48,7 +47,7 @@ RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
-Hyperspeed.containers = (modes, all)
+Hyperspeed.containers = (abilities, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
@@ -78,6 +77,8 @@ while go:
                 startup.play(1)
                 startup.fadeout(2100)
         dirty = all.draw(screen)
+        for s in all.sprites():
+            s.kill()
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
@@ -149,7 +150,7 @@ while go:
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
-        playerHitModes = pygame.sprite.spritecollide(player1, modes , True)
+      
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         
@@ -179,12 +180,13 @@ while go:
                 player1.collideShield()
                 LevelUpSound.play(1);
                 LevelUpSound.fadeout(1200)
-                
-        for modes in playerHitModes:
-            if modes.kind == "hype":
+            if ability.kind == "hype":
+                player1.collideHP()
                 mode = "ready2"
                 for s in all.sprites():
-                 s.kill()
+                    s.kill()
+                
+      
           
         for asteroid in playerHitAsteroids:
             player1.collideAsteroid(asteroid)    
