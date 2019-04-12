@@ -97,17 +97,6 @@ while go:
    
    
     while mode == "play" and player1.lives > 0:
-        Timer = 0
-        TimerMax = 300
-        if Timer < TimerMax:
-            Timer += 1
-        else:
-            Timer = 0
-        print Timer
-    
-        if Timer == 10:
-            print "yay"
-        
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -228,6 +217,10 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+        #print clock.get_fps()
+       
+       
+       
        
     bg.kill()
     bg = Background("Screen Display/SplashScreen/images/lost.png")
