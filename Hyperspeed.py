@@ -5,18 +5,18 @@ height = 900
 
 class Hyperspeed(pygame.sprite.Sprite):
     def __init__(self, image, startPos = [0,0]):
-        pygame.sprite.Sprite.__init__(self, self.containers)
-        self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
-        self.rect = self.image.get_rect(center=[random.randint(0,width),(50)])
-        self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        self.living = True  
-        self.kind = "hype"
-        self.speedx = 0
-        self.speedy = 3 #random.randint(0,2)
-        self.speed = [self.speedx, self.speedy]
-    
-        if self.speed == 0:
-            self.living = False
+            pygame.sprite.Sprite.__init__(self, self.containers)
+            self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
+            self.rect = self.image.get_rect(center=[random.randint(0,width),(50)])
+            self.radius = (self.rect.width/2 + self.rect.height/2)/2
+            self.living = True  
+            self.kind = "hype"
+            self.speedx = 0
+            self.speedy = 3 #random.randint(0,2)
+            self.speed = [self.speedx, self.speedy]
+
+            if self.speed == 0:
+                self.living = False
     
     
     def getDist(self, pt):

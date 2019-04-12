@@ -4,6 +4,7 @@ class Missile(pygame.sprite.Sprite):
     def __init__(self, startPos, goal):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
+        self.explodeImage = pygame.image.load("Asteroid/images/bang.png")
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
@@ -14,15 +15,34 @@ class Missile(pygame.sprite.Sprite):
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
+        
+    #Animation  
+        self.images = self.baseImage
+        self.frame = 0;
+        self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/10
     
-      
+   
         self.goal = goal
-       
+        
        
         self.lives = 1
-        self.living = True
         self.kind = "missile"
 
+
+
+    def animate(self):
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
+    
     
     def setPos(self, pos):
         self.rect.center = pos
@@ -72,38 +92,4 @@ class Missile(pygame.sprite.Sprite):
                         if self.rect.bottom > other.rect.top:
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
-        # #Animation
-        # # self.images = self.baseImage
-        # # self.frame = 0;
-        # # self.maxFrame = len(self.images)-1
-        # # self.aniTimer = 0
-        # # self.aniTimerMax = 60/10
         
-        # self.LaunchTimer = 0
-        # self.LaunchTimerMax = 60/15
-        # self.missiles = []
-        # self.launching = False
-        
-        
-    # def update(self):
-        # pos = pygame.mouse.get_pos()
-        # x = pos[0]
-        # y = pos[1]
-        # self.rect.x = x
-        # self.rect.y = y
-   
-    # # def fireMissile(self):
-        # ready = True
-        # if self.launching:
-            # pass
-        # else:
-            # self.launching = True
-            # self.LaunchTimer = 0
-            # if ready == "True":
-                # print "somethings wrong"
-                # screen.blit(Missile.image, Missile.rect)
-                # speed = [0,7]
-                # image = "PowerUps/GuidedMissile/images/rocket.move.png" 
-                # print "somethings wrong"
-            # #return Missile(image, speed, self.rect.center)
-   

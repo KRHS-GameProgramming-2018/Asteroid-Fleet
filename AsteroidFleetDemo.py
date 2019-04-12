@@ -8,7 +8,6 @@ from EndLine import *
 from RepairKit import *
 from PowerShield import *
 from Background import *
-#from Boost import * 
 from MissileBar import *
 from Hyperspeed import *
 pygame.init()
@@ -184,8 +183,6 @@ while go:
                 mode = "ready2"
                 for s in all.sprites():
                     s.kill()
-                
-      
           
         for asteroid in playerHitAsteroids:
             player1.collideAsteroid(asteroid)    

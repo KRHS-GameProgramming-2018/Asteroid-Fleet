@@ -147,6 +147,6 @@ class PlayerShip(Ship):
         self.move()
         self.alive(self.lives)
         self.bounceWall(size)
-        self.animate()
+        #self.animate()
         self.teleportShip(size) 
     
