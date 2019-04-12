@@ -173,7 +173,7 @@ while go:
             if ability.kind == "repair":
                 player1.lives = 4
                 LevelUpSound.play(1);
-                LevelUpSound.fadeout(0)
+                LevelUpSound.fadeout(1200)
             if ability.kind == "shield":
                 player1.collideShield()
                 LevelUpSound.play(1);
