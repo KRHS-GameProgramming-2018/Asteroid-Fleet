@@ -158,7 +158,7 @@ while go:
         while len(asteroids.sprites()) < 5:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
-            Asteroid(width, asteroids)
+            Asteroid(width, asteroids    )
             # for asteroid in asteroidsHitAsteroids :
                 # for otherasteroid in asteroidsHitAsteroids[asteroid]:
                     # if asteroid.collideAsteroid(otherasteroid):
@@ -306,12 +306,9 @@ while go:
                                 if event.key == pygame.K_t:
                                     paused = False
                                 
-                if event.key == pygame.K_w:
-                    player1.go("north")
+                
                 if event.key == pygame.K_a:
                     player1.go("west")
-                if event.key == pygame.K_s:
-                    player1.go("south")
                 if event.key == pygame.K_d:
                     player1.go("east") 
                 if event.key == pygame.K_ESCAPE:
@@ -341,14 +338,14 @@ while go:
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
         
         
-        while len(asteroids.sprites()) < 5:
+        while len(asteroids.sprites()) < 2:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
-            Asteroid(width, asteroids)
+            Asteroid(width, asteroids, 15)
 
-        if len(asteroids.sprites())< 22 :
+        if len(asteroids.sprites())< 16 :
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
-                Asteroid(width,asteroids)
+                Asteroid(width,asteroids, 15)
             
         for ability in playerHitAbilities:
             if ability.kind == "repair":

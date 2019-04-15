@@ -11,7 +11,7 @@ from Boost import *
 from MissileBar import *
 
 class Asteroid(pygame.sprite.Sprite):
-    def __init__(self, width, asteroids):
+    def __init__(self, width, asteroids, speed = 3):
         pygame.sprite.Sprite.__init__(self, self.containers)
         files = ["Asteroid/images/Asteroid1.png",
                  "Asteroid/images/Asteroid2.png",
@@ -22,7 +22,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
-        self.speedy = 3 #random.randint(0,2)
+        self.speedy = speed #random.randint(0,2)
         self.speed = [self.speedx, self.speedy]
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
