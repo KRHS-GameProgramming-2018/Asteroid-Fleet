@@ -4,7 +4,10 @@ class Missile(pygame.sprite.Sprite):
     def __init__(self, startPos, goal):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
-        self.explodeImage = pygame.image.load("Asteroid/images/bang.png")
+        self.explodeImages = [pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200]),
+                             pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200]),
+                             pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200])]
+        
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
@@ -15,24 +18,21 @@ class Missile(pygame.sprite.Sprite):
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
-        
-    #Animation  
-        self.images = self.baseImage
-        self.frame = 0;
-        self.maxFrame = len(self.images)-1
-        self.aniTimer = 0
-        self.aniTimerMax = 60/10
-    
-   
+        self.wasliving = True
+        explode = False
         self.goal = goal
-        
-       
         self.lives = 1
         self.kind = "missile"
-
+        
+    def collideAsteroid(self, other):
+        if not(self == other):
+            self.living = False 
+          
 
 
     def animate(self):
+        
+        
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1
         else:
@@ -40,7 +40,7 @@ class Missile(pygame.sprite.Sprite):
             if self.frame < self.maxFrame:
                 self.frame += 1
             else:
-                self.frame = 0
+                self.kill()
             self.image = self.images[self.frame]
     
     
@@ -65,6 +65,17 @@ class Missile(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         self.move()
+        if not self.living:
+            self.maxSpeed = 0
+            if self.wasliving:
+                self.images = self.explodeImages
+                self.frame = 0;
+                self.maxFrame = len(self.images)-1
+                self.aniTimer = 0
+                self.aniTimerMax = 60/10
+                self.wasliving = False
+            
+            self.animate()
         
     def headTo(self, pos):
         pointPosPlayerX = pos[0] - self.rect.center[0]
@@ -77,19 +88,9 @@ class Missile(pygame.sprite.Sprite):
         self.rotateImage(pos)
             
     def move(self):
-   
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
-       
-    
         ready = True
         
-    def collideAsteroid(self, other):
-        if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                self.living = False
-        
+   
+    

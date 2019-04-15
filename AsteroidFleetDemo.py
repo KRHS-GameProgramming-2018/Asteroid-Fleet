@@ -152,7 +152,7 @@ while go:
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         
-        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
+        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, False, True)
         
         
         while len(asteroids.sprites()) < 5:
