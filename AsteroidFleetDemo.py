@@ -88,7 +88,7 @@ while go:
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
-    RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
+    RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
     EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
@@ -172,12 +172,12 @@ while go:
         for ability in playerHitAbilities:
             if ability.kind == "repair":
                 player1.lives = 4
-                LevelUpSound.play(1);
-                LevelUpSound.fadeout(1200)
+                repairkitpickup.play(1);
+                repairkitpickup.fadeout(1200)
             if ability.kind == "shield":
                 player1.collideShield()
-                LevelUpSound.play(1);
-                LevelUpSound.fadeout(1200)
+                repairkitpickup.play(1);
+                repairkitpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
                 mode = "ready2"
