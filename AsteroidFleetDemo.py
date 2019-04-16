@@ -54,7 +54,7 @@ while go:
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
-    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/Repair-Kit.wav")
+    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
   
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen.png")
