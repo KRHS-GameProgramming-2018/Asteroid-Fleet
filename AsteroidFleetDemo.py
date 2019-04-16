@@ -338,14 +338,14 @@ while go:
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, True)
         
         
-        while len(asteroids.sprites()) < 2:
+        while len(asteroids.sprites()) < 3:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
-            Asteroid(width, asteroids, 15)
+            Asteroid(width, asteroids, 25)
 
-        if len(asteroids.sprites())< 16 :
-            if random.randint(0,10) == 0:    #controls how close asteroids spawn together
-                Asteroid(width,asteroids, 15)
+        if len(asteroids.sprites())< 3 :
+            if random.randint(0,50) == 0:    #controls how close asteroids spawn together
+                Asteroid(width,asteroids, 25)
             
         for ability in playerHitAbilities:
             if ability.kind == "repair":
