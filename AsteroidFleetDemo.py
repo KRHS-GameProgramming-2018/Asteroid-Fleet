@@ -9,6 +9,7 @@ from RepairKit import *
 from PowerShield import *
 from Background import *
 from MissileBar import *
+from ShieldBar import *
 from Hyperspeed import *
 pygame.init()
 
@@ -45,6 +46,7 @@ PowerShield.containers = (abilities, all)
 RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
+ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 
@@ -91,6 +93,7 @@ while go:
     RepairKit("PowerUps/Repair Kit/images/repairkit.png",[random.randint(50,width-50),(200)])
     EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
     MissileBar(player1.missiles, [1000, height - 30])
+    ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
    
