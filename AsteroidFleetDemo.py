@@ -188,8 +188,8 @@ while go:
                     s.kill()
           
         for asteroid in playerHitAsteroids:
-			player1.collideAsteroid(asteroid)    
-			asteroid.collideShip(PlayerShip)
+			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
+			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 
         
         for missile in missilesHitAsteroids:
             for asteroid in missilesHitAsteroids[missile]:

@@ -102,8 +102,6 @@ class Asteroid(pygame.sprite.Sprite):
             self.speedy = 0
             self.animate()
            
-          
-    
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
@@ -142,9 +140,8 @@ class Asteroid(pygame.sprite.Sprite):
 
     def collideShip(self, other):
         if not(self == other):
-			print "bro"
 			self.explode = True
-			print "sfsdgsdg"
+			print " did boom ?"
 			self.living = False
        
     def collideMissile(self, other):
