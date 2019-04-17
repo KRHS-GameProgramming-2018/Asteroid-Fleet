@@ -4,10 +4,6 @@ class Missile(pygame.sprite.Sprite):
     def __init__(self, startPos, goal):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.baseImage = pygame.image.load("PowerUps/GuidedMissile/images/rocket.move.png")
-        self.explodeImages = [pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200]),
-                             pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200]),
-                             pygame.transform.scale(pygame.image.load("Enemy Ship/enemy1.png"),[200,200])]
-        
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
@@ -18,32 +14,14 @@ class Missile(pygame.sprite.Sprite):
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
-        self.wasliving = True
-        explode = False
         self.goal = goal
         self.lives = 1
         self.kind = "missile"
-        
+       
     def collideAsteroid(self, other):
         if not(self == other):
             self.living = False 
-          
 
-
-    def animate(self):
-        
-        
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.kill()
-            self.image = self.images[self.frame]
-    
-    
     def setPos(self, pos):
         self.rect.center = pos
         
@@ -55,6 +33,7 @@ class Missile(pygame.sprite.Sprite):
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
         
     def rotateImage(self, point):
+        self.living = True
         rot_image = pygame.transform.rotate(self.baseImage, self.angle)
         rot_rect = self.rect.copy()
         rot_rect.center = rot_image.get_rect().center
@@ -65,17 +44,6 @@ class Missile(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         self.move()
-        if not self.living:
-            self.maxSpeed = 0
-            if self.wasliving:
-                self.images = self.explodeImages
-                self.frame = 0;
-                self.maxFrame = len(self.images)-1
-                self.aniTimer = 0
-                self.aniTimerMax = 60/10
-                self.wasliving = False
-            
-            self.animate()
         
     def headTo(self, pos):
         pointPosPlayerX = pos[0] - self.rect.center[0]

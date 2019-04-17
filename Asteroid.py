@@ -19,6 +19,26 @@ class Asteroid(pygame.sprite.Sprite):
                  "Asteroid/images/Asteroid4.png"]
         image = files[random.randint(0,len(files)-1)]
         
+        self.explodeImages = [pygame.transform.scale(pygame.image.load("Asteroid/images/exp1.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp2.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp3.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp4.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp5.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp6.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp7.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp8.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp9.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp10.png"), [149,121]),
+                              pygame.transform.scale(pygame.image.load("Asteroid/images/exp11.png"), [149,121]),
+							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp12.png"), [149,121]),
+				              pygame.transform.scale(pygame.image.load("Asteroid/images/exp13.png"), [149,121]),
+                              pygame.transform.scale(pygame.image.load("Asteroid/images/exp14.png"), [149,121])]
+        
+        
+        
+        
+        
+        
         self.image = pygame.transform.scale(pygame.image.load(image),[149,121])
         self.rect = self.image.get_rect(center=[random.randint(0,width),-50])
         self.speedx = 0
@@ -28,7 +48,13 @@ class Asteroid(pygame.sprite.Sprite):
         self.didBounceX = False
         self.didBounceY = False
         self.living = True
-        self.kind = Asteroid
+        self.kind = "boom"
+        self.explode = False
+        self.images = self.explodeImages
+        self.frame = 0;
+        self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 30/10
         
         selfHitAsteroids = pygame.sprite.spritecollide(self, asteroids, False)
         if len(selfHitAsteroids) > 1:
@@ -36,7 +62,22 @@ class Asteroid(pygame.sprite.Sprite):
 
         if self.speed == 0:
             self.living = False
-            
+    
+    def animate(self):
+        print "yah"
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.kill()
+            self.image = self.images[self.frame]
+    
+    def exploding(self):
+		pass
+    
     def hyperspeed(self):
         self.speedx = 0
         self.speedy = 3
@@ -56,15 +97,13 @@ class Asteroid(pygame.sprite.Sprite):
         self.didBounceY = False
         self.move()
         self.bounceWall(size)
+        
+        if self.explode:
+            self.speedy = 0
+            self.animate()
+           
+          
     
-    def charge(self, size):
-       # self.hyperspeed()
-        self.speedy = 15
-        self.didBounceX = False
-        self.didBounceY = False
-        self.move()
-        self.bounceWall(size)
- 
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
@@ -103,20 +142,13 @@ class Asteroid(pygame.sprite.Sprite):
 
     def collideShip(self, other):
         if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                              #  self.image = "Asteroid/images/bang.png"
-                                self.living = False
+			print "bro"
+			self.explode = True
+			print "sfsdgsdg"
+			self.living = False
        
     def collideMissile(self, other):
         if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                self.living = False
+			self.explode = True
+			self.living = False
     

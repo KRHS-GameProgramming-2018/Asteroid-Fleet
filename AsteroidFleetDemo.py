@@ -9,7 +9,7 @@ from RepairKit import *
 from PowerShield import *
 from Background import *
 from MissileBar import *
-from ShieldBar import *
+#from ShieldBar import *
 from Hyperspeed import *
 pygame.init()
 
@@ -46,7 +46,7 @@ PowerShield.containers = (abilities, all)
 RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
-ShieldBar.containers = (HUD, all)
+#ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 
@@ -93,7 +93,7 @@ while go:
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
     EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
     MissileBar(player1.missiles, [1000, height - 30])
-    ShieldBar(PowerShield, [1000, height - 80])
+    #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
    
@@ -148,14 +148,14 @@ while go:
         all.update(size, player1.lives, player1.missiles)
         
    #-----------------------------------------------------------------------
-        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True) #Boolean checks if object should be killed upon collision
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True, False) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
       
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         
-        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, False, True)
+        missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, False)
         
         
         while len(asteroids.sprites()) < 5:
@@ -167,7 +167,7 @@ while go:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
 
-        if len(asteroids.sprites())< 22 :
+        if len(asteroids.sprites())< 22:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
@@ -188,13 +188,14 @@ while go:
                     s.kill()
           
         for asteroid in playerHitAsteroids:
-            player1.collideAsteroid(asteroid)    
-        
+			player1.collideAsteroid(asteroid)    
+			asteroid.collideShip(PlayerShip)
         
         for missile in missilesHitAsteroids:
             for asteroid in missilesHitAsteroids[missile]:
                 missile.collideAsteroid(asteroid)
                 asteroid.collideMissile(missile)
+           
         
         for limit in playerHitLimits:
              player1.collideEndLine(limit)
