@@ -257,6 +257,65 @@ while go:
 
 
 
+#######################COUNTDOWN#####
+    currentImage = 0
+    countimages = [ pygame.image.load ("Screen Display/Background/images/space.png"),
+                    pygame.image.load ("Screen Display/Background/images/space.png"),
+                    pygame.image.load ("Screen Display/Background/images/space.png")]
+    countimage = countimages[currentImage]
+    countrect = countimage.get_rect()
+    lastImage = len(countimages)-1
+    
+    currentImageNum = 0
+    
+    numimages = [ pygame.image.load ("Screen Display/Background/images/3.png"),
+                  pygame.image.load ("Screen Display/Background/images/2.png"),
+                  pygame.image.load ("Screen Display/Background/images/1.png"),
+                  pygame.image.load ("Screen Display/Background/images/1.png")]
+    numimage = numimages[currentImageNum]
+    numrect = numimage.get_rect(center = [width/2, height/2])
+    lastImageNum = len(numimages)-1
+    
+    aniTimerNum = 0
+    aniTimerNumMax = 60/1
+
+
+    bg.kill()
+    bg = Background("Screen Display/Background/images/space.png")
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            countimage = countimages [currentImage]
+            
+        if aniTimerNum < aniTimerNumMax:
+            aniTimerNum += 1
+        else:
+            aniTimerNum = 0
+            if currentImageNum < lastImageNum:
+                currentImageNum += 1
+            else:
+                currentImage = 0
+            numimage = numimages [currentImageNum]
+            
+        if numimage == numimages[3]:
+            mode = "secret"
+            
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+
+
  #------------------------SECRET MODE----------------------------------------------------------------------------       
  #---------------------------------------------------------------------------------------------------------------  
    
@@ -269,7 +328,7 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "secret"
+                mode = "countdown"
                 pygame.time.delay(500)
                 startup.play(1);
                 startup.fadeout(2100);
