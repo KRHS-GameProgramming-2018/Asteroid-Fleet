@@ -28,6 +28,7 @@ startup = pygame.mixer.Sound("Ship/sounds/startup.wav")
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
 closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_Power_Down01.aif from stewdio2003 at Freesound.org
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
+hyperspeed = pygame.mixer.Sound("SplashScreen/sounds/hyper-speed.wav")
 
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
