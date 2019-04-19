@@ -10,11 +10,11 @@ Things To Add:
 
 Enemies / Shoot Function for them 
 Slow Down Time Power Up
-New Art For HyperSpeed Icon 
+New Art For HyperSpeed Icon - jj 
 Buttons to the Start Screen 
-Sounds for all Powerups, collisions, new modes, death... 
+Sounds for all Powerups, collisions, new modes, death... - Tucker
 Shield Bar? -- Might not be neccesary
-Mega Asteroids ? Asteroid storm ? Space junk?
+Mega Asteroids ? Asteroid storm ? Space junk? - jj
 Nuke Powerup, Maybe Easter Egg... Found / used once per game, clears all asteroids from screen, maybe all images change slightly 
 Star wars description intro, command log, giving background to game 
 
