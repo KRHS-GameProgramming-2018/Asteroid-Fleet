@@ -22,7 +22,6 @@ pygame.mouse.set_visible(True)
 
 go = True
 mode = "ready"
-
 #-----------------MUSIC---------------------  
 startup = pygame.mixer.Sound("Ship/sounds/startup.wav") 
 opening = pygame.mixer.Sound("Ship/sounds/hailtotheheroes.wav")             #hailtotheheroes from eardeer at Freesound.org
