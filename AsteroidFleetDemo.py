@@ -259,56 +259,37 @@ while go:
 
 
 #######################COUNTDOWN#####
-    currentImage = 0
-    countimages = [ pygame.image.load ("Screen Display/Background/images/space.png"),
-                    pygame.image.load ("Screen Display/Background/images/space.png"),
-                    pygame.image.load ("Screen Display/Background/images/space.png")]
-    countimage = countimages[currentImage]
-    countrect = countimage.get_rect()
-    lastImage = len(countimages)-1
-    
-    currentImageNum = 0
-    
-    numimages = [ pygame.image.load ("Screen Display/Background/images/3.png"),
-                  pygame.image.load ("Screen Display/Background/images/2.png"),
-                  pygame.image.load ("Screen Display/Background/images/1.png"),
-                  pygame.image.load ("Screen Display/Background/images/1.png")]
-    numimage = numimages[currentImageNum]
-    numrect = numimage.get_rect(center = [width/2, height/2])
-    lastImageNum = len(numimages)-1
-    
-    aniTimerNum = 0
-    aniTimerNumMax = 60/1
-
-
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     while mode == "countdown":
+        currentImage = 0
+        countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
+                       pygame.image.load ("Screen Display/Background/images/2.png"),
+                       pygame.image.load ("Screen Display/Background/images/1.png"),
+                       pygame.image.load ("Screen Display/Background/images/1.png")]
+        image = countImages[currentImage]
+        rect = image.get_rect(center = [width/2, height/2])
+        lastImage = len(countImages)-1
+    
+        aniTimer = 0
+        aniTimerMax = 60/1
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        
+      
         if aniTimer < aniTimerMax:
             aniTimer += 1
         else:
             aniTimer = 0
             if currentImage < lastImage:
+                print "count me"
                 currentImage += 1
             else:
                 currentImage = 0
             countimage = countimages [currentImage]
             
-        if aniTimerNum < aniTimerNumMax:
-            aniTimerNum += 1
-        else:
-            aniTimerNum = 0
-            if currentImageNum < lastImageNum:
-                currentImageNum += 1
-            else:
-                currentImage = 0
-            numimage = numimages [currentImageNum]
-            
-        if numimage == numimages[3]:
+        if image == countImages[3]:
             mode = "secret"
             
         dirty = all.draw(screen)
