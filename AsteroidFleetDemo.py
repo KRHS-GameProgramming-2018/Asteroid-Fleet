@@ -9,8 +9,8 @@ from RepairKit import *
 from PowerShield import *
 from Background import *
 from MissileBar import *
-#from ShieldBar import *
 from Hyperspeed import *
+from SlowMo import *
 pygame.init()
 
 width = 1100
@@ -49,6 +49,7 @@ MissileBar.containers = (HUD, all)
 #ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
+SlowMo.containers = (abilities, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
@@ -96,7 +97,7 @@ while go:
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
-   
+    SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
     while mode == "play" and player1.lives > 0:
         for event in pygame.event.get():
@@ -105,7 +106,7 @@ while go:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if player1.missiles > 0:
-                    missile = Missile(player1.rect.center, event.pos)
+                    missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos)		#spawn point of missile
                     launch.play(1);
                     launch.fadeout(1200)
                     player1.missiles -= 1
@@ -186,7 +187,12 @@ while go:
                 mode = "ready2"
                 for s in all.sprites():
                     s.kill()
-          
+            if ability.kind == "matrix" and player1.ability == False:
+                player1.collideSlowMo()
+                #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do 
+              
+                
+                
         for asteroid in playerHitAsteroids:
 			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
 			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 
@@ -282,11 +288,10 @@ while go:
         else:
             aniTimer = 0
             if currentImage < lastImage:
-                print "count me"
                 currentImage += 1
             else:
                 currentImage = 0
-            countimage = countimages [currentImage]
+            image = countImages [currentImage]
             
         if image == countImages[3]:
             mode = "secret"
@@ -389,7 +394,7 @@ while go:
 
         if len(asteroids.sprites())< 3 :
             if random.randint(0,50) == 0:    #controls how close asteroids spawn together
-                Asteroid(width,asteroids, 25)
+                Asteroid(width,asteroids, 25)		#Calls Asteroid and sets speed (25) for hyperspeed mode
             
         for ability in playerHitAbilities:
             if ability.kind == "repair":

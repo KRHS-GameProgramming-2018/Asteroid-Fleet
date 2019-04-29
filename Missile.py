@@ -11,8 +11,6 @@ class Missile(pygame.sprite.Sprite):
         self.maxSpeed = 7
         self.headTo(goal)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        self.didBounceX = False
-        self.didBounceY = False
         self.living = True
         self.goal = goal
         self.lives = 1

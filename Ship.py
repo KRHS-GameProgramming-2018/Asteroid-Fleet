@@ -114,6 +114,9 @@ class Ship(pygame.sprite.Sprite):
         mode = "ready2"
         return True
 
+    def collideSlowMo(self):
+        self.ability = True
+
 
     def colliderepair(self, other):
         if not (self, other):
