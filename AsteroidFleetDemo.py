@@ -200,6 +200,7 @@ while go:
                 for s in all.sprites():
                     s.kill()
             if ability.kind == "matrix" and player1.ability == False:
+                #Asteroid.speedy == 0 
                 player1.collideSlowMo()
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do 
               
@@ -278,19 +279,18 @@ while go:
 #######################COUNTDOWN#####
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
+    currentImage = 0
+    countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
+                   pygame.image.load ("Screen Display/Background/images/2.png"),
+                   pygame.image.load ("Screen Display/Background/images/1.png"),
+                   pygame.image.load ("Screen Display/Background/images/1.png")]
+    image = countImages[currentImage]
+    rect = image.get_rect(center = [width/2, height/2])
+    lastImage = len(countImages)-1
+    print "done"
+    aniTimer = 0
+    aniTimerMax = 60/1
     while mode == "countdown":
-        currentImage = 0
-        countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
-                       pygame.image.load ("Screen Display/Background/images/2.png"),
-                       pygame.image.load ("Screen Display/Background/images/1.png"),
-                       pygame.image.load ("Screen Display/Background/images/1.png")]
-        image = countImages[currentImage]
-        rect = image.get_rect(center = [width/2, height/2])
-        lastImage = len(countImages)-1
-    
-        aniTimer = 0
-        aniTimerMax = 60/1
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -306,8 +306,10 @@ while go:
             image = countImages [currentImage]
             
         if image == countImages[3]:
+            print "images changed"
             mode = "secret"
-            
+        
+        
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
