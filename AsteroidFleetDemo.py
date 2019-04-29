@@ -60,7 +60,7 @@ while go:
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
   
     #------------setup---------------------------
-    bg = Background("Screen Display/StartScreen/images/startscreen.png")
+    bg = Background("Screen Display/StartScreen/images/startscreen2.png")
    
     
  #---------START SCREEN-----------------------------
