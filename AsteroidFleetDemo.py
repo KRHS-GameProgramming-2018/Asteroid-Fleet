@@ -65,7 +65,7 @@ while go:
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
    
-    startButton = Button("start", [width/2, 600])
+    startButton = Button("start", [width/2, 500])
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
