@@ -22,5 +22,5 @@ Things that Need to be Fixed / Tweaked:
 
 One of the asteroids has weird imaging on the edges 
 Explosion images should be resized in pic art because coding sizing makes it pixelated
-Missiles spawn slightly off center from player (below and to the right) should be fixed 
+
 Startsceen still has old repair kit icon on it

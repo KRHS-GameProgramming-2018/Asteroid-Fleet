@@ -115,7 +115,7 @@ class Ship(pygame.sprite.Sprite):
         return True
 
     def collideSlowMo(self):
-        self.ability = True
+        pass
 
 
     def colliderepair(self, other):
