@@ -4,9 +4,9 @@ class Button(pygame.sprite.Sprite):
     def __init__(self, kind, pos=[0,0]):
         pygame.sprite.Sprite.__init__(self, self.containers)
         if kind == "start":
-            self.basicImage = pygame.image.load("Screen Display/Buttons/Start-Basic.png")
-            self.hoverImage = pygame.image.load("Screen Display/Buttons/Start-Hover.png")
-            self.clickImage = pygame.image.load("Screen Display/Buttons/Start-Click.png")
+            self.basicImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
+            self.hoverImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
+            self.clickImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
         self.image = self.basicImage
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
