@@ -11,6 +11,7 @@ from Background import *
 from MissileBar import *
 from Hyperspeed import *
 from SlowMo import *
+from AsteroidButtonQuestionMark import *
 pygame.init()
 
 width = 1100
@@ -31,6 +32,7 @@ hyperspeed = pygame.mixer.Sound("SplashScreen/sounds/hyper-speed.wav")
 
 asteroids = pygame.sprite.Group()
 abilities = pygame.sprite.Group()
+buttons = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
 limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
@@ -38,6 +40,7 @@ backgrounds = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Background.containers = (backgrounds, all)
+Button.containers = (buttons, all)
 PlayerShip.containers = (all)
 Ship.containers = (all)
 Asteroid.containers = (asteroids, all)
@@ -62,7 +65,7 @@ while go:
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen.png")
    
-    
+    startButton = Button("start", [width/2, 600])
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
@@ -70,9 +73,18 @@ while go:
             #print event.type
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                pygame.time.delay(1000)
-                mode = "play"
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    startButton.checkHover(event.pos)
+                else:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if startButton.collidePt(event.pos):
+                    mode = "play"
                # print mode
                 opening.stop()
                 pygame.time.delay(500)
