@@ -12,6 +12,7 @@ from MissileBar import *
 from Hyperspeed import *
 from SlowMo import *
 from AsteroidButtonQuestionMark import *
+from Countdown import *
 pygame.init()
 
 width = 1100
@@ -37,9 +38,11 @@ missiles = pygame.sprite.Group()
 limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
+counter = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Background.containers = (backgrounds, all)
+Countdown.containers = (counter, all)
 Button.containers = (buttons, all)
 PlayerShip.containers = (all)
 Ship.containers = (all)
@@ -49,7 +52,6 @@ PowerShield.containers = (abilities, all)
 RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
-#ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
@@ -196,7 +198,7 @@ while go:
                 repairkitpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
-                mode = "ready2"
+                mode = "HMenu"
                 for s in all.sprites():
                     s.kill()
             if ability.kind == "matrix" and player1.ability == False:
@@ -277,43 +279,42 @@ while go:
 
 
 #######################COUNTDOWN#####
-    bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
-    currentImage = 0
-    countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
-                   pygame.image.load ("Screen Display/Background/images/2.png"),
-                   pygame.image.load ("Screen Display/Background/images/1.png"),
-                   pygame.image.load ("Screen Display/Background/images/1.png")]
-    image = countImages[currentImage]
-    rect = image.get_rect(center = [width/2, height/2])
-    lastImage = len(countImages)-1
-    print "done"
-    aniTimer = 0
-    aniTimerMax = 60/1
-    while mode == "countdown":
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+   
+    # currentImage = 0
+    # countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
+                   # pygame.image.load ("Screen Display/Background/images/2.png"),
+                   # pygame.image.load ("Screen Display/Background/images/1.png"),
+                   # pygame.image.load ("Screen Display/Background/images/1.png")]
+    # image = countImages[currentImage]
+    # rect = image.get_rect(center = [width/2, height/2])
+    # lastImage = len(countImages)-1
+    # print "done"
+    # aniTimer = 0
+    # aniTimerMax = 60/1
+    # while mode == "countdown":
+        # for event in pygame.event.get():
+            # if event.type == pygame.QUIT:
+                # sys.exit()
       
-        if aniTimer < aniTimerMax:
-            aniTimer += 1
-        else:
-            aniTimer = 0
-            if currentImage < lastImage:
-                currentImage += 1
-            else:
-                currentImage = 0
-            image = countImages [currentImage]
+        # if aniTimer < aniTimerMax:
+            # aniTimer += 1
+        # else:
+            # aniTimer = 0
+            # if currentImage < lastImage:
+                # currentImage += 1
+            # else:
+                # currentImage = 0
+            # image = countImages [currentImage]
             
-        if image == countImages[3]:
-            print "images changed"
-            mode = "secret"
+        # if image == countImages[3]:
+            # print "images changed"
+            # mode = "secret"
         
         
-        dirty = all.draw(screen)
-        pygame.display.update(dirty)
-        pygame.display.flip()
-        clock.tick(60)
+        # dirty = all.draw(screen)
+        # pygame.display.update(dirty)
+        # pygame.display.flip()
+        # clock.tick(60)
 
 
  #------------------------SECRET MODE----------------------------------------------------------------------------       
@@ -322,7 +323,7 @@ while go:
    
     bg.kill()
     bg = Background("Screen Display/SplashScreen/images/hyperspeed.png")
-    while mode == "ready2":
+    while mode == "HMenu":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -336,6 +337,23 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
+        
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        Countdown()
+        mode == "secret"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)   
+        
+        
+        
+        
+        
+        
         
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")

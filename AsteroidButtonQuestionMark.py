@@ -31,5 +31,5 @@ class Button(pygame.sprite.Sprite):
         else:
             self.image = self.basicImage
 
-    def update(self, size):
+    def update(*args):
         pass
