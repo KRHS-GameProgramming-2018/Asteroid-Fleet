@@ -74,29 +74,30 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEMOTION:
-                if event.buttons[0] == 0:
-                    startButton.checkHover(event.pos)
-                else:
-                    startButton.checkClick(event.pos)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print event.button
-                if event.button == 1:
-                    startButton.checkClick(event.pos)
-            if event.type == pygame.MOUSEBUTTONUP:
-                if startButton.collidePt(event.pos):
-                    mode = "play"
+                if event.type == pygame.MOUSEMOTION:
+                    if event.buttons[0] == 0:
+                        startButton.checkHover(event.pos)
+                    else:
+                        startButton.checkClick(event.pos)
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        print event.button
+                    if event.buttons == 1:
+                        startButton.checkClick(event.pos)
+                    if event.type == pygame.MOUSEBUTTONUP:
+                        if startButton.collidePt(event.pos):
+                            mode = "play"
                # print mode
-                opening.stop()
-                pygame.time.delay(500)
-                startup.play(1)
-                startup.fadeout(2100)
-        dirty = all.draw(screen)
-        for s in all.sprites():
-            s.kill()
-        pygame.display.update(dirty)
-        pygame.display.flip()
-        clock.tick(60)
-        
+                    opening.stop()
+                    pygame.time.delay(500)
+                    startup.play(1)
+                    startup.fadeout(2100)
+            dirty = all.draw(screen)
+            for s in all.sprites():
+                s.kill()
+            pygame.display.update(dirty)
+            pygame.display.flip()
+            clock.tick(60)
+            
   #-----GAME SETUP-------------
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")

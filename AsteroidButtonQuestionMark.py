@@ -5,7 +5,7 @@ class Button(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         if kind == "start":
             self.basicImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
-            self.hoverImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
+            self.hoverImage = pygame.image.load("Screen Display/Buttons/Start-Hover.png")
             self.clickImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
         self.image = self.basicImage
         self.rect = self.image.get_rect(center=pos)
