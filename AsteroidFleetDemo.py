@@ -12,6 +12,7 @@ from MissileBar import *
 from Hyperspeed import *
 from SlowMo import *
 from AsteroidButtonQuestionMark import *
+from Countdown import *
 pygame.init()
 
 width = 1100
@@ -37,9 +38,11 @@ missiles = pygame.sprite.Group()
 limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
+counter = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Background.containers = (backgrounds, all)
+Countdown.containers = (counter, all)
 Button.containers = (buttons, all)
 PlayerShip.containers = (all)
 Ship.containers = (all)
@@ -337,6 +340,23 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
+        
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        Countdown()
+        mode == "secret"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)   
+        
+        
+        
+        
+        
+        
         
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
