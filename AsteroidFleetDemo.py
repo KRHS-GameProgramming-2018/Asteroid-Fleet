@@ -329,40 +329,41 @@ while go:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                pygame.time.delay(1000)
-                mode = "countdown"
-                pygame.time.delay(500)
-                startup.play(1);
-                startup.fadeout(2100);
+        
+        mode = "countdown"
+        pygame.time.delay(500)
+        startup.play(1);
+        startup.fadeout(2100);
+        
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
-        
+ 
+    cd = Countdown()
+    print "counting down"
     while mode == "countdown":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        Countdown()
-        mode == "secret"
+        all.update()
+        if cd.done:
+            mode = "secret"
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
-        
-        
-        
-        
-        
-        
-        
+    
+    
+    
+    
+    
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25)
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
-   
+    print "hyperSpeed"
     
     while mode == "secret" and player1.lives > 0:
         for event in pygame.event.get():
