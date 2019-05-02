@@ -64,6 +64,7 @@ while go:
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
+    
   
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
@@ -190,6 +191,7 @@ while go:
 
         for ability in playerHitAbilities:
             if ability.kind == "repair":
+                player1.collideRepairKit()
                 player1.lives = 4
                 repairkitpickup.play(1);
                 repairkitpickup.fadeout(1200)
