@@ -87,7 +87,7 @@ while go:
                     startButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
-                    mode = "game"
+                    mode = "play"
                # print mode
                 opening.stop()
                 pygame.time.delay(500)
