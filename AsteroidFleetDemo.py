@@ -64,6 +64,7 @@ while go:
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
+    voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
   
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
@@ -332,9 +333,9 @@ while go:
                 sys.exit()
         
         mode = "countdown"
-        pygame.time.delay(500)
-        startup.play(1);
-        startup.fadeout(2100);
+       # pygame.time.delay(500)
+        voiceCount.play(1);
+        voiceCount.fadeout(3300);					#
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
