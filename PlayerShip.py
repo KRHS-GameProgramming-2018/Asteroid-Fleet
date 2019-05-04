@@ -12,6 +12,11 @@ class PlayerShip(Ship):
         self.baseMove = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.move.png"), [117,128])]
         self.shieldImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.png"), [142,129])]
         self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [147,138])]
+        self.HyperImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.png"), [117,105])]
+        self.HyperMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.move.png"), [117,128])]
+        
+     
+     
      
         self.stopImage = self.baseImage
         self.moveImage = self.baseMove
@@ -24,6 +29,7 @@ class PlayerShip(Ship):
         #Sounds 
         self.LevelUpSound = pygame.mixer.Sound("Ship/sounds/powerup sound.wav")                  #8-bit Spaceship Startup via JapanYoshiTheGamer at Freesound.org
         self.ability = False
+        self.hyper = False
         
         
         #Health
@@ -46,43 +52,63 @@ class PlayerShip(Ship):
             self.images = self.moveImage
             if self.ability:
 				self.images = self.shieldMoveImage
+            if self.hyper:
+                self.images = self.HyperMoveImage
+                
         if d == "south":
             self.speedy = self.maxSpeed
             self.images = self.moveImage
             if self.ability:
 				self.images = self.shieldMoveImage
+            if self.hyper:
+                self.images = self.HyperMoveImage
+                
         if d == "west":
             self.speedx = -self.maxSpeed
             self.images = self.moveImage
             if self.ability:
 				self.images = self.shieldMoveImage
+            if self.hyper:
+                self.images = self.HyperMoveImage
+                
         if d == "east":
             self.speedx = self.maxSpeed
             self.images = self.moveImage
             if self.ability:
 				self.images = self.shieldMoveImage
-            
+            if self.hyper:
+                self.images = self.HyperMoveImage
+                
         if d == "northU":
             self.speedy = 0
             self.images = self.stopImage
             if self.ability:
 				self.images = self.shieldImage
+            if self.hyper:
+                self.images = self.HyperImage
+                
         if d == "southU":
             self.speedy = 0
             self.images = self.stopImage
             if self.ability:
 				self.images = self.shieldImage
+            if self.hyper:
+                self.images = self.HyperImage
         if d == "westU":
             self.speedx = 0
             self.images = self.stopImage
             if self.ability:
 				self.images = self.shieldImage
+            if self.hyper:
+                self.images = self.HyperImage
         if d == "eastU":
             self.speedx = 0
             self.images = self.stopImage
             if self.ability:
 				self.images = self.shieldImage
-
+            if self.hyper:
+                self.images = self.HyperImage
+                
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
             self.speedx = 0
@@ -139,6 +165,14 @@ class PlayerShip(Ship):
         else:
             self.stopImage = self.baseImage
             self.moveImage = self.baseMove
+            
+        if self.hyper:
+            self.stopImage = self.HyperImage
+            self.moveImage = self.HyperMoveImage
+        else:
+            self.stopImage = self.baseImage
+            self.moveImage = self.baseMove    
+            
         
         Ship.update(self, size)
         self.animate()

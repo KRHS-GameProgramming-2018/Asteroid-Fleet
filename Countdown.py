@@ -4,35 +4,31 @@ height = 900
 
 class Countdown(pygame.sprite.Sprite):
     def __init__(self):
-        currentImage = 0
-        countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
+        pygame.sprite.Sprite.__init__(self, self.containers)
+        self.currentImage = 0
+        self.countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
                        pygame.image.load ("Screen Display/Background/images/2.png"),
                        pygame.image.load ("Screen Display/Background/images/1.png"),
                        pygame.image.load ("Screen Display/Background/images/1.png")]
-        image = countImages[currentImage]
-        rect = image.get_rect(center = [width/2, height/2])
-        lastImage = len(countImages)-1
-        print "done"
-        aniTimer = 0
-        aniTimerMax = 60/1
-    
+        self.image = self.countImages[self.currentImage]
+        self.rect = self.image.get_rect(center = [550,450])
+        self.lastImage = len(self.countImages)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/1
+        self.done = False
+        
     def update(*args):
         self = args[0]
-        size = args[1]
-        self.animate()
-        
-    def animate(self):
-        if aniTimer < aniTimerMax:
-            aniTimer += 1
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
         else:
-            aniTimer = 0
-            if currentImage < lastImage:
-                currentImage += 1
+            self.aniTimer = 0
+            if self.currentImage < self.lastImage:
+                self.currentImage += 1
+                self.image = self.countImages [self.currentImage]
             else:
-                currentImage = 0
-            image = countImages [currentImage]
+                self.done = True
+                print "images changed"
             
-        if image == countImages[3]:
-            print "images changed"
-            
+        
     

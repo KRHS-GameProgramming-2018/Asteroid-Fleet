@@ -105,12 +105,14 @@ class Ship(pygame.sprite.Sprite):
         
     def collideShield(self):
         self.ability = True
-        self.stopImage = self.shieldImage
-        self.moveImage = self.shieldMoveImage
+        if self.ability == True:
+            self.stopImage = self.shieldImage
+            self.moveImage = self.shieldMoveImage
         return True
 
     
     def collideHP(self):
+        self.hyper = True
         mode = "ready2"
         return True
 

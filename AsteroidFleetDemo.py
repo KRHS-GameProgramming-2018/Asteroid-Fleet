@@ -52,6 +52,7 @@ PowerShield.containers = (abilities, all)
 RepairKit.containers = (abilities, all)
 EndLine.containers = (limits, all)
 MissileBar.containers = (HUD, all)
+#ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
@@ -92,13 +93,13 @@ while go:
                 pygame.time.delay(500)
                 startup.play(1)
                 startup.fadeout(2100)
-        dirty = all.draw(screen)
-        for s in all.sprites():
-            s.kill()
-        pygame.display.update(dirty)
-        pygame.display.flip()
-        clock.tick(60)
-        
+            dirty = all.draw(screen)
+            for s in all.sprites():
+                s.kill()
+            pygame.display.update(dirty)
+            pygame.display.flip()
+            clock.tick(60)
+            
   #-----GAME SETUP-------------
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
@@ -189,6 +190,7 @@ while go:
 
         for ability in playerHitAbilities:
             if ability.kind == "repair":
+                player1.collideRepairKit()
                 player1.lives = 4
                 repairkitpickup.play(1);
                 repairkitpickup.fadeout(1200)
@@ -198,7 +200,7 @@ while go:
                 repairkitpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
-                mode = "HMenu"
+                mode = "ready2"
                 for s in all.sprites():
                     s.kill()
             if ability.kind == "matrix" and player1.ability == False:
@@ -279,7 +281,8 @@ while go:
 
 
 #######################COUNTDOWN#####
-   
+    # bg.kill()
+    # bg = Background("Screen Display/Background/images/space.png")
     # currentImage = 0
     # countImages = [pygame.image.load ("Screen Display/Background/images/3.png"),
                    # pygame.image.load ("Screen Display/Background/images/2.png"),
@@ -323,27 +326,45 @@ while go:
    
     bg.kill()
     bg = Background("Screen Display/SplashScreen/images/hyperspeed.png")
-    while mode == "HMenu":
+    while mode == "ready2":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                pygame.time.delay(1000)
-                mode = "secret"
-                pygame.time.delay(500)
-                startup.play(1);
-                startup.fadeout(2100);
+        
+        mode = "countdown"
+        pygame.time.delay(500)
+        startup.play(1);
+        startup.fadeout(2100);
+        
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
-        
+ 
+    cd = Countdown()
+    print "counting down"
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        all.update()
+        if cd.done:
+            mode = "secret"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)   
+    
+    
+    
+    
+    
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25)
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
-   
+    print "hyperSpeed"
     
     while mode == "secret" and player1.lives > 0:
         for event in pygame.event.get():
