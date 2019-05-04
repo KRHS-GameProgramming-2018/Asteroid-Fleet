@@ -19,7 +19,9 @@ class Countdown(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
+        self.animate()
         
+    def animate(self):
         if aniTimer < aniTimerMax:
             aniTimer += 1
         else:
@@ -32,5 +34,5 @@ class Countdown(pygame.sprite.Sprite):
             
         if image == countImages[3]:
             print "images changed"
-            mode = "secret"
+            
     

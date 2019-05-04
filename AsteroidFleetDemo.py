@@ -329,7 +329,7 @@ while go:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pygame.time.delay(1000)
-                mode = "countdown"
+                mode = "secret"
                 pygame.time.delay(500)
                 startup.play(1);
                 startup.fadeout(2100);
@@ -337,23 +337,6 @@ while go:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)   
-        
-    while mode == "countdown":
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-        Countdown()
-        mode == "secret"
-        dirty = all.draw(screen)
-        pygame.display.update(dirty)
-        pygame.display.flip()
-        clock.tick(60)   
-        
-        
-        
-        
-        
-        
         
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
