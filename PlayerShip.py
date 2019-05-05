@@ -18,8 +18,7 @@ class PlayerShip(Ship):
      
      
      
-        self.stopImage = self.baseImage
-        self.moveImage = self.baseMove
+        
        
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
         self.goal = [0,0]    
@@ -49,63 +48,63 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.moveImage
+            self.images = self.baseMove
             if self.ability:
-				self.images = self.shieldMoveImage
+                self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
                 
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.moveImage
+            self.images = self.baseMove
             if self.ability:
-				self.images = self.shieldMoveImage
+                self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
                 
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.moveImage
+            self.images = self.baseMove
             if self.ability:
-				self.images = self.shieldMoveImage
+                self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
                 
         if d == "east":
             self.speedx = self.maxSpeed
-            self.images = self.moveImage
+            self.images = self.baseMove
             if self.ability:
-				self.images = self.shieldMoveImage
+                self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
                 
         if d == "northU":
             self.speedy = 0
-            self.images = self.stopImage
+            self.images = self.baseImage
             if self.ability:
-				self.images = self.shieldImage
+                self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
                 
         if d == "southU":
             self.speedy = 0
-            self.images = self.stopImage
+            self.images = self.baseImage
             if self.ability:
-				self.images = self.shieldImage
+                self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
         if d == "westU":
             self.speedx = 0
-            self.images = self.stopImage
+            self.images = self.baseImage
             if self.ability:
-				self.images = self.shieldImage
+                self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
         if d == "eastU":
             self.speedx = 0
-            self.images = self.stopImage
+            self.images = self.baseImage
             if self.ability:
-				self.images = self.shieldImage
+                self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
                 
@@ -160,18 +159,18 @@ class PlayerShip(Ship):
             # self.playingMoving = False;
             
         if self.ability:
-            self.stopImage = self.shieldImage
-            self.moveImage = self.shieldMoveImage
+            self.baseImage = self.shieldImage
+            self.baseMove = self.shieldMoveImage
         else:
-            self.stopImage = self.baseImage
-            self.moveImage = self.baseMove
+            self.baseImage = self.baseImage
+            self.baseMove = self.baseMove
             
         if self.hyper:
-            self.stopImage = self.HyperImage
-            self.moveImage = self.HyperMoveImage
+            self.baseImage = self.HyperImage
+            self.baseMove = self.HyperMoveImage
         else:
-            self.stopImage = self.baseImage
-            self.moveImage = self.baseMove    
+            self.baseImage = self.baseImage
+            self.baseMove = self.baseMove    
             
         
         Ship.update(self, size)

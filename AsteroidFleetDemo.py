@@ -65,7 +65,7 @@ while go:
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
-  
+    gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
    
@@ -205,12 +205,14 @@ while go:
                 for s in all.sprites():
                     s.kill()
             if ability.kind == "matrix" and player1.ability == False:
-                #Asteroid.speedy == 0 
+                gameover.play(1)
+                gameover.fadeout(1200)
+                #Asteroid.speedy == 0
                 player1.collideSlowMo()
-                #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do 
-              
-                
-                
+                #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
+
+
+
         for asteroid in playerHitAsteroids:
 			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
 			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 
@@ -230,6 +232,7 @@ while go:
    
 
         if player1.lives == 0:
+            boomsound.stop()
             pygame.time.delay(500)
             closing.play(1);
             closing.fadeout(3000);
@@ -335,7 +338,7 @@ while go:
         mode = "countdown"
        # pygame.time.delay(500)
         voiceCount.play(1);
-        voiceCount.fadeout(3300);					#
+        voiceCount.fadeout(3300);					
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
@@ -411,6 +414,7 @@ while go:
                 if event.key == pygame.K_d:
                     player1.go("eastU")
         
+        player1.hyper = True
         all.update(size, player1.lives, player1.missiles)
         
    #-----------------------------------------------------------------------
