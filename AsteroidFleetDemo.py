@@ -207,7 +207,7 @@ while go:
             if ability.kind == "matrix" and player1.ability == False:
                 gameover.play(1)
                 gameover.fadeout(1200)
-                #Asteroid.speedy == 0
+                Asteroid.speed = 10
                 player1.collideSlowMo()
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
 

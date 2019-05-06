@@ -48,65 +48,67 @@ class PlayerShip(Ship):
     def go(self, d):
         if d == "north":
             self.speedy = -self.maxSpeed
-            self.images = self.baseMove
             if self.ability:
                 self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
+            self.images = self.baseMove
                 
         if d == "south":
             self.speedy = self.maxSpeed
-            self.images = self.baseMove
             if self.ability:
                 self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
+            self.images = self.baseMove
                 
         if d == "west":
             self.speedx = -self.maxSpeed
-            self.images = self.baseMove
             if self.ability:
                 self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
+            self.images = self.baseMove
                 
         if d == "east":
             self.speedx = self.maxSpeed
-            self.images = self.baseMove
             if self.ability:
                 self.images = self.shieldMoveImage
             if self.hyper:
                 self.images = self.HyperMoveImage
-                
+            self.images = self.baseMove
+            
         if d == "northU":
             self.speedy = 0
-            self.images = self.baseImage
             if self.ability:
                 self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
-                
+            self.images = self.baseImage    
+            
         if d == "southU":
             self.speedy = 0
-            self.images = self.baseImage
             if self.ability:
                 self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
+            self.images = self.baseImage
+            
         if d == "westU":
             self.speedx = 0
-            self.images = self.baseImage
             if self.ability:
                 self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
+            self.images = self.baseImage
+            
         if d == "eastU":
             self.speedx = 0
-            self.images = self.baseImage
             if self.ability:
                 self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
+            self.images = self.baseImage
                 
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
@@ -146,18 +148,7 @@ class PlayerShip(Ship):
     def update(*args):
         self = args[0]
         size = args[1]
-        if self.speed != [0,0]:
-            self.moving = True
-        else:
-            self.moving = False
-        
-        # if self.moving and not self.playingMoving:
-          # #  self.moveSound.play(1);
-            # self.playingMoving = True;
-        # elif not self.moving and self.playingMoving:
-           # # self.moveSound.fadeout(500);
-            # self.playingMoving = False;
-            
+    
         if self.ability:
             self.baseImage = self.shieldImage
             self.baseMove = self.shieldMoveImage
