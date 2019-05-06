@@ -99,6 +99,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.bounceWall(size)
         
         if self.explode:
+            print "yeeeeehawwww"
             self.speedy = 0
             self.animate()
            
@@ -140,12 +141,12 @@ class Asteroid(pygame.sprite.Sprite):
 
     def collideShip(self, other):
         if not(self == other):
-			self.explode = True
-			print " did boom ?"
-			self.living = False
+            self.explode = True
+            print " did boom ?"
+            self.living = False
        
     def collideMissile(self, other):
         if not(self == other):
-			self.explode = True
-			self.living = False
+            self.explode = True
+            self.living = False
     
