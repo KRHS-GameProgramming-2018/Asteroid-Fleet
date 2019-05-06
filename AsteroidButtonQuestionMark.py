@@ -20,6 +20,7 @@ class Button(pygame.sprite.Sprite):
         return False
         
     def checkHover(self, pt):
+        print self.collidePt(pt)
         if self.collidePt(pt):
             self.image = self.hoverImage
         else:
@@ -31,5 +32,5 @@ class Button(pygame.sprite.Sprite):
         else:
             self.image = self.basicImage
 
-    def update(self, size):
+    def update(*args):
         pass
