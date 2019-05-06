@@ -191,7 +191,7 @@ while go:
 
         for ability in playerHitAbilities:
             if ability.kind == "repair":
-                player1.collideRepairKit()
+                player1.colliderepair()
                 player1.lives = 4
                 repairkitpickup.play(1);
                 repairkitpickup.fadeout(1200)

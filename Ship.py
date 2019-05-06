@@ -120,8 +120,8 @@ class Ship(pygame.sprite.Sprite):
         pass
 
 
-    def colliderepair(self, other):
-        if not (self, other):
+    def colliderepair(self):
+        if not (self):
             print "hit dude"
             player1.lives = 4
             LevelUpSound.play(1);
