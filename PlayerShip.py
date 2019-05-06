@@ -5,7 +5,7 @@ from Missile import *
 from PowerShield import *
 
 class PlayerShip(Ship):
-    def __init__(self, speed = 1, startPos=[0,0]):
+    def __init__(self, speed = 1, hyper = False):
         
         #Base
         self.baseImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
@@ -21,7 +21,10 @@ class PlayerShip(Ship):
         
        
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
-        self.goal = [0,0]    
+        self.goal = [0,0] 
+        self.hyper = hyper   
+        if self.hyper:
+            self.images = self.HyperImage
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed

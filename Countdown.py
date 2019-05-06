@@ -11,7 +11,7 @@ class Countdown(pygame.sprite.Sprite):
                        pygame.image.load ("Screen Display/Background/images/1.png"),
                        pygame.image.load ("Screen Display/Background/images/1.png")]
         self.image = self.countImages[self.currentImage]
-        self.rect = self.image.get_rect(center = [550,450])
+        self.rect = self.image.get_rect(center = [550,350])
         self.lastImage = len(self.countImages)-1
         self.aniTimer = 0
         self.aniTimerMax = 60/1
