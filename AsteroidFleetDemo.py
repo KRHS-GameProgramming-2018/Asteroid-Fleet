@@ -321,8 +321,6 @@ while go:
     
     
     
-    
-    
     bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25, True)
