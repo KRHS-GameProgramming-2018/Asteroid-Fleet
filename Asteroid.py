@@ -64,7 +64,7 @@ class Asteroid(pygame.sprite.Sprite):
             self.living = False
     
     def animate(self):
-        print "yah"
+        
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1
         else:
@@ -99,7 +99,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.bounceWall(size)
         
         if self.explode:
-            print "yeeeeehawwww"
+            print "im exploding!"
             self.speedy = 0
             self.animate()
            

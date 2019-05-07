@@ -13,6 +13,7 @@ from Hyperspeed import *
 from SlowMo import *
 from AsteroidButtonQuestionMark import *
 from Countdown import *
+from Nuke import *
 pygame.init()
 
 width = 1100
@@ -39,6 +40,7 @@ limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 counter = pygame.sprite.Group()
+specials = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Background.containers = (backgrounds, all)
@@ -56,6 +58,7 @@ MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
+Nuke.containers = (specials, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
@@ -114,6 +117,7 @@ while go:
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
+    Nuke("Enemy Ship/enemy4.png",[550,200])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
     while mode == "play" and player1.lives > 0:
