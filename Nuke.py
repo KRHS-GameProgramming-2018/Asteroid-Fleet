@@ -9,6 +9,7 @@ class Nuke(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
         self.rect = self.image.get_rect(center=[550,50])
+        print self.rect.center
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "nuke"
@@ -37,10 +38,16 @@ class Nuke(pygame.sprite.Sprite):
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
         self.aniTimerMax = 30/10
+      
+      
+        if self.rect.center == [550,50]:
+            print "okay yes"
+
 
         if self.speed == 0:
             self.living = False
-    
+   
+        
     def animate(self):
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1
