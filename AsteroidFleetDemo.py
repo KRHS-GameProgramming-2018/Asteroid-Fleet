@@ -98,12 +98,12 @@ while go:
                 startup.play(1)
                 startup.fadeout(2100)
                 
-            all.update()
             
             dirty = all.draw(screen)
             pygame.display.update(dirty)
             pygame.display.flip()
             clock.tick(60)
+            
             
   #-----GAME SETUP-------------
     bg.kill()
