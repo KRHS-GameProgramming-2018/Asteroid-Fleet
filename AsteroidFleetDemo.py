@@ -59,7 +59,7 @@ while go:
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
   
     #------------setup---------------------------
-    bg = Background("Screen Display/StartScreen/images/startscreen.png")
+    Background("Screen Display/StartScreen/images/startscreen.png")
    
     
  #---------START SCREEN-----------------------------
@@ -85,20 +85,22 @@ while go:
         clock.tick(60)
         
   #-----GAME SETUP-------------
-    bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/Background/images/Scrollingspace.png", [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", [0, -3600])
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
+    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1000]) 
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
    
    
-    while mode == "play" and player1.lives > 0:
+    while mode == "play":# and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -205,13 +207,13 @@ while go:
    #--------------------------------------------------------------------------
    
 
-        if player1.lives == 0:
-            pygame.time.delay(500)
-            closing.play(1);
-            closing.fadeout(3000);
-            mode = "dead"
-            for s in all.sprites():
-                s.kill()
+        # ~ if player1.lives == 0:
+            # ~ pygame.time.delay(500)
+            # ~ closing.play(1);
+            # ~ closing.fadeout(3000);
+            # ~ mode = "dead"
+            # ~ for s in all.sprites():
+                # ~ s.kill()
                 
         #--------------------------------BLIT OBJECTS ---------------------------------
         dirty = all.draw(screen)
@@ -223,8 +225,9 @@ while go:
        
        
        
-    bg.kill()
-    bg = Background("Screen Display/SplashScreen/images/lost.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
         for event in pygame.event.get():
             #print event.type
@@ -239,8 +242,9 @@ while go:
         clock.tick(60)
 
 
-    bg.kill()
-    bg = Background("Screen Display/SplashScreen/images/win.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/SplashScreen/images/win.png")
     
     while mode == "finish":
         for event in pygame.event.get():
@@ -261,7 +265,8 @@ while go:
  #---------------------------------------------------------------------------------------------------------------  
    
    
-    bg.kill()
+    for bg in backgrounds:
+        bg.kill()
     bg = Background("Screen Display/SplashScreen/images/hyperspeed.png")
     while mode == "ready2":
         for event in pygame.event.get():
@@ -278,7 +283,8 @@ while go:
         pygame.display.flip()
         clock.tick(60)   
         
-    bg.kill()
+    for bg in backgrounds:
+        bg.kill()
     bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25)
     MissileBar(player1.missiles, [1000, height - 30])

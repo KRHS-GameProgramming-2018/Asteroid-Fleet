@@ -8,7 +8,8 @@ class EndLine(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(pygame.image.load(image),[width,50])
         self.rect = self.image.get_rect(center = startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-        
+        self.speedx = 0
+        self.speedy = 2
         
         
     def collidePlayer(self, other):
@@ -17,3 +18,11 @@ class EndLine(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
+        scrolling = True
+        if scrolling:
+            self.move()
+
+                
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)

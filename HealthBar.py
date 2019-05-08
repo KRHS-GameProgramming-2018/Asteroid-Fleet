@@ -19,6 +19,8 @@ class HealthBar(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         health = args[2]
+        if health < 0:
+            health = 0
         self.image = self.images[health]
         pass
         
