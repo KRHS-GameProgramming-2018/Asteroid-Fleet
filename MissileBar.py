@@ -1,6 +1,4 @@
 import pygame, sys, math, random
-from PlayerShip import *
-from Missile import *
 width = 1100
 height = 900
 
