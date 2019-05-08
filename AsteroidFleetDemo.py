@@ -71,7 +71,7 @@ while go:
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     #------------setup---------------------------
-    bg = Background("Screen Display/StartScreen/images/startscreen2.png")
+    Background("Screen Display/StartScreen/images/startscreen.png")
    
     startButton = Button("start", [width/2, 500])
  #---------START SCREEN-----------------------------
@@ -99,21 +99,23 @@ while go:
                 startup.play(1)
                 startup.fadeout(2100)
                 
-            all.update()
             
             dirty = all.draw(screen)
             pygame.display.update(dirty)
             pygame.display.flip()
             clock.tick(60)
             
+            
   #-----GAME SETUP-------------
-    bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/Background/images/Scrollingspace.png", [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", [0, -3600])
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
+    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1000]) 
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
@@ -121,7 +123,7 @@ while go:
     Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
-    while mode == "play" and player1.lives > 0:
+    while mode == "play":# and player1.lives > 0:
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -256,8 +258,9 @@ while go:
        
        
        
-    bg.kill()
-    bg = Background("Screen Display/SplashScreen/images/lost.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
         for event in pygame.event.get():
             #print event.type
@@ -272,8 +275,9 @@ while go:
         clock.tick(60)
 
 
-    bg.kill()
-    bg = Background("Screen Display/SplashScreen/images/win.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/SplashScreen/images/win.png")
     
     while mode == "finish":
         for event in pygame.event.get():
