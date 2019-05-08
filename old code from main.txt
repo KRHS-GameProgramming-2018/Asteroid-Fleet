@@ -1,0 +1,62 @@
+ # if player1.collideEndLine(finishLine):
+            # pygame.time.delay(500)
+            # victory.play(1);
+            # victory.fadeout(1200)
+            # finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
+            # mode = "ready2"
+      
+        # for asteroid in asteroids:
+            # asteroid.update(size)
+            # if missile:
+                # missile.collide(asteroid)
+                # asteroid.collideMissile(missile)
+            # if shield:
+               # player1.collideShield(shield)
+               # shield.collideShip(player1)  
+            # if repair:
+               # player1.colliderepair(repair)
+               # repair.collideShip(player1)  
+            # if not asteroid.living:
+               # # boomsound.play(1);
+               # # boomsound.fadeout(1000)
+                # asteroids.remove(asteroid)
+  
+  ------------------------------------------------
+  
+  # for hitter in asteroids:
+            # for hittie in asteroids:
+                # hitter.collideAsteroid(hittie)
+            # hitter.collideShip(player1)
+            # player1.collideAsteroid(hitter)
+            
+----------------------------------------------------
+# player1.update(size)
+        # health.update(player1.lives)
+        # rocket.update(player1.missiles)
+        
+        # if player1.collideEndLine(finishLine):
+            # pygame.time.delay(500)
+            # victory.play(1);
+            # victory.fadeout(1200)
+            # finishimage = pygame.transform.scale(pygame.image.load("Screen Display/SplashScreen/images/win.png"), [width,height])
+            # mode = "finish"
+      
+        # for asteroid in asteroids:
+            # asteroid.update(size)
+            # asteroid.charge(size)
+            # if missile:
+                # missile.collide(asteroid)
+                # asteroid.collideMissile(missile)
+            # if shield:
+               # player1.collideShield(shield)
+               # shield.collideShip(player1)  
+            # if repair:
+               # player1.colliderepair(repair)
+               # repair.collideShip(player1)  
+            # if not asteroid.living:
+                # asteroids.remove(asteroid)
+                
+-----------------------------------------------
+
+       # bg = pygame.transform.scale(pygame.image.load("Screen Display/Background/images/space.png"), [width,height])
+

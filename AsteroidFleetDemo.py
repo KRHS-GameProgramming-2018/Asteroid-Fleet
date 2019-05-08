@@ -1,3 +1,4 @@
+#force new
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *
@@ -189,7 +190,7 @@ while go:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
 
-        if len(asteroids.sprites())< 22:
+        if len(asteroids.sprites())< 2:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)

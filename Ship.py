@@ -91,6 +91,7 @@ class Ship(pygame.sprite.Sprite):
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
         if self.ability:
             self.ability = False
+    
         else:
             self.lives -= 1
             boomsound.play(1);
@@ -105,9 +106,6 @@ class Ship(pygame.sprite.Sprite):
         
     def collideShield(self):
         self.ability = True
-        if self.ability == True:
-            self.stopImage = self.shieldImage
-            self.moveImage = self.shieldMoveImage
         return True
 
     
