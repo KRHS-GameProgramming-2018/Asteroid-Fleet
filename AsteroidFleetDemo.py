@@ -99,8 +99,6 @@ while go:
                 startup.play(1)
                 startup.fadeout(2100)
                 
-        #all.update()
-        
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
@@ -109,7 +107,7 @@ while go:
   #-----GAME SETUP-------------
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/Scrollingspace.png", True, [0, -1800])
+    Background("Screen Display/Background/images/scrolling.png", True, [0, -1800])
     Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
     player1 = PlayerShip(2)
     missile = None
