@@ -119,7 +119,6 @@ class PlayerShip(Ship):
                 self.images = self.shieldImage
             if self.hyper:
                 self.images = self.HyperImage
-            
                 
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
