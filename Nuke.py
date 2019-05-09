@@ -39,15 +39,13 @@ class Nuke(pygame.sprite.Sprite):
         self.aniTimer = 0
         self.aniTimerMax = 30/10
       
-      
         if self.rect.center == [550,50]:
             print "okay yes"
-
 
         if self.speed == 0:
             self.living = False
    
-        
+    
     def animate(self):
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1

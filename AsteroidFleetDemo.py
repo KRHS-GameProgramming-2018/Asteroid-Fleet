@@ -77,6 +77,7 @@ while go:
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
+        print all.sprites()
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -108,7 +109,7 @@ while go:
             
   #-----GAME SETUP-------------
     bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
+    bg = Background("Screen Display/Background/images/space.png", True)
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
@@ -190,7 +191,7 @@ while go:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
 
-        if len(asteroids.sprites())< 2:
+        if len(asteroids.sprites())< 22:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
@@ -328,7 +329,7 @@ while go:
     
     
     bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
+    bg = Background("Screen Display/Background/images/space.png", True)
     player1 = PlayerShip(25, True)
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
