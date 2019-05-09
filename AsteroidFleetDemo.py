@@ -76,6 +76,7 @@ while go:
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
+        print all.sprites()
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
@@ -108,8 +109,8 @@ while go:
   #-----GAME SETUP-------------
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/Scrollingspace.png", [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", [0, -3600])
+    Background("Screen Display/Background/images/Scrollingspace.png", True, [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
@@ -297,8 +298,9 @@ while go:
  #---------------------------------------------------------------------------------------------------------------  
    
    
-    bg.kill()
-    bg = Background("Screen Display/SplashScreen/images/speed.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/SplashScreen/images/speed.png")
     while mode == "ready2":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -330,8 +332,11 @@ while go:
     
     
     
-    bg.kill()
-    bg = Background("Screen Display/Background/images/space.png")
+    for bg in backgrounds:
+        bg.kill()
+    Background("Screen Display/Background/images/Scrollingspace.png", True, [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
+    
     player1 = PlayerShip(25, True)
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
