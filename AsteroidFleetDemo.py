@@ -99,7 +99,7 @@ while go:
                 startup.play(1)
                 startup.fadeout(2100)
                 
-        all.update()
+        #all.update()
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
