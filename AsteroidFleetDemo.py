@@ -436,5 +436,5 @@ while go:
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(60)    
 
