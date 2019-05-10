@@ -76,7 +76,6 @@ while go:
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
-        print all.sprites()
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
