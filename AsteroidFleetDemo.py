@@ -116,7 +116,7 @@ while go:
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
-    Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
+    Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
     Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
