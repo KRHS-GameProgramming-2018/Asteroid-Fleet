@@ -181,7 +181,7 @@ while go:
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, False)
         
         
-        while len(asteroids.sprites()) < 5:
+        while len(asteroids.sprites()) < 4:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
             Asteroid(width, asteroids    )
@@ -189,8 +189,8 @@ while go:
                 # for otherasteroid in asteroidsHitAsteroids[asteroid]:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
-
-        if len(asteroids.sprites())< 22:
+                        
+        if len(asteroids.sprites())< 19:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
