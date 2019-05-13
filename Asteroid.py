@@ -142,8 +142,8 @@ class Asteroid(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.explode = True
-            print " did boom ?"
             self.living = False
+          
        
     def collideMissile(self, other):
         if not(self == other):

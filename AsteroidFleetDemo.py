@@ -176,7 +176,7 @@ while go:
         all.update(size, player1.lives, player1.missiles)
         
    #-----------------------------------------------------------------------
-        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True, False) #Boolean checks if object should be killed upon collision
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
       
