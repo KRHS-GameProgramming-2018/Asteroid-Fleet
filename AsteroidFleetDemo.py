@@ -97,7 +97,7 @@ while go:
                 if startButton.collidePt(event.pos):
                     mode = "play"
                 if hyperButton.collidePt(event.pos):
-                    mode = "countdown"
+                    mode = "secret"
                # print mode
                 opening.stop()
                 pygame.time.delay(500)
