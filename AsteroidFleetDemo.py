@@ -325,7 +325,7 @@ while go:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        all.update()
+        #all.update()
         if cd.done:
             mode = "secret"
         dirty = all.draw(screen)
