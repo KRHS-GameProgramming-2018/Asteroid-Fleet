@@ -7,7 +7,7 @@ class Nuke(pygame.sprite.Sprite):
     def __init__(self, image, startPos = [0,0]):
         
         pygame.sprite.Sprite.__init__(self, self.containers)
-        self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
+        self.image = pygame.transform.scale(pygame.image.load(image),[45,120])
         self.rect = self.image.get_rect(center=[550,50])
         print self.rect.center
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
