@@ -7,6 +7,10 @@ class Button(pygame.sprite.Sprite):
             self.basicImage = pygame.image.load("Screen Display/Buttons/startbutton.png")
             self.hoverImage = pygame.image.load("Screen Display/Buttons/startbutton2.png")
             self.clickImage = pygame.image.load("Screen Display/Buttons/startbutton3.png")
+        elif kind == "hyper":
+            self.basicImage = pygame.image.load("Screen Display/Buttons/HyperSpeed1.png")
+            self.hoverImage = pygame.image.load("Screen Display/Buttons/HyperSpeed2.png")
+            self.clickImage = pygame.image.load("Screen Display/Buttons/HyperSpeed3.png")
         self.image = self.basicImage
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2

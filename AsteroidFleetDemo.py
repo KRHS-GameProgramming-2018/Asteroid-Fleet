@@ -73,6 +73,7 @@ while go:
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
     startButton = Button("start", [width/2, 500])
+    hyperButton = Button("hyper", [width/2, 600])
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
@@ -84,15 +85,20 @@ while go:
             if event.type == pygame.MOUSEMOTION:
                 if event.buttons[0] == 0:
                     startButton.checkHover(event.pos)
+                    hyperButton.checkHover(event.pos)
                 else:
                     startButton.checkClick(event.pos)
+                    hyperButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print event.button
                 if event.button == 1:
                     startButton.checkClick(event.pos)
+                    hyperButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
                     mode = "play"
+                if hyperButton.collidePt(event.pos):
+                    mode = "ready2"
                # print mode
                 opening.stop()
                 pygame.time.delay(500)
