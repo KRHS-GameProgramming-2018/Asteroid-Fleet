@@ -91,7 +91,7 @@ class Ship(pygame.sprite.Sprite):
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
         if self.ability:
             self.ability = False
-        else:
+        elif other.living:
             self.lives -= 1
             boomsound.play(1);
             boomsound.fadeout(1000)

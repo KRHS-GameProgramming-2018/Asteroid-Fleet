@@ -72,8 +72,8 @@ while go:
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
+   
     startButton = Button("start", [width/2, 500])
-    hyperButton = Button("hyper", [width/2, 600])
  #---------START SCREEN-----------------------------
     while mode == "ready":
         opening.play(1);
@@ -84,45 +84,40 @@ while go:
             if event.type == pygame.MOUSEMOTION:
                 if event.buttons[0] == 0:
                     startButton.checkHover(event.pos)
-                    hyperButton.checkHover(event.pos)
                 else:
                     startButton.checkClick(event.pos)
-                    hyperButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print event.button
                 if event.button == 1:
                     startButton.checkClick(event.pos)
-                    hyperButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
                     mode = "play"
-                if hyperButton.collidePt(event.pos):
-                    mode = "secret"
                # print mode
                 opening.stop()
                 pygame.time.delay(500)
                 startup.play(1)
                 startup.fadeout(2100)
                 
-        dirty = all.draw(screen)
-        pygame.display.update(dirty)
-        pygame.display.flip()
-        clock.tick(60)
+            all.update()
+            
+            dirty = all.draw(screen)
+            pygame.display.update(dirty)
+            pygame.display.flip()
+            clock.tick(60)
             
   #-----GAME SETUP-------------
-    for bg in backgrounds:
-        bg.kill()
-    Background("Screen Display/Background/images/scrolling2.png", True, [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
+    bg.kill()
+    bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1000]) 
+    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,50]) 
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
-    Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
+    Hyperspeed("PowerUps/Boost/images/powerup.png",[random.randint(50,width-50),(200)])
     Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
@@ -176,7 +171,7 @@ while go:
         all.update(size, player1.lives, player1.missiles)
         
    #-----------------------------------------------------------------------
-        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False) #Boolean checks if object should be killed upon collision
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True, False) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
       
@@ -186,7 +181,7 @@ while go:
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, False)
         
         
-        while len(asteroids.sprites()) < 4:
+        while len(asteroids.sprites()) < 5:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
             Asteroid(width, asteroids    )
@@ -194,8 +189,8 @@ while go:
                 # for otherasteroid in asteroidsHitAsteroids[asteroid]:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
-                        
-        if len(asteroids.sprites())< 19:
+
+        if len(asteroids.sprites())< 2:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
@@ -261,9 +256,8 @@ while go:
        
        
        
-    for bg in backgrounds:
-        bg.kill()
-    Background("Screen Display/SplashScreen/images/lost.png")
+    bg.kill()
+    bg = Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
         for event in pygame.event.get():
             #print event.type
@@ -278,9 +272,8 @@ while go:
         clock.tick(60)
 
 
-    for bg in backgrounds:
-        bg.kill()
-    Background("Screen Display/SplashScreen/images/win.png")
+    bg.kill()
+    bg = Background("Screen Display/SplashScreen/images/win.png")
     
     while mode == "finish":
         for event in pygame.event.get():
@@ -301,9 +294,8 @@ while go:
  #---------------------------------------------------------------------------------------------------------------  
    
    
-    for bg in backgrounds:
-        bg.kill()
-    Background("Screen Display/SplashScreen/images/speed.png")
+    bg.kill()
+    bg = Background("Screen Display/SplashScreen/images/speed.png")
     while mode == "ready2":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -335,11 +327,8 @@ while go:
     
     
     
-    for bg in backgrounds:
-        bg.kill()
-    Background("Screen Display/Background/images/Scrollingspace.png", True, [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
-    
+    bg.kill()
+    bg = Background("Screen Display/Background/images/space.png")
     player1 = PlayerShip(25, True)
     MissileBar(player1.missiles, [1000, height - 30])
     HealthBar(player1.lives, [100, height - 25])
@@ -447,5 +436,5 @@ while go:
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
-        clock.tick(60)    
+        clock.tick(60)
 
