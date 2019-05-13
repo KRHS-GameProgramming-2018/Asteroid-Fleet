@@ -75,14 +75,17 @@ class Nuke(pygame.sprite.Sprite):
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)  
-     
+    
+    def collideCenter(self):
+        self.explode = True
+        if self.explode:
+            print "im exploding!"
+            self.speedy = 0
+            self.animate()
                                 
     def update(*args):
         self = args[0]
         size = args[1]
         self.move()
-        if self.explode:
-            print "im exploding!"
-            self.speedy = 0
-            self.animate()
+        
 

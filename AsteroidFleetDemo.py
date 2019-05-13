@@ -163,6 +163,11 @@ while go:
                     pygame.quit()
                 if event.key == pygame.K_q:
                     pygame.quit()    
+                if event.key == pygame.K_n:
+                    Nuke.explode()
+                    
+                    
+                    
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w:
                     player1.go("northU")
