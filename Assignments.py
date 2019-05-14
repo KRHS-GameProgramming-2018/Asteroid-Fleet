@@ -3,8 +3,8 @@ What We Want To Do:
 Asteroid Fleet Completion
 
 Big Questions:
-Should we downsize all objects or try to make a scrolling screen, levels == Game purpose??
-Is a multiplayer option worth doing? 
+Should we downsize all objects or try to make a scrolling screen, levels == Game purpose??  #done
+Is a multiplayer option worth doing?   #Yes I think this would be pretty sweet. Although it would take some effort. - Tucker
 
 Things To Add:
 
