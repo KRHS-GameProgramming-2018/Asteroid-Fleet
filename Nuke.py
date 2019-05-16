@@ -9,13 +9,20 @@ class Nuke(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.transform.scale(pygame.image.load(image),[45,120])
         self.rect = self.image.get_rect(center=[550,50])
-        print self.rect.center
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "nuke"
         self.speedx = 0
-        self.speedy = 1 
+        self.speedy = 0 
         self.speed = [self.speedx, self.speedy]
+        self.drop = False
+        if self.drop == True:
+            print "yes"
+  
+        x1 = self.rect.centerx
+        y1 = self.rect.centery
+        self.pos = [x1,y1]
+        
         
         self.explodeImages = [pygame.transform.scale(pygame.image.load("Asteroid/images/exp1.png"), [149,121]),
 							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp2.png"), [149,121]),
@@ -45,7 +52,14 @@ class Nuke(pygame.sprite.Sprite):
         if self.speed == 0:
             self.living = False
    
-    
+    def go(self, d):
+        if d == "drop":
+            self.speedy = 1
+            self.rect = self.rect.move(self.speed)  
+        if d == "hold":
+            self.speedy = 0
+           
+        
     def animate(self):
         if self.aniTimer < self.aniTimerMax:
             self.aniTimer += 1
@@ -58,7 +72,7 @@ class Nuke(pygame.sprite.Sprite):
             self.image = self.images[self.frame]
     
     def exploding(self):
-		pass
+	    pass
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -70,22 +84,22 @@ class Nuke(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
-   
+
+    # def collideLine(self):
+        # print "ITS HAPPENING"
+        # self.animate()
+    
    
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)  
-    
-    def collideCenter(self):
-        self.explode = True
-        if self.explode:
-            print "im exploding!"
-            self.speedy = 0
-            self.animate()
-                                
+                    
     def update(*args):
         self = args[0]
         size = args[1]
         self.move()
+        if self.rect.centery >= 100:
+            self.animate()
+            
         
 

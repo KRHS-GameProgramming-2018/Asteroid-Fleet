@@ -118,12 +118,12 @@ while go:
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1000]) 
+    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1200]) 
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
-    Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
+    mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
     while mode == "play" and player1.lives > 0:
@@ -164,7 +164,8 @@ while go:
                 if event.key == pygame.K_q:
                     pygame.quit()    
                 if event.key == pygame.K_n:
-                    Nuke.explode()
+                    mega.go("drop")
+                    print "we did it!"
                     
                     
                     
@@ -177,6 +178,9 @@ while go:
                     player1.go("southU")
                 if event.key == pygame.K_d:
                     player1.go("eastU")
+                if event.key == pygame.K_n:
+                    mega.go("hold")
+                    print "waiting!"
         
         all.update(size, player1.lives, player1.missiles)
         
@@ -204,7 +208,7 @@ while go:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
-
+            
         for ability in playerHitAbilities:
             if ability.kind == "repair":
                 player1.colliderepair()
