@@ -59,7 +59,7 @@ MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
-Nuke.containers = (specials, all)
+Nu.containers = (speals, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
