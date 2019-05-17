@@ -8,7 +8,7 @@ class Nuke(pygame.sprite.Sprite):
         
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.transform.scale(pygame.image.load(image),[45,120])
-        self.rect = self.image.get_rect(center=[550,50])
+        self.rect = self.image.get_rect()
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "nuke"
@@ -19,25 +19,13 @@ class Nuke(pygame.sprite.Sprite):
         if self.drop == True:
             print "yes"
   
-        x1 = self.rect.centerx
-        y1 = self.rect.centery
-        self.pos = [x1,y1]
-        
-        
-        self.explodeImages = [pygame.transform.scale(pygame.image.load("Asteroid/images/exp1.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp2.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp3.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp4.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp5.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp6.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp7.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp8.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp9.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp10.png"), [149,121]),
-                              pygame.transform.scale(pygame.image.load("Asteroid/images/exp11.png"), [149,121]),
-							  pygame.transform.scale(pygame.image.load("Asteroid/images/exp12.png"), [149,121]),
-				              pygame.transform.scale(pygame.image.load("Asteroid/images/exp13.png"), [149,121]),
-                              pygame.transform.scale(pygame.image.load("Asteroid/images/exp14.png"), [149,121])]
+        self.explodeImages = [pygame.image.load("Asteroid/images/nukeboom1.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom2.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom3.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom4.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom5.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom6.png"), 
+							  pygame.image.load("Asteroid/images/nukeboom7.png")]
         
         self.explode = False
         self.images = self.explodeImages
@@ -46,9 +34,6 @@ class Nuke(pygame.sprite.Sprite):
         self.aniTimer = 0
         self.aniTimerMax = 30/10
       
-        if self.rect.center == [550,50]:
-            print "okay yes"
-
         if self.speed == 0:
             self.living = False
    
@@ -97,9 +82,9 @@ class Nuke(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
-        self.move()
-        if self.rect.centery >= 100:
-            self.animate()
+        if self.rect.centery >= 450:
+			self.animate()
             
+        self.move()
         
 
