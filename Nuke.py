@@ -14,10 +14,11 @@ class Nuke(pygame.sprite.Sprite):
         self.kind = "nuke"
         self.speedx = 0
         self.speedy = 0 
+        self.rect = self.rect.move(startPos)
         self.speed = [self.speedx, self.speedy]
         self.drop = False
         if self.drop == True:
-            print "yes"
+            print "INITiATING"
   
         self.explodeImages = [pygame.image.load("Asteroid/images/nukeboom1.png"), 
 							  pygame.image.load("Asteroid/images/nukeboom2.png"), 
@@ -32,15 +33,15 @@ class Nuke(pygame.sprite.Sprite):
         self.frame = 0;
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
-        self.aniTimerMax = 30/10
+        self.aniTimerMax = 60/10
       
         if self.speed == 0:
             self.living = False
    
     def go(self, d):
         if d == "drop":
-            self.speedy = 1
-            self.rect = self.rect.move(self.speed)  
+            self.speedy = 2
+           # self.rect = self.rect.move(self.speed)  
         if d == "hold":
             self.speedy = 0
            
@@ -55,6 +56,7 @@ class Nuke(pygame.sprite.Sprite):
             else:
                 self.kill()
             self.image = self.images[self.frame]
+            self.rect = self.image.get_rect(center = self.rect.center)
     
     def exploding(self):
 	    pass
@@ -70,11 +72,6 @@ class Nuke(pygame.sprite.Sprite):
         if not(self == other):
             self.living = False
 
-    # def collideLine(self):
-        # print "ITS HAPPENING"
-        # self.animate()
-    
-   
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)  

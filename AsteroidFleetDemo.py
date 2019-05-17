@@ -59,7 +59,7 @@ MissileBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
-Nu.containers = (speals, all)
+Nuke.containers = (specials, all)
 
 while go:
     #SOUNDS----------------NEEDS TO BE MOVED TO OBJECT FILES?
@@ -123,7 +123,7 @@ while go:
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
-    mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
+    #mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
     while mode == "play" and player1.lives > 0:
@@ -132,12 +132,16 @@ while go:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if player1.missiles > 0:
-                    missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos)		#spawn point of missile
-                    launch.play(1);
-                    launch.fadeout(1200)
-                    player1.missiles -= 1
-            if event.type == pygame.MOUSEMOTION:
+                if event.button == 1:
+                    if player1.missiles > 0:
+                        missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos)       #spawn point of missile
+                        launch.play(1);
+                        launch.fadeout(1200)
+                        player1.missiles -= 1
+                if event.button == 3:
+                    mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
+                    
+            if event.type == pygame.MOUSEMOTION:         
                 if missile:
                     missile.headTo(event.pos)
             
