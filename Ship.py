@@ -92,7 +92,7 @@ class Ship(pygame.sprite.Sprite):
         if self.ability:
             self.ability = False
         elif other.living:
-            self.lives -= 1
+            #self.lives -= 1
             boomsound.play(1);
             boomsound.fadeout(1000)
         print self.lives
