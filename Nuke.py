@@ -17,6 +17,7 @@ class Nuke(pygame.sprite.Sprite):
         self.rect = self.rect.move(startPos)
         self.speed = [self.speedx, self.speedy]
         self.drop = False
+        self.detonate = 1
         if self.drop == True:
             print "INITiATING"
   
@@ -40,7 +41,7 @@ class Nuke(pygame.sprite.Sprite):
    
     def go(self, d):
         if d == "drop":
-            self.speedy = 2
+            self.speedy = 3
            # self.rect = self.rect.move(self.speed)  
         if d == "hold":
             self.speedy = 0
@@ -71,6 +72,10 @@ class Nuke(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
+            
+    def collideAsteroid(self, other):
+        if not(self == other):
+            self.living = False
 
     def move(self):
         self.speed = [self.speedx, self.speedy]
@@ -80,7 +85,8 @@ class Nuke(pygame.sprite.Sprite):
         self = args[0]
         size = args[1]
         if self.rect.centery >= 450:
-			self.animate()
+            self.detonate = 2
+            self.animate()
             
         self.move()
         

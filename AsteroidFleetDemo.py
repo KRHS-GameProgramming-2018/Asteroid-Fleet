@@ -40,8 +40,8 @@ missiles = pygame.sprite.Group()
 limits = pygame.sprite.Group()
 HUD = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
-counter = pygame.sprite.Group()
 specials = pygame.sprite.Group()
+counter = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Background.containers = (backgrounds, all)
@@ -192,13 +192,12 @@ while go:
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
-      
+       
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
-        
+        asteroidsHitSpecials = pygame.sprite.groupcollide(asteroids, specials, False, True)
         missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, False)
-        
-        
+    
         while len(asteroids.sprites()) < 4:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
@@ -236,7 +235,11 @@ while go:
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
 
 
-
+        for asteroid in asteroidsHitSpecials:
+             asteroid.collideNuke(mega)
+             mega.collideAsteroid(asteroid)
+        
+        
         for asteroid in playerHitAsteroids:
 			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
 			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 

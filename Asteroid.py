@@ -150,3 +150,10 @@ class Asteroid(pygame.sprite.Sprite):
             self.explode = True
             self.living = False
     
+        
+    def collideNuke(self, other):
+        if not(self == other):
+            self.explode = True
+            self.living = False
+    
+    

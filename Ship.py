@@ -116,6 +116,9 @@ class Ship(pygame.sprite.Sprite):
     def collideSlowMo(self):
         pass
 
+    def collideNuke(self):
+        pass
+
 
     def colliderepair(self):
         if not (self):
