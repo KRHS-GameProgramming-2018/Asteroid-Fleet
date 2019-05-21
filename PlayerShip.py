@@ -15,11 +15,9 @@ class PlayerShip(Ship):
         self.HyperImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.png"), [117,105])]
         self.HyperMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.move.png"), [117,128])]
         
-     
-     
-     
         
-       
+        
+        
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
         self.goal = [0,0] 
         self.hyper = hyper   
