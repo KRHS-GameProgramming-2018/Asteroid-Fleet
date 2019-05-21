@@ -67,7 +67,7 @@ while go:
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
-    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repair-kit.wav")
+    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repairkitpickup.wav")
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     #------------setup---------------------------
