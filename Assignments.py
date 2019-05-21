@@ -20,7 +20,6 @@ Star wars description intro, command log, giving background to game
 
 Things that Need to be Fixed / Tweaked:
 
-One of the asteroids has weird imaging on the edges 
-Explosion images should be resized in pic art because coding sizing makes it pixelated
 
-Startsceen still has old repair kit icon on it
+
+
