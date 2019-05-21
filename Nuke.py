@@ -18,6 +18,7 @@ class Nuke(pygame.sprite.Sprite):
         self.speed = [self.speedx, self.speedy]
         self.drop = False
         self.detonate = 1
+        self.lives = 1
         if self.drop == True:
             print "INITiATING"
   
@@ -37,6 +38,11 @@ class Nuke(pygame.sprite.Sprite):
         self.aniTimerMax = 60/10
       
         if self.speed == 0:
+            self.living = False
+            
+            
+    def alive(self, lives):
+        if self.lives <= 0:
             self.living = False
    
     def go(self, d):
@@ -58,6 +64,8 @@ class Nuke(pygame.sprite.Sprite):
                 self.kill()
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(center = self.rect.center)
+            self.lives = 0
+           
     
     def exploding(self):
 	    pass

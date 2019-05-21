@@ -192,7 +192,7 @@ while go:
         playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False) #Boolean checks if object should be killed upon collision
         playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
-       
+        playerHitSpecials = pygame.sprite.spritecollide(player1, specials, True)
         
         asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
         asteroidsHitSpecials = pygame.sprite.groupcollide(asteroids, specials, False, False)
@@ -211,7 +211,7 @@ while go:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
-            
+        
         for ability in playerHitAbilities:
             if ability.kind == "repair":
                 player1.colliderepair()
@@ -238,7 +238,10 @@ while go:
         for asteroid in asteroidsHitSpecials:
              asteroid.collideNuke(mega)
              mega.collideAsteroid(asteroid)
-        
+    
+        # for specials in playerHitSpecials:
+            # player1.collideNuke(mega)
+            # mega.collideShip(player1)
         
         for asteroid in playerHitAsteroids:
 			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve

@@ -119,7 +119,6 @@ class Ship(pygame.sprite.Sprite):
     def collideNuke(self):
         pass
 
-
     def colliderepair(self):
         if not (self):
             print "hit dude"
