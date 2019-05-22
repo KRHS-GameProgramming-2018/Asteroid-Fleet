@@ -234,15 +234,14 @@ while go:
                 player1.collideSlowMo()
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
 
-
+        for special in playerHitSpecials:
+            if special.kind == "nuke":
+                player1.collideNuke()
+            
         for asteroid in asteroidsHitSpecials:
              asteroid.collideNuke(mega)
              mega.collideAsteroid(asteroid)
     
-        # for specials in playerHitSpecials:
-            # player1.collideNuke(mega)
-            # mega.collideShip(player1)
-        
         for asteroid in playerHitAsteroids:
 			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
 			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 

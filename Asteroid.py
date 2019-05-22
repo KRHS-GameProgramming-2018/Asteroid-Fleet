@@ -99,7 +99,7 @@ class Asteroid(pygame.sprite.Sprite):
         self.bounceWall(size)
         
         if self.explode:
-            print "im exploding!"
+           # print "im exploding!"
             self.speedy = 0
             self.animate()
            

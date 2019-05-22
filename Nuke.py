@@ -80,6 +80,7 @@ class Nuke(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
+        print "HAPPENING YES"
             
     def collideAsteroid(self, other):
         if not(self == other):
