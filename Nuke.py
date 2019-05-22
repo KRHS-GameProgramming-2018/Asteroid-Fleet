@@ -80,7 +80,7 @@ class Nuke(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
-        print "HAPPENING YES"
+        self.lives -= 1
             
     def collideAsteroid(self, other):
         if not(self == other):
@@ -93,10 +93,10 @@ class Nuke(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
-        if self.rect.centery >= 450:
+        if self.rect.centery >= 400:
             self.detonate = 2
             self.animate()
-            
+        self.alive(self.lives)
         self.move()
         
 

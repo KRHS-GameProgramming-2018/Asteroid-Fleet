@@ -139,6 +139,7 @@ while go:
                         launch.fadeout(1200)
                         player1.missiles -= 1
                 if event.button == 3:
+                    #MAYBE INSERT CONDITION FOR ONE NUKE
                     mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
                     
             if event.type == pygame.MOUSEMOTION:         
@@ -237,6 +238,7 @@ while go:
         for special in playerHitSpecials:
             if special.kind == "nuke":
                 player1.collideNuke()
+                Nuke.living = False
             
         for asteroid in asteroidsHitSpecials:
              asteroid.collideNuke(mega)
