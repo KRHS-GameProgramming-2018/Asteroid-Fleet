@@ -14,7 +14,7 @@ class PlayerShip(Ship):
         self.shieldMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.shield.move.png"), [147,138])]
         self.HyperImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.png"), [117,105])]
         self.HyperMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.move.png"), [117,128])]
-        self.hitImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.png"), [117,105])]
+        self.hitImage = [pygame.transform.scale(pygame.image.load("Ship/images/broken.png"), [117,105])]
         self.hitMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/broken.move.png"), [117,128])]
         
         
@@ -22,10 +22,11 @@ class PlayerShip(Ship):
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
         self.goal = [0,0] 
         self.hyper = hyper   
+        
+        
         if self.hyper:
             self.images = self.HyperImage
             
-      
         
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
@@ -183,7 +184,7 @@ class PlayerShip(Ship):
             self.images = self.HyperMoveImage
         
         if self.hit:
-            self.images = self.hitImage
+           # self.images = self.hitImage
             self.images = self.hitMoveImage 
         
         Ship.update(self, size)
