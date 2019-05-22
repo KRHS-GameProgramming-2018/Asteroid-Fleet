@@ -67,7 +67,7 @@ while go:
     launch = pygame.mixer.Sound("PowerUps/GuidedMissile/sounds/missile-launch.wav")     #missile_launch_2.wav via smcameron at Freesound.org
     victory = pygame.mixer.Sound("Ship/sounds/victorysound.wav")                        #Badass Victory via PearceWilsonKing at Freesound.org
     boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav")
-    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repairkitpickup.aup")
+    repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repairkitpickup.wav")
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     #------------setup---------------------------
@@ -118,7 +118,7 @@ while go:
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
-    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1200]) 
+    EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1700]) 
     MissileBar(player1.missiles, [1000, height - 30])
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
