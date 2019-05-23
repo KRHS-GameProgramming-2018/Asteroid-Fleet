@@ -135,7 +135,7 @@ while go:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if player1.missiles > 0:
-                        missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos)       #spawn point of missile
+                        missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos,  "PowerUps/GuidedMissile/images/rocket.move.png")       #spawn point of missile
                         launch.play(1);
                         launch.fadeout(1200)
                         player1.missiles -= 1
@@ -373,7 +373,7 @@ while go:
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if player1.missiles > 0:
-                    missile = Missile(player1.rect.center, event.pos)
+                    missile =  missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos, "PowerUps/GuidedMissile/images/rocket.move.png")      
                     launch.play(1);
                     launch.fadeout(1200)
                     player1.missiles -= 1
