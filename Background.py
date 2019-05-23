@@ -1,7 +1,7 @@
 import pygame, sys, math
 
 class Background(pygame.sprite.Sprite):
-    def __init__(self, image, scrolling=False, startPos = [0,0]):
+    def __init__(self, image, scrolling=False, turbo = False, startPos = [0,0]):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.image.load(image)
         print image
@@ -9,6 +9,9 @@ class Background(pygame.sprite.Sprite):
         self.kind = "Background"
         self.speedx = 0
         self.speedy = 3
+        if turbo == True:
+            self.speedy = 25
+        
         self.layer = 0
         self.scrolling = scrolling
 

@@ -112,8 +112,8 @@ while go:
   #-----GAME SETUP-------------
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/scrolling2.png", True, [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
+    Background("Screen Display/Background/images/scrolling2.png", True, False, [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", True, False, [0, -3600])
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
@@ -357,8 +357,8 @@ while go:
     
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/Scrollingspace.png", True, [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", True, [0, -3600])
+    Background("Screen Display/Background/images/Scrollingspace.png", True, True, [0, -1800])
+    Background("Screen Display/Background/images/Scrollingspace2.png", True, True, [0, -3600])
     
     player1 = PlayerShip(25, True)
     MissileBar(player1.missiles, [1000, height - 30])

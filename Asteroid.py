@@ -78,10 +78,10 @@ class Asteroid(pygame.sprite.Sprite):
     def exploding(self):
 		pass
     
-    def hyperspeed(self):
-        self.speedx = 0
-        self.speedy = 3
-        self.speed = [self.speedx, self.speedy]
+    # def hyperspeed(self):
+        # self.speedx = 0
+        # self.speedy = 3
+        # self.speed = [self.speedx, self.speedy]
     
     def getDist(self, pt):
         x1 = self.rect.centerx
