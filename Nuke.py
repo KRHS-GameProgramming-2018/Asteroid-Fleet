@@ -64,7 +64,7 @@ class Nuke(pygame.sprite.Sprite):
                 self.kill()
             self.image = self.images[self.frame]
             self.rect = self.image.get_rect(center = self.rect.center)
-            self.lives = 0
+            
            
     
     def exploding(self):

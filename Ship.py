@@ -12,7 +12,7 @@ class Ship(pygame.sprite.Sprite):
         self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
-        
+        self.ready = True
     #Animation  
         self.images = self.baseImage
         self.frame = 0;
