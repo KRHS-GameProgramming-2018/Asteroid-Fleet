@@ -43,11 +43,17 @@ class PlayerShip(Ship):
         print self.lives
         
         self.missiles = 3
+        self.nukes = 1
         
     def alive(self, lives):
         if self.lives <= 0:
             self.living = False
-    
+
+    def ready(self, nukes):
+        if self.nukes <= 0:
+            self.living = False
+
+
     def setPos(self, pos):
         self.rect.center = pos
 

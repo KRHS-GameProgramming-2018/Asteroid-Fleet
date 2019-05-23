@@ -139,8 +139,8 @@ while go:
                         launch.fadeout(1200)
                         player1.missiles -= 1
                 if event.button == 3:
-                    #MAYBE INSERT CONDITION FOR ONE NUKE
-                    mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
+                    if player1.missiles <= 0:
+                        mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
                     
             if event.type == pygame.MOUSEMOTION:         
                 if missile:
