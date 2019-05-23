@@ -70,6 +70,7 @@ while go:
     repairkitpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/repairkitpickup.wav")
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
+    shieldpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/shieldpickup.wav")
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
     startButton = Button("start", [width/2, 500])
@@ -221,8 +222,8 @@ while go:
                 repairkitpickup.fadeout(1200)
             if ability.kind == "shield":
                 player1.collideShield()
-                repairkitpickup.play(1);
-                repairkitpickup.fadeout(1200)
+                shieldpickup.play(1);
+                shieldpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
                 mode = "ready2"
