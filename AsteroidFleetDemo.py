@@ -140,7 +140,7 @@ while go:
                         launch.fadeout(1200)
                         player1.missiles -= 1
                 if event.button == 3:
-                    if player1.ready == True:
+                    if player1.ready == True and player1.missiles <= 0:
                         mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
                     
             if event.type == pygame.MOUSEMOTION:         
