@@ -3,14 +3,14 @@ from Ship import *
 width = 1100
 height = 900
 
-class SlowMo(pygame.sprite.Sprite):
+class Mini(pygame.sprite.Sprite):
     def __init__(self, image, startPos = [0,0]):
             pygame.sprite.Sprite.__init__(self, self.containers)
             self.image = pygame.transform.scale(pygame.image.load(image),[50,50])
-            self.rect = self.image.get_rect(center=[random.randint(0,width),(-1200)])
+            self.rect = self.image.get_rect(center=[random.randint(0,width),(-1400)])
             self.radius = (self.rect.width/2 + self.rect.height/2)/2
             self.living = True  
-            self.kind = "matrix"
+            self.kind = "small"
             self.speedx = 0
             self.speedy = 3 #random.randint(0,2)
             self.speed = [self.speedx, self.speedy]
@@ -29,6 +29,7 @@ class SlowMo(pygame.sprite.Sprite):
     def collideShip(self, other):
         if not(self == other):
             self.living = False
+   
    
     def move(self):
         self.speed = [self.speedx, self.speedy]

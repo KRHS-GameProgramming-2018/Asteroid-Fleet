@@ -15,6 +15,7 @@ from SlowMo import *
 from AsteroidButtonQuestionMark import *
 from Countdown import *
 from Nuke import *
+from Mini import *
 pygame.init()
 
 width = 1100
@@ -58,6 +59,7 @@ MissileBar.containers = (HUD, all)
 #ShieldBar.containers = (HUD, all)
 HealthBar.containers = (HUD, all)
 Hyperspeed.containers = (abilities, all)
+Mini.containers = (abilities, all)
 SlowMo.containers = (abilities, all)
 Nuke.containers = (specials, all)
 
@@ -124,6 +126,7 @@ while go:
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
+    Mini("PowerUps/Boost/images/mini.png", startPos = [random.randint(50,width-50),(-400)])
     #mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    

@@ -114,10 +114,9 @@ class Ship(pygame.sprite.Sprite):
         return True
 
     def collideSlowMo(self):
-        pass
+        print "slowing down"
 
     def collideNuke(self):
-        print "HAPPENING"
         self.hit = True
 
     def colliderepair(self):
