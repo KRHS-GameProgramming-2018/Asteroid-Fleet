@@ -229,11 +229,12 @@ while go:
                 mode = "ready2"
                 for s in all.sprites():
                     s.kill()
-            if ability.kind == "matrix" and player1.ability == False:
+            if ability.kind == "matrix":
                 gameover.play(1)
                 gameover.fadeout(1200)
-                Asteroid.speed = 10
                 player1.collideSlowMo()
+                Asteroid.slow = True
+               
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
 
         for special in playerHitSpecials:

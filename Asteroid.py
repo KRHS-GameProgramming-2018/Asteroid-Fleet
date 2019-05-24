@@ -55,14 +55,22 @@ class Asteroid(pygame.sprite.Sprite):
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
         self.aniTimerMax = 30/10
+        self.slow = False
+        
         
         selfHitAsteroids = pygame.sprite.spritecollide(self, asteroids, False)
         if len(selfHitAsteroids) > 1:
             self.kill()
-
+    
         if self.speed == 0:
             self.living = False
     
+    
+    def freeze(self):
+        print " FREEZE "
+        self.speedy = 1
+        
+        
     def animate(self):
         
         if self.aniTimer < self.aniTimerMax:
@@ -76,7 +84,7 @@ class Asteroid(pygame.sprite.Sprite):
             self.image = self.images[self.frame]
     
     def exploding(self):
-		pass
+        pass
     
     # def hyperspeed(self):
         # self.speedx = 0
@@ -97,7 +105,10 @@ class Asteroid(pygame.sprite.Sprite):
         self.didBounceY = False
         self.move()
         self.bounceWall(size)
-        
+        #self.freeze()
+        if self.slow == True:
+            self.freeze()
+            
         if self.explode:
            # print "im exploding!"
             self.speedy = 0
