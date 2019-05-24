@@ -1,16 +1,17 @@
 import sys, math, pygame
 
 class Missile(pygame.sprite.Sprite):
-    def __init__(self, startPos, goal, image):
+    def __init__(self, startPos, goal, image, fast = False):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.baseImage = pygame.image.load(image)
-        ("PowerUps/GuidedMissile/images/hyper.move.png")
-       
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(startPos)
         self.angle = 0
         self.maxSpeed = 6
+        if fast == True:
+            self.maxSpeed = 15
+        
         self.headTo(goal)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
