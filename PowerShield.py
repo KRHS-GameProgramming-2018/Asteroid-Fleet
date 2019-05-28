@@ -11,6 +11,15 @@ class PowerShield(pygame.sprite.Sprite):
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True  
         self.kind = "shield"
+        self.images = [pygame.transform.scale(pygame.image.load("PowerUps/Shield/images/shield.png"),[50,50]),
+                       pygame.transform.scale(pygame.image.load("PowerUps/Shield/images/shield2.png"),[50,50])]
+                       
+        self.frame = 0;
+        self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/10
+    
+    
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -19,6 +28,20 @@ class PowerShield(pygame.sprite.Sprite):
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
   
+  
+    def animate(self):
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
+            print " animating"
+  
+  
     def collideShip(self, other):
         if not(self == other):
             self.living = False
@@ -26,3 +49,4 @@ class PowerShield(pygame.sprite.Sprite):
     def update(*args):
         self = args[0]
         size = args[1]
+        self.animate()
