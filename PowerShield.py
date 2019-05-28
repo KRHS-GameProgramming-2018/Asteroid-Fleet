@@ -17,7 +17,7 @@ class PowerShield(pygame.sprite.Sprite):
         self.frame = 0;
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
-        self.aniTimerMax = 60/10
+        self.aniTimerMax = 120/10
     
     
     
