@@ -12,7 +12,14 @@ class RepairKit(pygame.sprite.Sprite):
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.living = True
         self.kind = "repair"
-       
+        self.images = [pygame.transform.scale(pygame.image.load("PowerUps/RepairKit/images/repairkit.png"),[50,50]),
+                       pygame.transform.scale(pygame.image.load("PowerUps/RepairKit/images/boom3.png"),[50,50])]
+                       
+        self.frame = 0;
+        self.maxFrame = len(self.images)-1
+        self.aniTimer = 0
+        self.aniTimerMax = 60/10
+    
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -30,6 +37,22 @@ class RepairKit(pygame.sprite.Sprite):
                             if self.radius + other.radius > self.getDist(other.rect.center):
                                 self.living = False
 
+    def animate(self):
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
+            print " animating"
+            
+            
+
+
     def update(*args):
         self = args[0]
         size = args[1]
+        self.animate()
