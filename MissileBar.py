@@ -10,6 +10,9 @@ class MissileBar(pygame.sprite.Sprite):
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/RocketBar.2.png"),[200,50]),
                        pygame.transform.scale(pygame.image.load("Screen Display/HUD/HealthBar/images/RocketBar.3.png"),[200,50])]  
         
+        
+        
+        
         self.image = self.images[rockets]
         self.rect = self.image.get_rect(center=startPos)
      
