@@ -47,11 +47,7 @@ class RepairKit(pygame.sprite.Sprite):
             else:
                 self.frame = 0
             self.image = self.images[self.frame]
-            print " animating"
-            
-            
-
-
+           
     def update(*args):
         self = args[0]
         size = args[1]

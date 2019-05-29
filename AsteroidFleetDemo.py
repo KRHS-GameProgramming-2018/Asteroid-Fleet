@@ -1,4 +1,3 @@
-#force new
 import pygame, sys, math, random
 from Ship import *
 from PlayerShip import *

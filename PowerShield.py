@@ -39,7 +39,7 @@ class PowerShield(pygame.sprite.Sprite):
             else:
                 self.frame = 0
             self.image = self.images[self.frame]
-            print " animating"
+            
   
   
     def collideShip(self, other):

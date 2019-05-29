@@ -121,7 +121,6 @@ class Ship(pygame.sprite.Sprite):
 
     def colliderepair(self):
         if not (self):
-            print "hit dude"
             player1.lives = 4
             LevelUpSound.play(1);
             LevelUpSound.fadeout(1200)
