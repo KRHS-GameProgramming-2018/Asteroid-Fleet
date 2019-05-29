@@ -72,6 +72,7 @@ while go:
     voiceCount = pygame.mixer.Sound("Ship/sounds/countdown.wav")                        #countdown.wav from tim.kahn at Freesound.org
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     shieldpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/shieldpickup.wav")
+    shirnkpickup = pygame.mixer.Sound ("PowerUps/Shrink/sounds/shrinkpickup.wav")
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
     startButton = Button("start", [width/2, 500])
@@ -125,7 +126,7 @@ while go:
     #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
-    Mini("PowerUps/Boost/images/mini.png", startPos = [random.randint(50,width-50),(-400)])
+    Mini("PowerUps/Shrink/images/mini.png", startPos = [random.randint(50,width-50),(-400)])
     #mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
