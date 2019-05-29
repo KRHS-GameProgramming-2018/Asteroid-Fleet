@@ -13,12 +13,12 @@ class RepairKit(pygame.sprite.Sprite):
         self.living = True
         self.kind = "repair"
         self.images = [pygame.transform.scale(pygame.image.load("PowerUps/RepairKit/images/repairkit.png"),[50,50]),
-                       pygame.transform.scale(pygame.image.load("PowerUps/RepairKit/images/boom3.png"),[50,50])]
+                       pygame.transform.scale(pygame.image.load("PowerUps/RepairKit/images/repairkit2.png"),[50,50])]
                        
         self.frame = 0;
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
-        self.aniTimerMax = 60/10
+        self.aniTimerMax = 180/10
     
     
     def getDist(self, pt):
