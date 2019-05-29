@@ -432,11 +432,11 @@ while go:
         while len(asteroids.sprites()) < 3:
           #  print len(asteroids.sprites())
             print len(asteroids.sprites())
-            Asteroid(width, asteroids, 25)
+            Asteroid(width, asteroids, 25, True)
 
         if len(asteroids.sprites())< 3 :
             if random.randint(0,50) == 0:    #controls how close asteroids spawn together
-                Asteroid(width,asteroids, 25)		#Calls Asteroid and sets speed (25) for hyperspeed mode
+                Asteroid(width,asteroids, 25, True)		#Calls Asteroid and sets speed (25) for hyperspeed mode
             
         for ability in playerHitAbilities:
             if ability.kind == "repair":

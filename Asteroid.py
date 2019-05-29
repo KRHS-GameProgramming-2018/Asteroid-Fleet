@@ -11,12 +11,20 @@ from Boost import *
 from MissileBar import *
 
 class Asteroid(pygame.sprite.Sprite):
-    def __init__(self, width, asteroids, speed = 3):
+    def __init__(self, width, asteroids, speed = 3, red = False):
         pygame.sprite.Sprite.__init__(self, self.containers)
+        
         files = ["Asteroid/images/Asteroid1.png",
                  "Asteroid/images/Asteroid2.png",
                  "Asteroid/images/Asteroid3.png",
                  "Asteroid/images/Asteroid4.png"]
+                 
+        if red == True:
+            files = ["Asteroid/images/Asteroid1.fire.png",
+                     "Asteroid/images/Asteroid2.fire.png",
+                     "Asteroid/images/Asteroid3.fire.png",
+                     "Asteroid/images/Asteroid4.fire.png"]
+     
         image = files[random.randint(0,len(files)-1)]
         
         self.explodeImages = [pygame.transform.scale(pygame.image.load("Asteroid/images/exp1.png"), [149,121]),
