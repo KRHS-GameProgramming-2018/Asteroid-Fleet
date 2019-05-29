@@ -362,8 +362,8 @@ while go:
     
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/Scrollingspace.png", True, True, [0, -1800])
-    Background("Screen Display/Background/images/Scrollingspace2.png", True, True, [0, -3600])
+    Background("Screen Display/Background/images/hyper.bg.png", True, True, [0, -1800])
+    Background("Screen Display/Background/images/hyper.bg2.png", True, True, [0, -3600])
     
     player1 = PlayerShip(25, True)
     MissileBar(player1.missiles, [1000, height - 30])
