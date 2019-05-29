@@ -237,6 +237,10 @@ while go:
                 gameover.fadeout(1200)
                 player1.collideSlowMo()
                 Asteroid.slow = True
+            if ability.kind == "mini":
+                player1.collideMini()
+                shrinkpickup.play(1);
+                shrinkpickup.fadeout(1200)
                
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
 
