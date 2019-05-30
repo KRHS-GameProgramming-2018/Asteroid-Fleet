@@ -20,10 +20,10 @@ class Asteroid(pygame.sprite.Sprite):
                  "Asteroid/images/Asteroid4.png"]
                  
         if red == True:
-            files = ["Asteroid/images/Asteroid1.fire.png",
-                     "Asteroid/images/Asteroid2.fire.png",
-                     "Asteroid/images/Asteroid3.fire.png",
-                     "Asteroid/images/Asteroid4.fire.png"]
+            files = ["Asteroid/images/fire.png",
+                     "Asteroid/images/fire.png",
+                     "Asteroid/images/fire.png",
+                     "Asteroid/images/fire.png"]
      
         image = files[random.randint(0,len(files)-1)]
         
