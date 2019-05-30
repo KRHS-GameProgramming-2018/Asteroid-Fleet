@@ -119,6 +119,10 @@ class Ship(pygame.sprite.Sprite):
     def collideNuke(self):
         self.hit = True
 
+    def collideMini(self):
+        print "HOO MAN DUDE BRO"
+        
+
     def colliderepair(self):
         if not (self):
             player1.lives = 4

@@ -10,7 +10,7 @@ class Mini(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(center=[random.randint(0,width),(-1400)])
             self.radius = (self.rect.width/2 + self.rect.height/2)/2
             self.living = True  
-            self.kind = "small"
+            self.kind = "mini"
             self.speedx = 0
             self.speedy = 3 #random.randint(0,2)
             self.speed = [self.speedx, self.speedy]
