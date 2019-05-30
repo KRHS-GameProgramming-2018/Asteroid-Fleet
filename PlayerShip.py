@@ -16,7 +16,8 @@ class PlayerShip(Ship):
         self.HyperMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/ship1.powerup.move.png"), [117,128])]
         self.hitImage = [pygame.transform.scale(pygame.image.load("Ship/images/broken.png"), [117,105])]
         self.hitMoveImage = [pygame.transform.scale(pygame.image.load("Ship/images/broken.move.png"), [117,110])]
-        
+        self.miniImage = pygame.image.load("PowerUps/Shrink/images/mini.broken.png")
+        self.miniMoveImage = pygame.image.load("PowerUps/Shrink/images/mini.broken.move.png")
         
         
         Ship.__init__(self, "Ship/images/ship1.png",[0,0], startPos=[350,650])
@@ -36,6 +37,7 @@ class PlayerShip(Ship):
         self.ability = False
         self.hyper = False
         self.hit = False
+        self.small = False
         
         #Health
         self.living = True
@@ -67,6 +69,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperMoveImage
             if self.hit:
                 self.images = self.hitMoveImage
+            if self.small:
+                self.images = self.miniMoveImage
                 
         if d == "south":
             self.speedy = self.maxSpeed
@@ -77,7 +81,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperMoveImage
             if self.hit:
                 self.images = self.hitMoveImage
-                
+            if self.small:
+                self.images = self.miniMoveImage
                 
         if d == "west":
             self.speedx = -self.maxSpeed
@@ -88,7 +93,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperMoveImage
             if self.hit:
                 self.images = self.hitMoveImage
-                
+            if self.small:
+                self.images = self.miniMoveImage
                 
         if d == "east":
             self.speedx = self.maxSpeed
@@ -99,7 +105,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperMoveImage
             if self.hit:
                 self.images = self.hitMoveImage
-                
+            if self.small:
+                self.images = self.miniMoveImage    
             
         if d == "northU":
             self.speedy = 0
@@ -110,7 +117,9 @@ class PlayerShip(Ship):
                 self.images = self.HyperImage
             if self.hit:
                 self.images = self.hitImage
-                   
+            if self.small:
+                self.images = self.miniImage    
+            
         if d == "southU":
             self.speedy = 0
             self.images = self.baseImage
@@ -120,6 +129,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperImage
             if self.hit:
                 self.images = self.hitImage
+            if self.small:
+                self.images = self.miniImage   
             
         if d == "westU":
             self.speedx = 0
@@ -130,6 +141,8 @@ class PlayerShip(Ship):
                 self.images = self.HyperImage
             if self.hit:
                 self.images = self.hitImage
+            if self.small:
+                self.images = self.miniImage   
             
         if d == "eastU":
             self.speedx = 0
@@ -140,7 +153,9 @@ class PlayerShip(Ship):
                 self.images = self.HyperImage
             if self.hit:
                 self.images = self.hitImage
-                
+            if self.small:
+                self.images = self.miniImage   
+            
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
             self.speedx = 0
@@ -180,6 +195,15 @@ class PlayerShip(Ship):
         self = args[0]
         size = args[1]
     
+        Ship.update(self, size)
+        self.animate()
+        self.teleportX = False
+        self.didBounceY = False
+        self.move()
+        self.alive(self.lives)
+        self.bounceWall(size)
+        self.teleportShip(size) 
+    
         if self.ability:
             self.images  = self.shieldImage
             self.images  = self.shieldMoveImage
@@ -193,13 +217,6 @@ class PlayerShip(Ship):
            # self.images = self.hitImage
             self.images = self.hitMoveImage 
         
-        Ship.update(self, size)
-        self.animate()
-        self.teleportX = False
-        self.didBounceY = False
-        self.move()
-        self.alive(self.lives)
-        self.bounceWall(size)
-        #self.animate()
-        self.teleportShip(size) 
-    
+        if self.small:
+            self.images = self.miniMoveImage
+        

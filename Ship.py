@@ -53,7 +53,8 @@ class Ship(pygame.sprite.Sprite):
         self.teleportX = False
         self.didBounceY = False
         self.move()
-        self.bounceWall(size)            
+        self.bounceWall(size) 
+        self.animate()           
                     
     def bounceWall(self,size):
         width = size[0]
@@ -120,7 +121,8 @@ class Ship(pygame.sprite.Sprite):
         self.hit = True
 
     def collideMini(self):
-        print "HOO MAN DUDE BRO"
+        self.small = True
+        return True
         
 
     def colliderepair(self):
