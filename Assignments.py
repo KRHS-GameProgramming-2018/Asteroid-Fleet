@@ -11,7 +11,7 @@ Things To Add:
 Enemies / Shoot Function for them 
 Slow Down Time Power Up
 New Art For HyperSpeed Icon - jj 
-Buttons to the Start Screen 
+Buttons to the Start Screen #Done - Jake
 Sounds for all Powerups, collisions, new modes, death... - Tucker
 Shield Bar? -- Might not be neccesary
 Mega Asteroids ? Asteroid storm ? Space junk? - jj
