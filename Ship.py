@@ -14,9 +14,9 @@ class Ship(pygame.sprite.Sprite):
         self.living = True
         self.ready = True
     #Animation  
-        self.images = self.baseImage
-        self.frame = 0;
-        self.maxFrame = len(self.images)-1
+        self.image = self.baseImage
+        #self.frame = 0;
+        #self.maxFrame = len(self.images)-1
         self.aniTimer = 0
         self.aniTimerMax = 60/10
         boomsound = pygame.mixer.Sound("Asteroid/sounds/boom.wav") 
@@ -28,16 +28,16 @@ class Ship(pygame.sprite.Sprite):
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
     
-    def animate(self):
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-            self.image = self.images[self.frame]
+    # def animate(self):
+        # if self.aniTimer < self.aniTimerMax:
+            # self.aniTimer += 1
+        # else:
+            # self.aniTimer = 0
+            # if self.frame < self.maxFrame:
+                # self.frame += 1
+            # else:
+                # self.frame = 0
+            # self.image = self.images[self.frame]
     
     def alive(self, lives):
         if self.lives <= 0:
@@ -54,7 +54,7 @@ class Ship(pygame.sprite.Sprite):
         self.didBounceY = False
         self.move()
         self.bounceWall(size) 
-        self.animate()           
+        #self.animate()           
                     
     def bounceWall(self,size):
         width = size[0]
