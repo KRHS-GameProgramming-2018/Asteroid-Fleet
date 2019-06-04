@@ -33,7 +33,7 @@ closing = pygame.mixer.Sound("Ship/sounds/powerdown.wav")                   #CP_
 hit = pygame.mixer.Sound("Ship/sounds/impact.wav")                          #8-bit Soft Beep Impact JapanYoshiTheGamer at Freesound.org
 hyperspeed = pygame.mixer.Sound("SplashScreen/sounds/hyper-speed.wav")
 
-asteroids = pygame.sprite.Group()
+asteroids = pygame.sprite.Group()                                           #Group Names
 abilities = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
 missiles = pygame.sprite.Group()
@@ -44,7 +44,7 @@ specials = pygame.sprite.Group()
 counter = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-Background.containers = (backgrounds, all)
+Background.containers = (backgrounds, all)                                  #Assigning Objects to Groups
 Countdown.containers = (counter, all)
 Button.containers = (buttons, all)
 PlayerShip.containers = (all)
@@ -73,12 +73,13 @@ while go:
     gameover = pygame.mixer.Sound("Ship/sounds/gameover.wav")    
     shieldpickup = pygame.mixer.Sound("PowerUps/RepairKit/sounds/shieldpickup.wav")
     shirnkpickup = pygame.mixer.Sound ("PowerUps/Shrink/sounds/shrinkpickup.wav")
+ 
     #------------setup---------------------------
     bg = Background("Screen Display/StartScreen/images/startscreen2.png")
     startButton = Button("start", [width/2, 500])
     hyperButton = Button("hyper", [width/2, 600])
  #---------START SCREEN-----------------------------
-    while mode == "ready":
+    while mode == "ready":                                                              #Drawing Startscreen and initiating buttons
         opening.play(1);
         for event in pygame.event.get():
             #print event.type
@@ -115,7 +116,7 @@ while go:
   #-----GAME SETUP-------------
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/scrollingspace2.png", True, False, [0, -1800])
+    Background("Screen Display/Background/images/scrollingspace2.png", True, False, [0, -1800])                 #Drawing and calling all objects to the screen and assigning them images / setting boolean states 
     Background("Screen Display/Background/images/hyper.bg.png", True, False, [0, -3600])
     player1 = PlayerShip(2)
     missile = None
@@ -123,11 +124,9 @@ while go:
     RepairKit("PowerUps/RepairKit/images/repairkit.png",[random.randint(50,width-50),(200)])
     EndLine("Screen Display/Background/images/greenComplete.png", startPos=[width/2,-1700]) 
     MissileBar(player1.missiles, [1000, height - 30])
-    #ShieldBar(PowerShield, [1000, height - 80])
     HealthBar(player1.lives, [100, height - 25])
     Hyperspeed("PowerUps/Boost/images/powerup.png", startPos = [random.randint(50,width-50),(-800)])
     Mini("PowerUps/Shrink/images/mini.png", startPos = [random.randint(50,width-50),(-400)])
-    #mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[550,50])
     SlowMo("PowerUps/Boost/images/slowdown.png",[random.randint(50,width-50),(200)])
    
     while mode == "play" and player1.lives > 0:
@@ -138,11 +137,11 @@ while go:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if player1.missiles > 0:
-                        missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos,  "PowerUps/GuidedMissile/images/rocket.move.png", False)       #spawn point of missile
+                        missile = Missile([player1.rect.centerx - 59, player1.rect.centery - 115], event.pos,  "PowerUps/GuidedMissile/images/rocket.move.png", False)       #spawn point of missile and boolean decides which image 
                         launch.play(1);
                         launch.fadeout(1200)
                         player1.missiles -= 1
-                if event.button == 3:
+                if event.button == 3:                                                                           #Right mouse click calls Nuke, only if all missiles have been used prior
                     if player1.ready == True and player1.missiles <= 0:
                         mega = Nuke("PowerUps/GuidedMissile/images/nuke.png",[535,50])
                     
@@ -160,7 +159,7 @@ while go:
                                 if event.key == pygame.K_t:
                                     paused = False
                                 
-                if event.key == pygame.K_w:
+                if event.key == pygame.K_w:                                                                     #W A S D Movement and quit w/ q and move the nuke down the screen with n key
                     player1.go("north")
                 if event.key == pygame.K_a:
                     player1.go("west")
@@ -194,8 +193,8 @@ while go:
         all.update(size, player1.lives, player1.missiles)
         
    #-----------------------------------------------------------------------
-        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False) #Boolean checks if object should be killed upon collision
-        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, False)                                 #Boolean checks if object should be killed upon collision
+        playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)                                  #collide methods -- either indiv. sprite or group collides 
         playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
         playerHitSpecials = pygame.sprite.spritecollide(player1, specials, False)
         
@@ -217,7 +216,7 @@ while go:
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
         
-        for ability in playerHitAbilities:
+        for ability in playerHitAbilities:                                                                      #These are all the powerup collisions assigned under abilities, "kind" just helps identify which one it is
             if ability.kind == "repair":
                 player1.colliderepair()
                 player1.lives = 4
@@ -239,7 +238,7 @@ while go:
                 Asteroid.slow = True
             if ability.kind == "mini":
                 player1.collideMini()
-                #shrinkpickup.play(1);
+               # shrinkpickup.play(1);
                 #shrinkpickup.fadeout(1200)
                
                 #maybe make this a "freeze" instead of slowMo and asteroids all stop while ship can still move, might be easier to do
@@ -271,7 +270,7 @@ while go:
    #--------------------------------------------------------------------------
    
 
-        if player1.lives == 0:
+        if player1.lives == 0:                                                              #If all lives are gone, go to the end "dead" screen and then reset you back to menu
             boomsound.stop()
             pygame.time.delay(500)
             closing.play(1);
@@ -290,7 +289,7 @@ while go:
        
        
        
-    for bg in backgrounds:
+    for bg in backgrounds:                                                                  #"dead" screen assignment 
         bg.kill()
     Background("Screen Display/SplashScreen/images/lost.png")
     while mode == "dead":
@@ -307,7 +306,7 @@ while go:
         clock.tick(60)
 
 
-    for bg in backgrounds:
+    for bg in backgrounds:                                                                     #quick note - this line kills the previous background and then it is reset with the new calling / assignment of a background image in line 311
         bg.kill()
     Background("Screen Display/SplashScreen/images/win.png")
     

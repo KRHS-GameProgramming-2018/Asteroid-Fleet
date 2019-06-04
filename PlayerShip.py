@@ -27,7 +27,6 @@ class PlayerShip(Ship):
         if self.hyper:
             self.image = self.HyperImage
             
-        
         #self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = speed
