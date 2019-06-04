@@ -3,7 +3,6 @@ What We Want To Do:
 Asteroid Fleet Completion
 
 Big Questions:
-Should we downsize all objects or try to make a scrolling screen, levels == Game purpose??  #done
 Is a multiplayer option worth doing?   #Yes I think this would be pretty sweet. Although it would take some effort. - Tucker
 
 Things To Add:
@@ -11,7 +10,6 @@ Things To Add:
 Enemies / Shoot Function for them 
 Slow Down Time Power Up
 New Art For HyperSpeed Icon - jj 
-Buttons to the Start Screen #Done - Jake
 Sounds for all Powerups, collisions, new modes, death... - Tucker
 Shield Bar? -- Might not be neccesary
 Mega Asteroids ? Asteroid storm ? Space junk? - jj
