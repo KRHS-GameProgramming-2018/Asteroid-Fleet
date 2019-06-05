@@ -237,6 +237,7 @@ while go:
                 player1.collideSlowMo()
                 Asteroid.slow = True
             if ability.kind == "mini":
+                player1.key = True
                 player1.collideMini()
                # shrinkpickup.play(1);
                 #shrinkpickup.fadeout(1200)
@@ -253,8 +254,9 @@ while go:
              mega.collideAsteroid(asteroid)
     
         for asteroid in playerHitAsteroids:
-			player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
-			asteroid.collideShip(player1)   	# no explosion detected in code... asteroid collision must be checked 
+            player1.key = False
+            player1.collideAsteroid(asteroid)    # While exploding collision still takes place, talk to spooner about way to solve
+            asteroid.collideShip(player1)       # no explosion detected in code... asteroid collision must be checked 
         
         for missile in missilesHitAsteroids:
             for asteroid in missilesHitAsteroids[missile]:

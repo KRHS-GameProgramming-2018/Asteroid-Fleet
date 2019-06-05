@@ -36,6 +36,8 @@ class PlayerShip(Ship):
         self.hyper = False
         self.hit = False
         self.small = False
+        self.key = False
+        
         
         #Health
         self.living = True
@@ -67,7 +69,7 @@ class PlayerShip(Ship):
                 self.image = self.HyperMoveImage
             if self.hit:
                 self.image = self.hitMoveImage
-            if self.small:
+            if self.small and self.key:
                 self.image = self.miniMoveImage
                 
         if d == "south":
@@ -79,7 +81,7 @@ class PlayerShip(Ship):
                 self.image = self.HyperMoveImage
             if self.hit:
                 self.image = self.hitMoveImage
-            if self.small:
+            if self.small and self.key:
                 self.image = self.miniMoveImage
                 
         if d == "west":
@@ -91,7 +93,8 @@ class PlayerShip(Ship):
                 self.image = self.HyperMoveImage
             if self.hit:
                 self.image = self.hitMoveImage
-            if self.small:
+                
+            if self.small and self.key:
                 self.image = self.miniMoveImage
                 
         if d == "east":
@@ -103,8 +106,9 @@ class PlayerShip(Ship):
                 self.image = self.HyperMoveImage
             if self.hit:
                 self.image = self.hitMoveImage
-            if self.small:
-                self.image = self.miniMoveImage    
+                
+            if self.small and self.key:
+                self.image = self.miniMoveImage   
             
         if d == "northU":
             self.speedy = 0
@@ -115,8 +119,8 @@ class PlayerShip(Ship):
                 self.image = self.HyperImage
             if self.hit:
                 self.image = self.hitImage
-            if self.small:
-                self.image = self.miniImage    
+            if self.small and self.key:
+                self.image = self.miniImage
             
         if d == "southU":
             self.speedy = 0
@@ -127,8 +131,8 @@ class PlayerShip(Ship):
                 self.image = self.HyperImage
             if self.hit:
                 self.image = self.hitImage
-            if self.small:
-                self.image = self.miniImage   
+            if self.small and self.key:
+                self.image = self.miniImage
             
         if d == "westU":
             self.speedx = 0
@@ -139,8 +143,8 @@ class PlayerShip(Ship):
                 self.image = self.HyperImage
             if self.hit:
                 self.image = self.hitImage
-            if self.small:
-                self.image = self.miniImage   
+            if self.small and self.key:
+                self.image = self.miniImage
             
         if d == "eastU":
             self.speedx = 0
@@ -151,8 +155,8 @@ class PlayerShip(Ship):
                 self.image = self.HyperImage
             if self.hit:
                 self.image = self.hitImage
-            if self.small:
-                self.image = self.miniImage   
+            if self.small and self.key:
+                self.image = self.miniImage
             
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
