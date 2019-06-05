@@ -221,10 +221,6 @@ while go:
                 player1.colliderepair()
                 player1.lives = 4
                 repairkitpickup.play(1);
-                repairkitpickup.fadeout(1200)
-            if ability.kind == "shield":
-                player1.collideShield()
-                shieldpickup.play(1);
                 shieldpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
