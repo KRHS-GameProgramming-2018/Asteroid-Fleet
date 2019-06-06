@@ -116,8 +116,8 @@ while go:
   #-----GAME SETUP-------------
     for bg in backgrounds:
         bg.kill()
-    Background("Screen Display/Background/images/scrollingspace2.png", True, False, [0, -1800])                 #Drawing and calling all objects to the screen and assigning them images / setting boolean states 
-    Background("Screen Display/Background/images/hyper.bg.png", True, False, [0, -3600])
+    Background("Screen Display/Background/images/scrolling2.png", True, False, [0, -1800])                 #Drawing and calling all objects to the screen and assigning them images / setting boolean states 
+    Background("Screen Display/Background/images/scrollingspace2.png", True, False, [0, -3600])
     player1 = PlayerShip(2)
     missile = None
     PowerShield("PowerUps/Shield/images/shield.png",[random.randint(50,width-50),(500)])
@@ -221,10 +221,6 @@ while go:
                 player1.colliderepair()
                 player1.lives = 4
                 repairkitpickup.play(1);
-                repairkitpickup.fadeout(1200)
-            if ability.kind == "shield":
-                player1.collideShield()
-                shieldpickup.play(1);
                 shieldpickup.fadeout(1200)
             if ability.kind == "hype":
                 player1.collideHP()
