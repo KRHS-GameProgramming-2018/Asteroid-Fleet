@@ -18,6 +18,16 @@ class SlowMo(pygame.sprite.Sprite):
             if self.speed == 0:
                 self.living = False
     
+            self.images = [pygame.transform.scale(pygame.image.load("PowerUps/Boost/images/slowdown.png"),[50,50]),
+                           pygame.transform.scale(pygame.image.load("PowerUps/Boost/images/slowdown2.png"),[50,50])]
+                       
+            self.frame = 0;
+            self.maxFrame = len(self.images)-1
+            self.aniTimer = 0
+            self.aniTimerMax = 180/10
+    
+    
+                
     
     def getDist(self, pt):
         x1 = self.rect.centerx
@@ -34,8 +44,20 @@ class SlowMo(pygame.sprite.Sprite):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)  
      
+    def animate(self):
+        if self.aniTimer < self.aniTimerMax:
+            self.aniTimer += 1
+        else:
+            self.aniTimer = 0
+            if self.frame < self.maxFrame:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
+    
                                 
     def update(*args):
         self = args[0]
         size = args[1]
         self.move()
+        self.animate()

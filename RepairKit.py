@@ -18,7 +18,7 @@ class RepairKit(pygame.sprite.Sprite):
         self.frame = 0;
         self.maxFrame = len(self.images)-1
         self.aniTimer = 0
-        self.aniTimerMax = 180/10
+        self.aniTimerMax = 200/10
     
     
     def getDist(self, pt):
