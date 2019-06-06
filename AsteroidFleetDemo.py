@@ -211,7 +211,7 @@ while go:
                     # if asteroid.collideAsteroid(otherasteroid):
                         # otherasteroid.kill()
                         
-        if len(asteroids.sprites())< 19:
+        if len(asteroids.sprites())< 17:
             if random.randint(0,10) == 0:    #controls how close asteroids spawn together
                 Asteroid(width,asteroids)
                 #asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, True, False)
