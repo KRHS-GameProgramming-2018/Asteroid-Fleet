@@ -248,6 +248,7 @@ while go:
             if special.kind == "nuke":
                 player1.collideNuke()
                 player1.ready = False
+                player1.key = False
             
         for asteroid in asteroidsHitSpecials:
              asteroid.collideNuke(mega)
