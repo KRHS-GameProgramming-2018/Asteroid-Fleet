@@ -13,7 +13,6 @@ New Art For HyperSpeed Icon - jj
 Sounds for all Powerups, collisions, new modes, death... - Tucker
 Shield Bar? -- Might not be neccesary
 Mega Asteroids ? Asteroid storm ? Space junk? - jj
-Nuke Powerup, Maybe Easter Egg... Found / used once per game, clears all asteroids from screen, maybe all images change slightly 
 Star wars description intro, command log, giving background to game 
 
 Things that Need to be Fixed / Tweaked:
